@@ -1,17 +1,349 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Padma Pura" description="Padma Pura.">
+	<section class="teacher-introduction" aria-labelledby="teacher-name">
+		<div class="teacher-introduction__copy">
+			<p class="teacher-introduction__label">Our Teacher</p>
+			<h1 id="teacher-name">Tenzin Samphel Rinpoche</h1>
+		</div>
+
+		<figure class="teacher-portrait">
+			<img
+				class="teacher-portrait__image"
+				src="/images/rinpoche/tenzin-samphel-reference.jpeg"
+				alt="Tenzin Samphel Rinpoche"
+			/>
+		</figure>
+	</section>
+
+	<section class="upcoming" aria-labelledby="upcoming-heading">
+		<div class="upcoming__heading">
+			<h2 id="upcoming-heading">Upcoming</h2>
+		</div>
+
+		<div class="upcoming__list">
+			<article class="upcoming__item">
+				<h3>Tsog Practice</h3>
+				<p>Date to be confirmed</p>
+			</article>
+			<article class="upcoming__item">
+				<h3>Rinpoche in the Netherlands</h3>
+				<p>Dates to be confirmed</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="lineage" aria-labelledby="lineage-heading">
+		<div class="lineage__intro">
+			<h2 id="lineage-heading">Lineage</h2>
+		</div>
+		<div class="lineage__tradition">
+			<h3>Nyingma</h3>
+			<p>Dudjom Tersar</p>
+		</div>
+	</section>
+
+	<section class="dharma-activity" aria-labelledby="dharma-activity-heading">
+		<div class="dharma-activity__heading">
+			<h2 id="dharma-activity-heading">Dharma Activity</h2>
+		</div>
+		<ul class="dharma-activity__list">
+			<li>Teachings &amp; Empowerments</li>
+			<li>Practice</li>
+			<li>Tsetar</li>
+		</ul>
+	</section>
+</BaseLayout>
+
+<style>
+	.teacher-introduction {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+		align-items: end;
+		gap: clamp(var(--space-5), 4vw, var(--space-7));
+		width: calc(100% - (var(--space-6) * 2));
+		max-width: var(--content-width);
+		padding-block: clamp(var(--space-7), 6vh, var(--space-8));
+		margin-inline: auto;
+	}
+
+	.teacher-introduction__copy {
+		padding-bottom: clamp(var(--space-5), 4vh, var(--space-7));
+	}
+
+	.teacher-introduction__label {
+		margin: 0 0 var(--space-5);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		line-height: 1.4;
+	}
+
+	.teacher-introduction h1 {
+		max-width: 10ch;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3.25rem, 6.5vw, 6.5rem);
+		font-weight: 380;
+		letter-spacing: 0;
+		line-height: 0.98;
+		font-optical-sizing: auto;
+	}
+
+	.teacher-portrait {
+		width: 100%;
+		max-width: 21rem;
+		margin: 0;
+		justify-self: end;
+	}
+
+	.teacher-portrait__image {
+		display: block;
+		width: 100%;
+		aspect-ratio: 4 / 5;
+		object-fit: cover;
+		object-position: center top;
+	}
+
+	.upcoming {
+		--upcoming-inline-padding: var(--space-6);
+		width: calc(100% - (var(--space-6) * 2));
+		max-width: var(--content-width);
+		padding-top: clamp(var(--space-8), 10vw, 8rem);
+		margin-inline: max(var(--upcoming-inline-padding), (100% - var(--content-width)) / 2);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.upcoming__heading {
+		width: min(100%, var(--content-width-narrow));
+		padding-bottom: clamp(var(--space-6), 5vw, var(--space-8));
+	}
+
+	.upcoming h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 380;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.upcoming__list {
+		border-top: 1px solid var(--color-border);
+	}
+
+	.upcoming__item {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.45fr);
+		gap: var(--space-5);
+		align-items: baseline;
+		padding-block: var(--space-5);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.upcoming__item h3,
+	.upcoming__item p {
+		margin: 0;
+		font-family: var(--font-sans);
+	}
+
+	.upcoming__item h3 {
+		font-size: var(--text-lg);
+		font-weight: 450;
+		line-height: 1.25;
+	}
+
+	.upcoming__item p {
+		color: var(--color-muted);
+		font-size: var(--text-base);
+		line-height: 1.4;
+	}
+
+	.lineage {
+		width: calc(100% - (var(--space-6) * 2));
+		max-width: var(--content-width);
+		padding-top: clamp(var(--space-8), 11vw, 9rem);
+		margin-inline: auto;
+	}
+
+	.lineage__intro {
+		width: min(100%, var(--content-width-narrow));
+		padding-top: var(--space-5);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.lineage h2,
+	.lineage h3,
+	.lineage p {
+		margin: 0;
+	}
+
+	.lineage h2,
+	.lineage h3 {
+		font-family: var(--font-display);
+		font-optical-sizing: auto;
+	}
+
+	.lineage h2 {
+		font-size: var(--text-lg);
+		font-weight: 360;
+		line-height: 1.1;
+	}
+
+	.lineage__tradition {
+		padding-top: clamp(var(--space-8), 8vw, var(--space-9));
+		padding-bottom: clamp(var(--space-8), 10vw, 8rem);
+	}
+
+	.lineage h3 {
+		font-size: clamp(2.75rem, 4.5vw, 5rem);
+		font-weight: 360;
+		line-height: 1;
+	}
+
+	.lineage p {
+		max-width: 20rem;
+		padding-top: var(--space-4);
+		padding-left: clamp(var(--space-5), 6vw, 6rem);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 450;
+		letter-spacing: 0.01em;
+		line-height: 1.4;
+	}
+
+	@media (max-width: 48rem) {
+		.teacher-introduction {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: var(--space-7);
+			min-height: auto;
+			padding-block: var(--space-7) var(--space-8);
+		}
+
+		.teacher-introduction__copy {
+			padding: 0;
+		}
+
+		.teacher-introduction h1 {
+			max-width: 12ch;
+			font-size: clamp(2.75rem, 13vw, 4.5rem);
+			line-height: 1;
+		}
+
+		.teacher-portrait {
+			width: min(82%, 22rem);
+			align-self: flex-end;
+		}
+
+		.teacher-portrait__image {
+			aspect-ratio: 4 / 5;
+			object-fit: contain;
+			object-position: center top;
+		}
+
+		.upcoming {
+			--upcoming-inline-padding: var(--space-5);
+			width: calc(100% - (var(--space-5) * 2));
+			padding-top: var(--space-8);
+			margin-inline: var(--upcoming-inline-padding);
+		}
+
+		.upcoming__heading {
+			padding-bottom: var(--space-6);
+		}
+
+		.upcoming__item {
+			grid-template-columns: 1fr;
+			gap: var(--space-2);
+			padding-block: var(--space-5);
+		}
+
+		.lineage {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-top: var(--space-8);
+			margin-inline: auto;
+		}
+
+		.lineage__tradition {
+			padding-top: var(--space-7);
+			padding-bottom: var(--space-8);
+		}
+
+		.lineage h3 {
+			font-size: clamp(2.75rem, 13vw, 4.25rem);
+		}
+
+		.lineage p {
+			padding-top: var(--space-3);
+			padding-left: var(--space-5);
+		}
+
+	}
+</style>
+
+<style is:global>
+	.dharma-activity {
+		display: grid;
+		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+		gap: clamp(var(--space-6), 7vw, 8rem);
+		width: calc(100% - (var(--space-6) * 2));
+		max-width: var(--content-width);
+		padding-block: clamp(var(--space-7), 7vw, var(--space-9)) clamp(var(--space-8), 10vw, 8rem);
+		margin-inline: auto;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.dharma-activity__heading {
+		padding-top: var(--space-2);
+	}
+
+	.dharma-activity h2 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: var(--text-lg);
+		font-weight: 360;
+		line-height: 1.1;
+		font-optical-sizing: auto;
+	}
+
+	.dharma-activity__list {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.dharma-activity__list li {
+		padding-block: clamp(var(--space-5), 3vw, var(--space-6));
+		border-bottom: 1px solid var(--color-border);
+		font-family: var(--font-display);
+		font-size: clamp(1.75rem, 3vw, 3.25rem);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	@media (max-width: 48rem) {
+		.dharma-activity {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-7) var(--space-8);
+		}
+
+		.dharma-activity__heading {
+			padding: 0 0 var(--space-7);
+		}
+
+		.dharma-activity__list li {
+			padding-block: var(--space-5);
+			font-size: clamp(1.75rem, 9vw, 2.5rem);
+		}
+	}
+</style>
