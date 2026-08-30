@@ -42,6 +42,48 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		</div>
 		<h2 id="training-heading">Training and teachers</h2>
 	</section>
+
+	<section class="shedup" aria-labelledby="shedup-heading">
+		<h2 id="shedup-heading">Shedup Kunsang Chöling</h2>
+		<div class="shedup__prose">
+			<p>Shedup Kunsang Chöling is a Buddhist centre in Septvaux, France, established in 1999 with the advice and encouragement of Khetsun Sangpo Rinpoche.</p>
+			<p>Shedup Kunsang Chöling has been a central base for Rinpoche’s Dharma activity since 2002. He gives teachings, empowerments and practice guidance there, and practitioners gather there around his teaching and guidance.</p>
+		</div>
+	</section>
+
+	<figure class="teacher-photo">
+		<img
+			src="/images/home/rinpoche-teaching-reference.webp"
+			alt="Tenzin Samphel Rinpoche during a teaching"
+			width="1366"
+			height="768"
+			loading="lazy"
+		/>
+	</figure>
+
+	<section class="teaching" aria-labelledby="teaching-heading">
+		<h2 id="teaching-heading">Teaching activity</h2>
+		<div class="teaching__prose">
+			<p>Rinpoche gives teachings, empowerments, oral transmissions and practice guidance, transmitting the Dharma according to the needs and circumstances of his students.</p>
+			<p>His teaching activity takes place at Shedup Kunsang Chöling and during visits to other places, including the Netherlands. Through Padma Pura Foundation, students in the Netherlands gather for Rinpoche’s teachings and transmissions, as well as for practice and other Dharma activities connected with his guidance.</p>
+		</div>
+	</section>
+
+	<section class="academic" aria-labelledby="academic-heading">
+		<h2 id="academic-heading">Academic work</h2>
+		<div class="academic__prose">
+			<p>Alongside his Dharma activity, Rinpoche has also contributed to academic work relating to Tibetan language and Buddhist traditions.</p>
+			<p>He taught for eight years at Inalco in Paris, where he also contributed to research in Tibetology. He has also worked with graduate students at Rice University in Houston.</p>
+		</div>
+	</section>
+
+	<section class="lineage-transition" aria-labelledby="lineage-transition-heading">
+		<h2 id="lineage-transition-heading">Lineage &amp; Transmission</h2>
+		<p>Learn more about the Nyingma tradition and the transmission lineages and practice cycles connected with Rinpoche’s training and Dharma activity.</p>
+		<p class="lineage-transition__link">
+			<a href="/lineage">Explore Lineage &amp; Transmission</a>
+		</p>
+	</section>
 </BaseLayout>
 
 <style>
@@ -108,7 +150,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
 		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-9), 10vw, 10rem);
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
 		margin-inline: auto;
 	}
 
@@ -146,7 +188,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
 		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-9), 10vw, 10rem);
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
 		margin-inline: auto;
 	}
 
@@ -177,6 +219,150 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.training p + p {
 		margin-top: var(--space-6);
+	}
+
+	.shedup {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-9), 10vw, 10rem);
+		margin-inline: auto;
+	}
+
+	.shedup h2 {
+		margin: 0 0 var(--space-7);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.shedup__prose {
+		max-width: 42rem;
+		margin-inline: auto;
+	}
+
+	.shedup__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.shedup__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.teacher-photo {
+		width: min(100% - (var(--space-6) * 2), 80rem);
+		padding-bottom: clamp(var(--space-9), 10vw, 10rem);
+		margin: 0 auto;
+	}
+
+	.teacher-photo img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
+	}
+
+	.teaching {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.teaching h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-7);
+		font-family: var(--font-display);
+		font-size: 2.9375rem;
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.teaching__prose {
+		max-width: 46rem;
+	}
+
+	.teaching__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.teaching__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.academic {
+		display: grid;
+		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+		gap: clamp(var(--space-6), 7vw, 8rem);
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.academic h2,
+	.academic p {
+		margin: 0;
+	}
+
+	.academic h2 {
+		padding-top: var(--space-2);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.academic__prose {
+		max-width: 42rem;
+	}
+
+	.academic p {
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.academic p + p {
+		margin-top: var(--space-6);
+	}
+
+	.lineage-transition {
+		max-width: 34rem;
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 6vw, var(--space-8));
+		margin-inline: auto;
+	}
+
+	.lineage-transition h2 {
+		margin: 0 0 var(--space-5);
+		font-family: var(--font-display);
+		font-size: var(--text-lg);
+		font-weight: 380;
+		line-height: 1.2;
+		font-optical-sizing: auto;
+	}
+
+	.lineage-transition p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.lineage-transition__link {
+		margin-top: var(--space-5);
+		font-weight: 500;
 	}
 
 	@media (max-width: 48rem) {
@@ -231,6 +417,71 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.training p {
+			font-size: var(--text-base);
+		}
+
+		.shedup {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.shedup h2 {
+			margin: 0 0 var(--space-6);
+		}
+
+		.shedup__prose {
+			max-width: none;
+		}
+
+		.shedup__prose p {
+			font-size: var(--text-base);
+		}
+
+		.teacher-photo {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.teaching {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.teaching h2 {
+			max-width: none;
+			margin: 0 0 var(--space-6);
+			font-size: clamp(2rem, 8vw, 2.5rem);
+		}
+
+		.teaching__prose {
+			max-width: none;
+		}
+
+		.teaching__prose p {
+			font-size: var(--text-base);
+		}
+
+		.academic {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.academic h2 {
+			padding: 0 0 var(--space-6);
+		}
+
+		.academic p {
+			font-size: var(--text-base);
+		}
+
+		.lineage-transition {
+			max-width: none;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-7);
+		}
+
+		.lineage-transition p {
 			font-size: var(--text-base);
 		}
 	}
