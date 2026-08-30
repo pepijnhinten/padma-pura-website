@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Lineage & Transmission | Padma Pura Foundation"
+	description="The Nyingma tradition and the transmission lineages and practice cycles held by Tenzin Samphel Rinpoche, taught through Padma Pura Foundation."
+>
+	<section class="lineage-opening" aria-labelledby="lineage-heading">
+		<p class="lineage-opening__label">Lineage</p>
+		<h1 id="lineage-heading">Lineage &amp; Transmission</h1>
+		<p class="lineage-opening__intro">
+			Tenzin Samphel Rinpoche teaches within the Nyingma tradition of Tibetan Buddhism. He holds and transmits several transmission lineages and practice cycles within that tradition.
+		</p>
+	</section>
+</BaseLayout>
+
+<style>
+	.lineage-opening {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-9), 10vw, 10rem);
+		margin-inline: auto;
+	}
+
+	.lineage-opening__label {
+		margin: 0;
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		line-height: 1.4;
+	}
+
+	.lineage-opening h1 {
+		max-width: 16ch;
+		margin: var(--space-6) 0 0 clamp(2rem, 10vw, 8rem);
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 5.5vw, 5.5rem);
+		font-weight: 380;
+		letter-spacing: 0;
+		line-height: 1.02;
+		font-optical-sizing: auto;
+	}
+
+	.lineage-opening__intro {
+		max-width: 26rem;
+		margin: clamp(var(--space-5), 3vw, var(--space-7)) 0 0 auto;
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	@media (max-width: 48rem) {
+		.lineage-opening {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-8) var(--space-9);
+		}
+
+		.lineage-opening h1 {
+			max-width: none;
+			margin: var(--space-5) 0 0;
+			font-size: clamp(2.5rem, 11vw, 3.5rem);
+			line-height: 1.05;
+		}
+
+		.lineage-opening__intro {
+			max-width: none;
+			margin: var(--space-6) 0 0;
+			font-size: var(--text-base);
+		}
+	}
+</style>
