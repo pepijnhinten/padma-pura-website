@@ -1,0 +1,237 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Our Teacher | Padma Pura"
+	description="Tenzin Samphel Rinpoche, teacher in the Nyingma tradition of Tibetan Buddhism."
+>
+	<section class="teacher-opening" aria-labelledby="teacher-heading">
+		<header class="teacher-opening__heading">
+			<p class="teacher-opening__label">Our Teacher</p>
+			<h1 id="teacher-heading">Tenzin Samphel Rinpoche</h1>
+		</header>
+
+		<p class="teacher-opening__intro">
+			Tenzin Samphel Rinpoche is a teacher in the Nyingma tradition of Tibetan Buddhism. His life has been devoted to study, practice and the transmission of the Dharma.
+		</p>
+
+		<figure class="teacher-opening__portrait">
+			<img
+				src="/images/rinpoche/tenzin-samphel-reference.jpeg"
+				alt="Tenzin Samphel Rinpoche"
+				width="1430"
+				height="2048"
+			/>
+		</figure>
+	</section>
+
+	<section class="biography" aria-labelledby="biography-heading">
+		<h2 id="biography-heading">Biography</h2>
+		<div class="biography__prose">
+			<p>Born in 1961 in Spiti, in the Indian Himalayas, Tenzin Samphel Rinpoche began his monastic studies at the monastery of Kyabjé Dudjom Rinpoche in Orissa, India. He later spent twelve years studying and practising at Urgyen Dongak Chöling, Dudjom Rinpoche’s monastery in Boudhanath, Kathmandu, Nepal. He later taught Buddhism and philosophy at the same monastery under the guidance of Khetsun Sangpo Rinpoche.</p>
+			<p>In 1987, at the request of Dudjom Rinpoche, Rinpoche moved to France to continue his Dharma activity there as a lama and teacher.</p>
+			<p>In 1999, with the advice and encouragement of Khetsun Sangpo Rinpoche, Tenzin Samphel Rinpoche established Shedup Kunsang Chöling in France. He has lived there since 2002, teaching and guiding practitioners.</p>
+		</div>
+	</section>
+
+	<section class="training" aria-labelledby="training-heading">
+		<div class="training__prose">
+			<p>Throughout his training, Tenzin Samphel Rinpoche received teachings, empowerments and transmissions from many accomplished masters of the Nyingma tradition. Among his principal teachers were Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.</p>
+			<p>His training encompasses several transmission lineages and practice cycles within the Nyingma tradition. These include Dudjom Tersar, Yangti Nagpo and Longchen Nyingthig, among others.</p>
+		</div>
+		<h2 id="training-heading">Training and teachers</h2>
+	</section>
+</BaseLayout>
+
+<style>
+	.teacher-opening {
+		display: grid;
+		grid-template-columns: minmax(0, 0.9fr) minmax(16rem, 0.65fr) minmax(14rem, 0.45fr);
+		column-gap: clamp(var(--space-6), 5vw, var(--space-9));
+		align-items: start;
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-9), 10vw, 10rem);
+		margin-inline: auto;
+	}
+
+	.teacher-opening__heading {
+		margin: 0;
+	}
+
+	.teacher-opening__label {
+		margin: 0 0 var(--space-5);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		line-height: 1.4;
+	}
+
+	.teacher-opening h1 {
+		max-width: 9ch;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3.5rem, 6vw, 6.25rem);
+		font-weight: 380;
+		letter-spacing: 0;
+		line-height: 0.98;
+		font-optical-sizing: auto;
+	}
+
+	.teacher-opening__intro {
+		max-width: 26rem;
+		padding-top: clamp(var(--space-8), 8vw, 8rem);
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.teacher-opening__portrait {
+		width: 100%;
+		max-width: 19rem;
+		margin: 0;
+		justify-self: end;
+	}
+
+	.teacher-opening__portrait img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.biography {
+		display: grid;
+		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+		gap: clamp(var(--space-6), 7vw, 8rem);
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-9), 10vw, 10rem);
+		margin-inline: auto;
+	}
+
+	.biography h2,
+	.biography p {
+		margin: 0;
+	}
+
+	.biography h2 {
+		padding-top: var(--space-2);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.biography__prose {
+		max-width: 42rem;
+	}
+
+	.biography p {
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.biography p + p {
+		margin-top: var(--space-6);
+	}
+
+	.training {
+		display: grid;
+		grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+		gap: clamp(var(--space-6), 7vw, 8rem);
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-9), 10vw, 10rem);
+		margin-inline: auto;
+	}
+
+	.training h2,
+	.training p {
+		margin: 0;
+	}
+
+	.training h2 {
+		padding-top: var(--space-2);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.training__prose {
+		max-width: 42rem;
+	}
+
+	.training p {
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.training p + p {
+		margin-top: var(--space-6);
+	}
+
+	@media (max-width: 48rem) {
+		.teacher-opening {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-8) var(--space-9);
+		}
+
+		.teacher-opening h1 {
+			max-width: 10ch;
+			font-size: clamp(3rem, 13vw, 4.5rem);
+			line-height: 1;
+		}
+
+		.teacher-opening__intro {
+			max-width: 30rem;
+			padding-top: var(--space-7);
+			font-size: var(--text-lg);
+		}
+
+		.teacher-opening__portrait {
+			width: min(78%, 20rem);
+			max-width: none;
+			margin-top: var(--space-8);
+		}
+
+		.biography {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.biography h2 {
+			padding: 0 0 var(--space-6);
+		}
+
+		.biography p {
+			font-size: var(--text-base);
+		}
+
+		.training {
+			display: flex;
+			flex-direction: column;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.training h2 {
+			order: -1;
+			padding: 0 0 var(--space-6);
+		}
+
+		.training p {
+			font-size: var(--text-base);
+		}
+	}
+</style>
