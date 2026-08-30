@@ -31,13 +31,30 @@ Use these spellings consistently:
 
 - Tenzin Samphel Rinpoche
 - Rinpoche
-- Padma Pura
+- Padma Pura Foundation
 - Nyingma
 - Dudjom Tersar
 - Tsog
 - Tsetar
 - Gutor
 - Shedup Kunsang Chöling
+
+## Public organization name
+
+The public-facing name of the organization is:
+
+Padma Pura Foundation
+
+Use the full name whenever the organization itself is being named in
+public-facing copy (headings, body copy, navigation labels, page titles
+and metadata, footer identity).
+
+Do not abbreviate to "Padma Pura" in public copy unless explicitly
+requested.
+
+The technical route `/padma-pura` is a URL slug and may remain unchanged.
+Do not rename routes, filenames, asset paths, CSS class names or
+component names to match this public naming rule.
 
 Do not invent spiritual, historical, biographical, lineage, practice, or ritual facts.
 
@@ -123,7 +140,7 @@ Current primary navigation:
 - Our Teacher
 - Lineage
 - Activities
-- Padma Pura
+- Padma Pura Foundation
 - Support
 
 Foundation & ANBI, Updates, Contact and Privacy are secondary and do not need to appear in the primary navigation.
