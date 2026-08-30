@@ -55,6 +55,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			<li>Tsetar</li>
 		</ul>
 	</section>
+
+	<section class="padma-pura" aria-labelledby="padma-pura-heading">
+		<h2 id="padma-pura-heading">Padma Pura</h2>
+		<p>Padma Pura supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands.</p>
+	</section>
+
+	<section class="support" aria-labelledby="support-heading">
+		<div class="support__introduction">
+			<h2 id="support-heading">Support</h2>
+			<p>Support Padma Pura and help make Rinpoche's Dharma activity in the Netherlands possible.</p>
+		</div>
+		<ul class="support__options">
+			<li>Donate</li>
+			<li>Tsetar Fund</li>
+			<li>Contribute</li>
+		</ul>
+	</section>
 </BaseLayout>
 
 <style>
@@ -217,6 +234,89 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		line-height: 1.4;
 	}
 
+	.padma-pura {
+		display: grid;
+		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+		gap: clamp(var(--space-6), 7vw, 8rem);
+		width: calc(100% - (var(--space-6) * 2));
+		max-width: var(--content-width);
+		padding-block: clamp(var(--space-7), 7vw, var(--space-9)) clamp(var(--space-8), 10vw, 8rem);
+		margin-inline: auto;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.padma-pura h2,
+	.padma-pura p {
+		margin: 0;
+	}
+
+	.padma-pura h2 {
+		padding-top: var(--space-2);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.padma-pura p {
+		max-width: 30rem;
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.support {
+		display: grid;
+		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+		gap: clamp(var(--space-6), 7vw, 8rem);
+		width: calc(100% - (var(--space-6) * 2));
+		max-width: var(--content-width);
+		padding-block: clamp(var(--space-7), 7vw, var(--space-9)) clamp(var(--space-8), 10vw, 8rem);
+		margin-inline: auto;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.support h2,
+	.support p,
+	.support__options {
+		margin: 0;
+	}
+
+	.support h2 {
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.support__introduction p {
+		max-width: 22rem;
+		padding-top: var(--space-4);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.support__options {
+		padding: 0;
+		list-style: none;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.support__options li {
+		padding-block: clamp(var(--space-4), 2vw, var(--space-5));
+		border-bottom: 1px solid var(--color-border);
+		font-family: var(--font-display);
+		font-size: clamp(1.5rem, 2.2vw, 2.25rem);
+		font-weight: 360;
+		line-height: 1.1;
+		font-optical-sizing: auto;
+	}
+
 	@media (max-width: 48rem) {
 		.teacher-introduction {
 			display: flex;
@@ -283,6 +383,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		.lineage p {
 			padding-top: var(--space-3);
 			padding-left: var(--space-5);
+		}
+
+		.padma-pura {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-7) var(--space-8);
+		}
+
+		.padma-pura h2 {
+			padding: 0 0 var(--space-5);
+		}
+
+		.support {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-7) var(--space-8);
+		}
+
+		.support__introduction {
+			padding-bottom: var(--space-7);
 		}
 
 	}
