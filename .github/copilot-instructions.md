@@ -206,3 +206,34 @@ After modifying code:
 4. mention important decisions or placeholders
 
 Never continue into the next phase unless explicitly asked.
+
+## Microsoft 365 boundary
+
+Padma Pura uses Microsoft 365 / SharePoint as its internal operational,
+document and source-media environment.
+
+Microsoft 365 may contain:
+
+- original media
+- working documents
+- internal documentation
+- transcripts and translations
+- administrative material
+- event working files
+- non-public archive material
+
+The public website is a publication layer.
+
+Do not treat the website repository as Padma Pura's primary archive,
+document management system or operational workspace.
+
+Do not duplicate Microsoft 365 functionality in the website unless
+explicitly requested.
+
+Only deliberately selected and approved public material should be
+published into the website.
+
+A file existing in Microsoft 365 does NOT imply that it is public.
+
+Do not create direct public links to internal SharePoint material unless
+explicitly approved.

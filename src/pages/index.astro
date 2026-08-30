@@ -37,11 +37,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	<section class="lineage" aria-labelledby="lineage-heading">
 		<div class="lineage__intro">
-			<h2 id="lineage-heading">Lineage</h2>
+			<h2 id="lineage-heading">Lineage &amp; Transmission</h2>
 		</div>
-		<div class="lineage__tradition">
-			<h3>Nyingma</h3>
-			<p>Dudjom Tersar</p>
+		<div class="lineage__content">
+			<div class="lineage__nyingma">
+				<h3>Nyingma</h3>
+				<p>Tenzin Samphel Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition.</p>
+			</div>
+			<div class="lineage__tersar">
+				<h3>Dudjom Tersar</h3>
+				<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings Rinpoche gives during Padma Pura activities.</p>
+			</div>
 		</div>
 	</section>
 
@@ -54,6 +60,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			<li>Practice</li>
 			<li>Tsetar</li>
 		</ul>
+	</section>
+
+	<section class="photographic-intermezzo" aria-label="Tenzin Samphel Rinpoche teaching">
+		<figure class="photographic-intermezzo__figure">
+			<img
+				class="photographic-intermezzo__image"
+				src="/images/home/rinpoche-teaching-reference.webp"
+				alt="Tenzin Samphel Rinpoche during a teaching"
+				width="1366"
+				height="768"
+			/>
+		</figure>
 	</section>
 
 	<section class="padma-pura" aria-labelledby="padma-pura-heading">
@@ -206,32 +224,48 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.lineage h2 {
-		font-size: var(--text-lg);
+		font-size: clamp(1.5rem, 2vw, 2.25rem);
 		font-weight: 360;
 		line-height: 1.1;
 	}
 
-	.lineage__tradition {
+	.lineage__content {
 		padding-top: clamp(var(--space-8), 8vw, var(--space-9));
 		padding-bottom: clamp(var(--space-8), 10vw, 8rem);
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: clamp(var(--space-8), 8vw, 8rem);
+		align-items: start;
+	}
+
+	.lineage__nyingma {
+		grid-column: 1;
+		padding-right: clamp(var(--space-5), 4vw, var(--space-8));
+	}
+
+	.lineage__tersar {
+		grid-column: 2;
+		padding-top: clamp(var(--space-6), 3vw, var(--space-8));
+	}
+
+	.lineage .lineage__tersar h3 {
+		font-size: clamp(1.8rem, 3.1vw, 3.96rem);
 	}
 
 	.lineage h3 {
-		font-size: clamp(2.75rem, 4.5vw, 5rem);
+		font-size: clamp(2rem, 3.5vw, 4.5rem);
 		font-weight: 360;
-		line-height: 1;
+		line-height: 1.1;
+		margin-bottom: var(--space-4);
 	}
 
 	.lineage p {
-		max-width: 20rem;
-		padding-top: var(--space-4);
-		padding-left: clamp(var(--space-5), 6vw, 6rem);
-		color: var(--color-muted);
+		max-width: 28rem;
+		color: var(--color-foreground);
 		font-family: var(--font-sans);
-		font-size: var(--text-base);
-		font-weight: 450;
-		letter-spacing: 0.01em;
-		line-height: 1.4;
+		font-size: clamp(1.0625rem, 1.15vw, 1.125rem);
+		font-weight: 400;
+		line-height: 1.6;
 	}
 
 	.padma-pura {
@@ -240,7 +274,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: calc(100% - (var(--space-6) * 2));
 		max-width: var(--content-width);
-		padding-block: clamp(var(--space-7), 7vw, var(--space-9)) clamp(var(--space-8), 10vw, 8rem);
+		padding-block: clamp(var(--space-7), 5.5vw, 6rem) clamp(var(--space-7), 7vw, var(--space-9));
 		margin-inline: auto;
 		border-top: 1px solid var(--color-border);
 	}
@@ -268,14 +302,53 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.support {
-		display: grid;
-		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
-		gap: clamp(var(--space-6), 7vw, 8rem);
+		display: block;
 		width: calc(100% - (var(--space-6) * 2));
 		max-width: var(--content-width);
-		padding-block: clamp(var(--space-7), 7vw, var(--space-9)) clamp(var(--space-8), 10vw, 8rem);
+		padding-block: clamp(var(--space-7), 6vw, var(--space-8)) clamp(var(--space-8), 10vw, 8rem);
 		margin-inline: auto;
 		border-top: 1px solid var(--color-border);
+	}
+
+	.support__introduction {
+		margin-bottom: clamp(var(--space-8), 8vw, var(--space-9));
+	}
+
+	.photographic-intermezzo {
+		width: 100%;
+		padding-block: clamp(var(--space-6), 4vw, var(--space-7));
+		background-color: var(--color-background);
+	}
+
+	.photographic-intermezzo__figure {
+		width: calc(100% - (var(--space-6) * 2));
+		max-width: clamp(50rem, 90%, var(--content-width));
+		margin-inline: auto;
+		margin-block: 0;
+	}
+
+	.photographic-intermezzo__image {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		object-position: center center;
+	}
+
+	@media (max-width: 48rem) {
+		.photographic-intermezzo {
+			padding-block: var(--space-7);
+		}
+
+		.photographic-intermezzo__figure {
+			width: calc(100% - (var(--space-5) * 2));
+			max-width: none;
+		}
+
+		.photographic-intermezzo__image {
+			aspect-ratio: 16 / 9;
+		}
 	}
 
 	.support h2,
@@ -283,38 +356,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	.support__options {
 		margin: 0;
 	}
-
+		padding-block: var(--space-7) clamp(var(--space-8), 10vw, 8rem);
 	.support h2 {
 		font-family: var(--font-display);
-		font-size: var(--text-xl);
+		font-size: clamp(1.5rem, 2vw, 2.25rem);
 		font-weight: 360;
-		line-height: 1.05;
+		line-height: 1.1;
 		font-optical-sizing: auto;
+		padding-bottom: var(--space-5);
 	}
 
 	.support__introduction p {
-		max-width: 22rem;
-		padding-top: var(--space-4);
 		font-family: var(--font-sans);
 		font-size: var(--text-base);
 		font-weight: 400;
-		line-height: 1.5;
+		line-height: 1.6;
+		color: var(--color-foreground);
 	}
 
 	.support__options {
 		padding: 0;
+		margin: 0;
 		list-style: none;
-		border-top: 1px solid var(--color-border);
+		display: flex;
+		flex-wrap: wrap;
+		gap: clamp(var(--space-6), 4vw, var(--space-8));
 	}
 
 	.support__options li {
-		padding-block: clamp(var(--space-4), 2vw, var(--space-5));
-		border-bottom: 1px solid var(--color-border);
+		padding: 0;
+		border: none;
 		font-family: var(--font-display);
-		font-size: clamp(1.5rem, 2.2vw, 2.25rem);
-		font-weight: 360;
-		line-height: 1.1;
-		font-optical-sizing: auto;
+		font-size: clamp(1.1rem, 1.5vw, 1.5rem);
+		font-weight: 380;
+		line-height: 1.3;
+		color: var(--color-foreground);
 	}
 
 	@media (max-width: 48rem) {
@@ -371,18 +447,35 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			margin-inline: auto;
 		}
 
-		.lineage__tradition {
+		.lineage__content {
+			grid-template-columns: 1fr;
+			gap: var(--space-7);
 			padding-top: var(--space-7);
 			padding-bottom: var(--space-8);
 		}
 
+		.lineage__nyingma {
+			grid-column: auto;
+			padding-right: 0;
+		}
+
+		.lineage__tersar {
+			grid-column: auto;
+			padding-top: 0;
+		}
+
 		.lineage h3 {
-			font-size: clamp(2.75rem, 13vw, 4.25rem);
+			font-size: clamp(2rem, 8vw, 2.75rem);
+		}
+
+		.lineage .lineage__tersar h3 {
+			font-size: clamp(2rem, 8vw, 2.75rem);
 		}
 
 		.lineage p {
+			max-width: 100%;
 			padding-top: var(--space-3);
-			padding-left: var(--space-5);
+			font-size: var(--text-base);
 		}
 
 		.padma-pura {
@@ -398,11 +491,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		.support {
 			display: block;
 			width: calc(100% - (var(--space-5) * 2));
-			padding-block: var(--space-7) var(--space-8);
+			padding-block: var(--space-8) var(--space-7);
 		}
 
 		.support__introduction {
-			padding-bottom: var(--space-7);
+			margin-bottom: var(--space-7);
+		}
+
+		.support h2 {
+			font-size: var(--text-lg);
+			padding-bottom: var(--space-4);
+		}
+
+		.support__options {
+			gap: var(--space-5);
 		}
 
 	}
@@ -415,7 +517,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: calc(100% - (var(--space-6) * 2));
 		max-width: var(--content-width);
-		padding-block: clamp(var(--space-7), 7vw, var(--space-9)) clamp(var(--space-8), 10vw, 8rem);
+		padding-block: clamp(var(--space-7), 7vw, var(--space-9)) clamp(var(--space-7), 7vw, var(--space-9));
 		margin-inline: auto;
 		border-top: 1px solid var(--color-border);
 	}
