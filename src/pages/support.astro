@@ -1,0 +1,358 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Support Padma Pura Foundation"
+	description="Padma Pura Foundation depends on the support of students, practitioners and others who wish to help make Rinpoche’s Dharma activity in the Netherlands possible."
+>
+	<section class="support-opening" aria-labelledby="support-heading">
+		<p class="support-opening__label">Support</p>
+		<h1 id="support-heading">Support Padma Pura Foundation</h1>
+		<div class="support-opening__intro">
+			<p>Padma Pura Foundation depends on the support of students, practitioners and others who wish to help make Tenzin Samphel Rinpoche’s Dharma activity in the Netherlands possible.</p>
+			<p>Contributions help create the practical conditions for visits, teachings, transmissions, practice and other activities connected with Rinpoche’s guidance.</p>
+		</div>
+	</section>
+
+	<section class="annual" aria-labelledby="annual-heading">
+		<h2 id="annual-heading">Annual Support</h2>
+		<div class="annual__prose">
+			<p>Annual Support provides an important part of the ongoing financial basis for Padma Pura Foundation and helps cover the regular costs of our work throughout the year.</p>
+			<p>The annual contribution is <span class="annual__amount">€50</span>. Supporters receive a discount on selected events organised by Padma Pura Foundation.</p>
+			<p>If you would like to become a supporter, please email <a href="mailto:info@padmapura.com">info@padmapura.com</a>. We will send you the information needed to register.</p>
+		</div>
+	</section>
+
+	<section class="other-donations" aria-labelledby="other-donations-heading">
+		<h2 id="other-donations-heading">Other donations</h2>
+		<div class="other-donations__prose">
+			<p>In addition to Annual Support, one-off and recurring donations help Padma Pura Foundation support Rinpoche’s Dharma activity in the Netherlands and respond to practical needs as they arise.</p>
+			<p>If you would like to make a donation, please contact us at <a href="mailto:info@padmapura.com">info@padmapura.com</a> for the current payment details.</p>
+		</div>
+	</section>
+
+	<section class="tsetar-fund" aria-labelledby="tsetar-fund-heading">
+		<h2 id="tsetar-fund-heading">Tsetar Fund</h2>
+		<div class="tsetar-fund__prose">
+			<p>The Tsetar Fund is used specifically to support Tsetar activities carried out under Rinpoche’s guidance.</p>
+			<p>Contributions to the fund help cover the practical costs involved in preparing and carrying out these activities. Because Tsetar requires careful preparation, detailed operational information is shared only where appropriate.</p>
+			<p>If you would like to support the Tsetar Fund, please email <a href="mailto:info@padmapura.com">info@padmapura.com</a> for current payment information.</p>
+		</div>
+	</section>
+
+	<section class="practical-support" aria-labelledby="practical-support-heading">
+		<h2 id="practical-support-heading">Practical support</h2>
+		<div class="practical-support__prose">
+			<p>Support does not only have to be financial. Practical help from students and volunteers also contributes to making Rinpoche’s Dharma activity in the Netherlands possible.</p>
+			<p>Depending on what is needed, this may include helping with visits, accommodation, event organisation, communication and other practical tasks. If you would like to contribute in this way, please contact us at <a href="mailto:info@padmapura.com">info@padmapura.com</a>.</p>
+		</div>
+	</section>
+
+	<section class="transparency" aria-labelledby="transparency-heading">
+		<h2 id="transparency-heading">Transparency</h2>
+		<div class="transparency__prose">
+			<p>Padma Pura Foundation is a Dutch foundation with ANBI status. Information about the foundation, its board, policy and formal documents is available on the Foundation &amp; ANBI page.</p>
+		</div>
+		<p class="transparency__link"><a href="/foundation">Foundation &amp; ANBI →</a></p>
+	</section>
+</BaseLayout>
+
+<style>
+	.support-opening {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-7), 8vw, 8rem);
+		margin-inline: auto;
+	}
+
+	.support-opening__label {
+		margin: 0 0 var(--space-6);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		line-height: 1.4;
+	}
+
+	.support-opening h1 {
+		max-width: 16ch;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3.25rem, 6vw, 5.5rem);
+		font-weight: 380;
+		letter-spacing: 0;
+		line-height: 1;
+		font-optical-sizing: auto;
+	}
+
+	.support-opening__intro {
+		max-width: 44rem;
+		margin-top: clamp(var(--space-7), 6vw, var(--space-9));
+	}
+
+	.support-opening__intro p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.support-opening__intro p + p {
+		margin-top: var(--space-5);
+		margin-left: clamp(0rem, 4vw, 3rem);
+	}
+
+	.annual {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 9vw, 8.5rem);
+		margin-inline: auto;
+	}
+
+	.annual h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-8);
+		font-family: var(--font-display);
+		font-size: clamp(2.75rem, 4vw, 3.25rem);
+		font-weight: 370;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.annual__prose {
+		max-width: 42rem;
+	}
+
+	.annual__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.annual__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.annual__amount {
+		font-family: var(--font-display);
+		font-size: 1.3em;
+		font-weight: 500;
+	}
+
+	.other-donations {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.other-donations h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-6);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.other-donations__prose {
+		max-width: 36rem;
+	}
+
+	.other-donations__prose p {
+		margin: 0;
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.other-donations__prose p + p {
+		margin-top: var(--space-5);
+	}
+
+	.tsetar-fund {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7.5vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.tsetar-fund h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-7);
+		font-family: var(--font-display);
+		font-size: clamp(2.25rem, 3vw, 2.5rem);
+		font-weight: 370;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.tsetar-fund__prose {
+		max-width: 38rem;
+	}
+
+	.tsetar-fund__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.tsetar-fund__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.practical-support {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.practical-support h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-6);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.practical-support__prose {
+		max-width: 40rem;
+	}
+
+	.practical-support__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.practical-support__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.transparency {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.transparency h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-6);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.transparency__prose {
+		max-width: 32rem;
+	}
+
+	.transparency__prose p {
+		margin: 0;
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.transparency__link {
+		margin: var(--space-5) 0 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+	}
+
+	@media (max-width: 48rem) {
+		.support-opening {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-8) var(--space-9);
+		}
+
+		.support-opening h1 {
+			max-width: none;
+			font-size: clamp(2.5rem, 11vw, 3.5rem);
+			line-height: 1.02;
+		}
+
+		.support-opening__intro {
+			max-width: none;
+			margin-top: var(--space-7);
+		}
+
+		.support-opening__intro p {
+			font-size: var(--text-base);
+		}
+
+		.support-opening__intro p + p {
+			margin-left: 0;
+		}
+
+		.annual {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.annual h2 {
+			margin: 0 0 var(--space-6);
+			font-size: clamp(2.25rem, 9vw, 2.75rem);
+		}
+
+		.annual__prose p {
+			font-size: var(--text-base);
+		}
+
+		.other-donations {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.other-donations__prose {
+			max-width: none;
+		}
+
+		.tsetar-fund {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.tsetar-fund h2 {
+			margin: 0 0 var(--space-6);
+			font-size: clamp(2rem, 8vw, 2.25rem);
+		}
+
+		.tsetar-fund__prose {
+			max-width: none;
+		}
+
+		.practical-support {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.practical-support__prose {
+			max-width: none;
+		}
+
+		.transparency {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.transparency__prose {
+			max-width: none;
+		}
+	}
+</style>
