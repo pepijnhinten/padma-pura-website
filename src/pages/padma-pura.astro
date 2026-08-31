@@ -1,0 +1,374 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Padma Pura Foundation"
+	description="Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands."
+>
+	<section class="pp-opening" aria-labelledby="pp-heading">
+		<p class="pp-opening__label">Foundation</p>
+		<h1 id="pp-heading">Padma Pura Foundation</h1>
+		<div class="pp-opening__intro">
+			<p>Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands.</p>
+			<p>The foundation helps create the practical conditions for teachings, transmissions, practice and other activities connected with Rinpoche’s guidance.</p>
+		</div>
+	</section>
+
+	<section class="purpose" aria-labelledby="purpose-heading">
+		<h2 id="purpose-heading">Our purpose</h2>
+		<div class="purpose__prose">
+			<p>Padma Pura Foundation supports the conditions in which Tenzin Samphel Rinpoche’s Dharma activity can take place in the Netherlands.</p>
+			<p>This includes organising visits, supporting teachings and transmissions, facilitating opportunities for practice, and taking care of the practical work that allows students to gather around Rinpoche’s guidance.</p>
+		</div>
+	</section>
+
+	<section class="how-we-work" aria-labelledby="how-we-work-heading">
+		<h2 id="how-we-work-heading">How we work</h2>
+		<div class="how-we-work__prose">
+			<p>Padma Pura Foundation is supported by a small group of people in the Netherlands who take care of the practical organisation around Rinpoche’s Dharma activity.</p>
+			<p>This includes coordinating visits, communication, practice activities, accommodation and other practical support. Much of this work is carried by volunteers and students who contribute where needed.</p>
+		</div>
+	</section>
+
+	<section class="activities-we-support" aria-labelledby="activities-we-support-heading">
+		<h2 id="activities-we-support-heading">Activities we support</h2>
+		<div class="activities-we-support__prose">
+			<p>Padma Pura Foundation supports a range of Dharma activities connected with Rinpoche’s guidance in the Netherlands.</p>
+			<p>These include visits by Tenzin Samphel Rinpoche, teachings and transmissions, Tsog practice, Tsetar and Gutor.</p>
+		</div>
+		<p class="activities-we-support__link"><a href="/activities">Explore Dharma Activity →</a></p>
+	</section>
+
+	<section class="foundation-anbi-summary" aria-labelledby="foundation-anbi-summary-heading">
+		<h2 id="foundation-anbi-summary-heading">Foundation &amp; ANBI</h2>
+		<div class="foundation-anbi-summary__prose">
+			<p>Padma Pura Foundation is a Dutch foundation with ANBI status.</p>
+			<p>Information about the foundation, its board, policy and other formal documents is available on the Foundation &amp; ANBI page.</p>
+		</div>
+		<p class="foundation-anbi-summary__link"><a href="/foundation">Foundation &amp; ANBI →</a></p>
+	</section>
+
+	<section class="support-summary" aria-labelledby="support-summary-heading">
+		<h2 id="support-summary-heading">Support</h2>
+		<div class="support-summary__prose">
+			<p>Padma Pura Foundation depends on the support of students, practitioners and others who wish to help make Rinpoche’s Dharma activity in the Netherlands possible.</p>
+		</div>
+		<p class="support-summary__link"><a href="/support">Support Padma Pura Foundation →</a></p>
+	</section>
+</BaseLayout>
+
+<style>
+	.pp-opening {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-7), 8vw, 8rem);
+		margin-inline: auto;
+	}
+
+	.pp-opening__label {
+		margin: 0 0 var(--space-6);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		line-height: 1.4;
+	}
+
+	.pp-opening h1 {
+		max-width: 16ch;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3.5rem, 6.5vw, 6rem);
+		font-weight: 380;
+		letter-spacing: 0;
+		line-height: 0.98;
+		font-optical-sizing: auto;
+	}
+
+	.pp-opening__intro {
+		max-width: var(--content-width);
+		margin-top: clamp(var(--space-7), 6vw, var(--space-9));
+	}
+
+	.pp-opening__intro p {
+		max-width: 34rem;
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.pp-opening__intro p:last-child {
+		margin: var(--space-6) 0 0 auto;
+	}
+
+	.purpose {
+		display: grid;
+		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+		gap: clamp(var(--space-6), 7vw, 8rem);
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.purpose h2,
+	.purpose p {
+		margin: 0;
+	}
+
+	.purpose h2 {
+		padding-top: var(--space-2);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.purpose__prose {
+		max-width: 42rem;
+	}
+
+	.purpose p {
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.purpose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.how-we-work {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.how-we-work h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-7);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.how-we-work__prose {
+		max-width: 42rem;
+	}
+
+	.how-we-work__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.how-we-work__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.activities-we-support {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.activities-we-support h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-6);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.activities-we-support__prose {
+		max-width: 38rem;
+	}
+
+	.activities-we-support__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.activities-we-support__prose p + p {
+		margin-top: var(--space-5);
+	}
+
+	.activities-we-support__link {
+		margin: var(--space-6) 0 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 500;
+	}
+
+	.foundation-anbi-summary {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.foundation-anbi-summary h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-6);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.foundation-anbi-summary__prose {
+		max-width: 32rem;
+	}
+
+	.foundation-anbi-summary__prose p {
+		margin: 0;
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.foundation-anbi-summary__prose p + p {
+		margin-top: var(--space-5);
+	}
+
+	.foundation-anbi-summary__link {
+		margin: var(--space-5) 0 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+	}
+
+	.support-summary {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.support-summary h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-6);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.support-summary__prose {
+		max-width: 36rem;
+	}
+
+	.support-summary__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.support-summary__link {
+		margin: var(--space-5) 0 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 500;
+	}
+
+	@media (max-width: 48rem) {
+		.pp-opening {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-8) var(--space-9);
+		}
+
+		.pp-opening h1 {
+			max-width: none;
+			font-size: clamp(2.75rem, 12vw, 4rem);
+			line-height: 1.02;
+		}
+
+		.pp-opening__intro {
+			margin-top: var(--space-7);
+		}
+
+		.pp-opening__intro p {
+			max-width: none;
+			font-size: var(--text-base);
+		}
+
+		.pp-opening__intro p:last-child {
+			margin: var(--space-6) 0 0;
+		}
+
+		.purpose {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.purpose h2 {
+			padding: 0 0 var(--space-6);
+		}
+
+		.purpose p {
+			font-size: var(--text-base);
+		}
+
+		.how-we-work {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.how-we-work__prose p {
+			font-size: var(--text-base);
+		}
+
+		.activities-we-support {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.activities-we-support__prose {
+			max-width: none;
+		}
+
+		.activities-we-support__prose p {
+			font-size: var(--text-base);
+		}
+
+		.foundation-anbi-summary {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.foundation-anbi-summary__prose {
+			max-width: none;
+		}
+
+		.foundation-anbi-summary__prose p {
+			font-size: var(--text-base);
+		}
+
+		.support-summary {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.support-summary__prose {
+			max-width: none;
+		}
+	}
+</style>
