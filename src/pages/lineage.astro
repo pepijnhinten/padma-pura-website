@@ -13,6 +13,49 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			Tenzin Samphel Rinpoche teaches within the Nyingma tradition of Tibetan Buddhism. He holds and transmits several transmission lineages and practice cycles within that tradition.
 		</p>
 	</section>
+
+	<section class="nyingma" aria-labelledby="nyingma-heading">
+		<h2 id="nyingma-heading">The Nyingma tradition</h2>
+		<div class="nyingma__prose">
+			<p>Nyingma is the oldest of the major traditions of Tibetan Buddhism. Over many centuries, its teachings and practices have been preserved and transmitted through numerous lineages and practice cycles.</p>
+			<p>Within the Nyingma tradition, different forms of transmission coexist. These include teachings passed from teacher to student as well as revealed treasure traditions known as terma.</p>
+		</div>
+	</section>
+
+	<section class="transmission" aria-labelledby="transmission-heading">
+		<h2 id="transmission-heading">Transmission</h2>
+		<div class="transmission__prose">
+			<p>In Vajrayana Buddhism, teachings are transmitted through more than explanation alone. A practice may be received through empowerment, oral transmission and direct practice instructions from a qualified teacher.</p>
+			<p>These forms of transmission connect the practitioner not only with a text or method, but with a living stream of practice that has been received, practised and passed on through generations.</p>
+			<p>The exact form of transmission depends on the teaching or practice. Some transmissions may be given publicly, while others are connected with specific prerequisites, commitments or practice contexts.</p>
+		</div>
+	</section>
+
+	<section class="rinpoche-transmission" aria-labelledby="rinpoche-transmission-heading">
+		<div class="rinpoche-transmission__prose">
+			<p>Tenzin Samphel Rinpoche received teachings, empowerments, oral transmissions and practice instructions from masters including Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.</p>
+			<p>He holds multiple transmission lineages and practice cycles within the Nyingma tradition. These do not form a single linear chain, but come through different streams of teaching, transmission and practice.</p>
+		</div>
+		<h2 id="rinpoche-transmission-heading">Rinpoche’s training and transmission</h2>
+	</section>
+
+	<section class="dudjom-tersar" aria-labelledby="dudjom-tersar-heading">
+		<h2 id="dudjom-tersar-heading">Dudjom Tersar</h2>
+		<div class="dudjom-tersar__prose">
+			<p>Dudjom Tersar is a terma tradition within the Nyingma school of Tibetan Buddhism. The name refers to the “New Treasures of Dudjom”: revealed teachings associated with Dudjom Lingpa and later Dudjom Rinpoche, Jigdral Yeshe Dorje.</p>
+			<p>It is not a separate school, but a body of revealed teachings and practice cycles transmitted within the wider Nyingma tradition.</p>
+			<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings that Tenzin Samphel Rinpoche gives through Padma Pura Foundation activities.</p>
+		</div>
+		<p class="dudjom-tersar__note">Rinpoche also holds transmission lineages of Yangti Nagpo, a Dzogchen terma cycle within the Nyingma tradition, and Longchen Nyingthig, the terma tradition revealed by Jigme Lingpa.</p>
+	</section>
+
+	<section class="living-transmission" aria-labelledby="living-transmission-heading">
+		<h2 id="living-transmission-heading">Living transmission</h2>
+		<div class="living-transmission__prose">
+			<p>Lineage is not only something preserved from the past. It remains living through practice and through the transmission of teachings, empowerments, oral transmissions and practice guidance from teacher to student.</p>
+			<p>Through his Dharma activity, Tenzin Samphel Rinpoche continues the transmission he has received and practised. Padma Pura Foundation supports this activity in the Netherlands, helping create the conditions for students to receive teachings and transmissions and to practise under Rinpoche’s guidance.</p>
+		</div>
+	</section>
 </BaseLayout>
 
 <style>
@@ -52,6 +95,187 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		line-height: 1.5;
 	}
 
+	.nyingma {
+		display: grid;
+		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
+		gap: clamp(var(--space-6), 7vw, 8rem);
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7.5vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.nyingma h2,
+	.nyingma p {
+		margin: 0;
+	}
+
+	.nyingma h2 {
+		padding-top: var(--space-2);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.nyingma__prose {
+		max-width: 42rem;
+	}
+
+	.nyingma p {
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.nyingma p + p {
+		margin-top: var(--space-6);
+	}
+
+	.transmission {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7.5vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.transmission h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-7);
+		font-family: var(--font-display);
+		font-size: 2.9375rem;
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.transmission__prose {
+		max-width: 42rem;
+	}
+
+	.transmission__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.transmission__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.rinpoche-transmission {
+		display: grid;
+		grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+		gap: clamp(var(--space-6), 7vw, 8rem);
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.rinpoche-transmission h2,
+	.rinpoche-transmission p {
+		margin: 0;
+	}
+
+	.rinpoche-transmission h2 {
+		padding-top: var(--space-2);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.rinpoche-transmission__prose {
+		max-width: 42rem;
+	}
+
+	.rinpoche-transmission p {
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.rinpoche-transmission p + p {
+		margin-top: var(--space-6);
+	}
+
+	.dudjom-tersar {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7.5vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.dudjom-tersar h2 {
+		max-width: 20ch;
+		margin: 0 0 var(--space-8) clamp(1.5rem, 6vw, 5rem);
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 4vw, 3.5rem);
+		font-weight: 380;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.dudjom-tersar__prose {
+		max-width: 44rem;
+		margin-left: clamp(1.5rem, 6vw, 5rem);
+	}
+
+	.dudjom-tersar__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.dudjom-tersar__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.dudjom-tersar__note {
+		max-width: 44rem;
+		margin: var(--space-7) 0 0 clamp(1.5rem, 6vw, 5rem);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.living-transmission {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 6vw, var(--space-8));
+		margin-inline: auto;
+	}
+
+	.living-transmission h2 {
+		margin: 0 0 var(--space-7);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.living-transmission__prose {
+		max-width: 42rem;
+	}
+
+	.living-transmission__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.living-transmission__prose p + p {
+		margin-top: var(--space-6);
+	}
+
 	@media (max-width: 48rem) {
 		.lineage-opening {
 			width: calc(100% - (var(--space-5) * 2));
@@ -68,6 +292,93 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		.lineage-opening__intro {
 			max-width: none;
 			margin: var(--space-6) 0 0;
+			font-size: var(--text-base);
+		}
+
+		.nyingma {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.nyingma h2 {
+			padding: 0 0 var(--space-6);
+		}
+
+		.nyingma p {
+			font-size: var(--text-base);
+		}
+
+		.transmission {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.transmission h2 {
+			max-width: none;
+			margin: 0 0 var(--space-6);
+			font-size: clamp(2rem, 8vw, 2.5rem);
+		}
+
+		.transmission__prose {
+			max-width: none;
+		}
+
+		.transmission__prose p {
+			font-size: var(--text-base);
+		}
+
+		.rinpoche-transmission {
+			display: flex;
+			flex-direction: column;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.rinpoche-transmission h2 {
+			order: -1;
+			padding: 0 0 var(--space-6);
+		}
+
+		.rinpoche-transmission p {
+			font-size: var(--text-base);
+		}
+
+		.dudjom-tersar {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.dudjom-tersar h2 {
+			max-width: none;
+			margin: 0 0 var(--space-6);
+			font-size: clamp(2.25rem, 9vw, 2.75rem);
+		}
+
+		.dudjom-tersar__prose {
+			max-width: none;
+			margin-left: 0;
+		}
+
+		.dudjom-tersar__prose p {
+			font-size: var(--text-base);
+		}
+
+		.dudjom-tersar__note {
+			max-width: none;
+			margin: var(--space-6) 0 0;
+		}
+
+		.living-transmission {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-7);
+		}
+
+		.living-transmission h2 {
+			padding: 0 0 var(--space-6);
+		}
+
+		.living-transmission__prose p {
 			font-size: var(--text-base);
 		}
 	}
