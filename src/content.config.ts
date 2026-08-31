@@ -32,4 +32,15 @@ const activities = defineCollection({
   }),
 });
 
-export const collections = { activities };
+const updates = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/updates' }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    publicationStatus: z.enum(['draft', 'published']),
+    publishedDate: z.coerce.date().optional(),
+    updatedDate: z.coerce.date().optional(),
+  }),
+});
+
+export const collections = { activities, updates };

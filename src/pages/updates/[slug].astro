@@ -1,0 +1,178 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+	const updates = await getCollection(
+		"updates",
+		({ data }) => data.publicationStatus === "published",
+	);
+
+	return updates.map((update) => ({
+		params: { slug: update.id },
+		props: { update },
+	}));
+}
+
+interface Props {
+	update: CollectionEntry<"updates">;
+}
+
+const { update } = Astro.props;
+const { Content } = await render(update);
+const { title, summary, publishedDate, updatedDate } = update.data;
+
+const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+	day: "numeric",
+	month: "long",
+	year: "numeric",
+	timeZone: "UTC",
+});
+
+const formatDate = (date: Date) => dateFormatter.format(date);
+const isoDate = (date: Date) => date.toISOString().slice(0, 10);
+---
+
+<BaseLayout
+	title={`${title} — Padma Pura Foundation`}
+	description={summary}
+>
+	<article class="update">
+		<header class="update__header">
+			<p class="update__label">Updates</p>
+			<h1>{title}</h1>
+			{(publishedDate || updatedDate) && (
+				<dl class="update__dates">
+					{publishedDate && (
+						<div>
+							<dt>Published</dt>
+							<dd><time datetime={isoDate(publishedDate)}>{formatDate(publishedDate)}</time></dd>
+						</div>
+					)}
+					{updatedDate && (
+						<div>
+							<dt>Updated</dt>
+							<dd><time datetime={isoDate(updatedDate)}>{formatDate(updatedDate)}</time></dd>
+						</div>
+					)}
+				</dl>
+			)}
+			<p class="update__summary">{summary}</p>
+		</header>
+
+		{update.body && (
+			<div class="update__body">
+				<Content />
+			</div>
+		)}
+
+		<footer class="update__footer">
+			<a href="/updates">Back to updates</a>
+		</footer>
+	</article>
+</BaseLayout>
+
+<style>
+	.update {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-block: clamp(var(--space-8), 9vw, 8rem);
+		margin-inline: auto;
+	}
+
+	.update__header,
+	.update__body,
+	.update__footer {
+		max-width: var(--content-width-narrow);
+	}
+
+	.update__label {
+		margin: 0 0 var(--space-5);
+		color: var(--color-muted);
+		font-size: var(--text-sm);
+		font-weight: 500;
+	}
+
+	.update h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 6vw, 5.25rem);
+		font-optical-sizing: auto;
+		font-weight: 380;
+		line-height: 1;
+	}
+
+	.update__dates {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-3) var(--space-7);
+		margin: var(--space-6) 0 0;
+		color: var(--color-muted);
+		font-size: var(--text-sm);
+	}
+
+	.update__dates div {
+		display: flex;
+		gap: var(--space-2);
+	}
+
+	.update__dates dt {
+		font-weight: 500;
+	}
+
+	.update__dates dd {
+		margin: 0;
+	}
+
+	.update__summary {
+		margin: var(--space-7) 0 0;
+		font-size: var(--text-lg);
+		line-height: 1.5;
+	}
+
+	.update__body {
+		margin-top: var(--space-8);
+	}
+
+	.update__body :global(h2) {
+		margin: var(--space-8) 0 var(--space-5);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-optical-sizing: auto;
+		font-weight: 380;
+		line-height: 1.1;
+	}
+
+	.update__body :global(h3) {
+		margin: var(--space-7) 0 var(--space-4);
+		font-family: var(--font-display);
+		font-size: var(--text-lg);
+		font-weight: 430;
+		line-height: 1.2;
+	}
+
+	.update__body :global(p),
+	.update__body :global(ul),
+	.update__body :global(ol),
+	.update__body :global(blockquote) {
+		margin-block: 0 var(--space-5);
+	}
+
+	.update__body :global(blockquote) {
+		padding-left: var(--space-5);
+		margin-inline: 0;
+		border-left: 1px solid var(--color-border);
+	}
+
+	.update__footer {
+		padding-top: var(--space-8);
+		margin-top: var(--space-8);
+		border-top: 1px solid var(--color-border);
+		font-size: var(--text-sm);
+	}
+
+	@media (max-width: 40rem) {
+		.update {
+			width: min(100% - (var(--space-5) * 2), var(--content-width));
+		}
+	}
+</style>
