@@ -1,0 +1,439 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const upcoming = [
+	{ name: "Tsog Practice", status: "Date to be confirmed" },
+	{ name: "Rinpoche in the Netherlands", status: "Dates to be confirmed" },
+];
+---
+
+<BaseLayout
+	title="Dharma Activity — Padma Pura Foundation"
+	description="Dharma activities connected with Tenzin Samphel Rinpoche and Padma Pura Foundation in the Netherlands."
+>
+	<section class="activities-opening" aria-labelledby="activities-heading">
+		<p class="activities-opening__label">Activities</p>
+		<h1 id="activities-heading">Dharma Activity</h1>
+		<div class="activities-opening__intro">
+			<p>Tenzin Samphel Rinpoche’s Dharma activity in the Netherlands includes teachings, empowerments, oral transmissions, practice guidance and opportunities to practise together.</p>
+			<p>Padma Pura Foundation supports these activities and helps create the conditions for students to receive Rinpoche’s teachings and practise under his guidance.</p>
+		</div>
+	</section>
+
+	<section class="upcoming" aria-labelledby="upcoming-heading">
+		<div class="upcoming__heading">
+			<h2 id="upcoming-heading">Upcoming</h2>
+			<p class="upcoming__intro">Upcoming Dharma activities organised or supported by Padma Pura Foundation.</p>
+		</div>
+		<ul class="upcoming__list">
+			{upcoming.map(({ name, status }) => (
+				<li class="upcoming__item">
+					<span class="upcoming__name">{name}</span>
+					<span class="upcoming__status">{status}</span>
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<section class="visits" aria-labelledby="visits-heading">
+		<h2 id="visits-heading">Rinpoche in the Netherlands</h2>
+		<div class="visits__prose">
+			<p>Tenzin Samphel Rinpoche visits the Netherlands to give teachings, empowerments, oral transmissions and practice guidance, and to meet with students.</p>
+			<p>Padma Pura Foundation supports the organisation of these visits and the Dharma activities that take place during them. Confirmed dates and practical information are published in the Upcoming programme.</p>
+		</div>
+	</section>
+
+	<section class="tsog" aria-labelledby="tsog-heading">
+		<h2 id="tsog-heading">Tsog practice</h2>
+		<div class="tsog__prose">
+			<p>Tsog is a Vajrayana group practice in which practitioners come together for practice and offerings.</p>
+			<p>Padma Pura Foundation usually organises Tsog practice online via Microsoft Teams, around Guru Rinpoche Day and Dakini Day when circumstances allow.</p>
+		</div>
+		<div class="tsog__participation">
+			<p>If you would like to take part, please email <a href="mailto:info@padmapura.com">info@padmapura.com</a>. We will add you to the Tsog mailing list, through which we send invitations and practical information for upcoming practices.</p>
+		</div>
+	</section>
+
+	<section class="tsetar" aria-labelledby="tsetar-heading">
+		<h2 id="tsetar-heading">Tsetar</h2>
+		<div class="tsetar__prose">
+			<p>Tsetar is the Buddhist practice of saving animals from situations in which they would otherwise be killed and releasing them into conditions where they can continue their lives.</p>
+			<p>Padma Pura Foundation supports Tsetar activities under Rinpoche’s guidance. Because each activity requires careful preparation, information is shared only when and where appropriate.</p>
+		</div>
+	</section>
+
+	<section class="gutor" aria-labelledby="gutor-heading">
+		<h2 id="gutor-heading">Gutor</h2>
+		<div class="gutor__prose">
+			<p>Gutor is a Vajrayana practice traditionally held before Losar, the Tibetan New Year. It is a practice of purification and the clearing of obstacles, helping create auspicious conditions for the year ahead.</p>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.activities-opening {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-7), 8vw, 8rem);
+		margin-inline: auto;
+	}
+
+	.activities-opening__label {
+		margin: 0 0 var(--space-6);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		line-height: 1.4;
+	}
+
+	.activities-opening h1 {
+		max-width: 14ch;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3.5rem, 6.5vw, 6rem);
+		font-weight: 380;
+		letter-spacing: 0;
+		line-height: 0.98;
+		font-optical-sizing: auto;
+	}
+
+	.activities-opening__intro {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(var(--space-6), 5vw, var(--space-8));
+		max-width: var(--content-width);
+		margin-top: clamp(var(--space-7), 5.8vw, 5.5rem);
+	}
+
+	.activities-opening__intro p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.upcoming {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.upcoming__heading {
+		width: min(100%, var(--content-width-narrow));
+		padding-bottom: clamp(var(--space-6), 5vw, var(--space-8));
+	}
+
+	.upcoming h2 {
+		margin: 0 0 var(--space-4);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.upcoming__intro {
+		margin: 0;
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.upcoming__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.upcoming__item {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.45fr);
+		gap: var(--space-5);
+		align-items: baseline;
+		padding-block: var(--space-5);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.upcoming__name {
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 450;
+		line-height: 1.25;
+	}
+
+	.upcoming__status {
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.visits {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 0.65fr);
+		align-items: start;
+		gap: clamp(var(--space-6), 6vw, var(--space-9));
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 8vw, 8rem);
+		margin-inline: auto;
+	}
+
+	.visits h2 {
+		grid-column: 2;
+		grid-row: 1;
+		max-width: 18ch;
+		margin: 0;
+		text-align: right;
+		font-family: var(--font-display);
+		font-size: clamp(2.5rem, 3.5vw, 3rem);
+		font-weight: 360;
+		line-height: 1.1;
+		font-optical-sizing: auto;
+	}
+
+	.visits__prose {
+		grid-column: 1;
+		grid-row: 1;
+		max-width: 42rem;
+		margin-top: var(--space-3);
+	}
+
+	.visits__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.visits__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.tsog {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 8vw, 8rem);
+		margin-inline: auto;
+	}
+
+	.tsog h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-7);
+		font-family: var(--font-display);
+		font-size: clamp(2.75rem, 4vw, 3.25rem);
+		font-weight: 380;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.tsog__prose {
+		max-width: 42rem;
+	}
+
+	.tsog__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.tsog__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.tsog__participation {
+		max-width: 42rem;
+		margin-top: var(--space-7);
+		padding-top: var(--space-6);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.tsog__participation p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.tsetar {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7.5vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.tsetar h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-7) clamp(1.5rem, 5vw, 4rem);
+		font-family: var(--font-display);
+		font-size: clamp(2.5rem, 3.75vw, 3rem);
+		font-weight: 370;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.tsetar__prose {
+		max-width: 42rem;
+		margin-left: clamp(1.5rem, 5vw, 4rem);
+	}
+
+	.tsetar__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.tsetar__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.gutor {
+		display: grid;
+		grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+		gap: clamp(var(--space-6), 6vw, var(--space-8));
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.gutor h2,
+	.gutor p {
+		margin: 0;
+	}
+
+	.gutor h2 {
+		padding-top: var(--space-2);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.gutor__prose {
+		max-width: 34rem;
+	}
+
+	.gutor p {
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	@media (max-width: 48rem) {
+		.activities-opening {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-8) var(--space-9);
+		}
+
+		.activities-opening h1 {
+			max-width: none;
+			font-size: clamp(2.75rem, 12vw, 4rem);
+			line-height: 1.02;
+		}
+
+		.activities-opening__intro {
+			grid-template-columns: minmax(0, 1fr);
+			gap: var(--space-6);
+			margin-top: var(--space-7);
+		}
+
+		.activities-opening__intro p {
+			font-size: var(--text-base);
+		}
+
+		.upcoming {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.upcoming__heading {
+			width: 100%;
+		}
+
+		.upcoming__item {
+			grid-template-columns: minmax(0, 1fr);
+			gap: var(--space-2);
+			padding-block: var(--space-5);
+		}
+
+		.visits {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.visits h2 {
+			max-width: none;
+			margin: 0 0 var(--space-6);
+			text-align: left;
+			font-size: clamp(2rem, 8vw, 2.5rem);
+		}
+
+		.visits__prose {
+			max-width: none;
+			margin-top: 0;
+		}
+
+		.tsog {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.tsog h2 {
+			max-width: none;
+			margin: 0 0 var(--space-6);
+			font-size: clamp(2rem, 8vw, 2.5rem);
+		}
+
+		.tsog__prose {
+			max-width: none;
+		}
+
+		.tsog__participation {
+			max-width: none;
+			margin-top: var(--space-6);
+			padding-top: var(--space-5);
+		}
+
+		.tsetar {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.tsetar h2 {
+			max-width: none;
+			margin: 0 0 var(--space-6);
+			font-size: clamp(2rem, 8vw, 2.5rem);
+		}
+
+		.tsetar__prose {
+			max-width: none;
+			margin-left: 0;
+		}
+
+		.gutor {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.gutor h2 {
+			padding: 0 0 var(--space-6);
+		}
+
+		.gutor__prose {
+			max-width: none;
+		}
+	}
+</style>
