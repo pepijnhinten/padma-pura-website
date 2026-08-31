@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Contact | Padma Pura Foundation"
+	description="Contact Padma Pura Foundation for questions about Rinpoche's activities in the Netherlands, practice gatherings or supporting the foundation."
+>
+	<section class="contact-opening" aria-labelledby="contact-heading">
+		<p class="contact-opening__label">Contact</p>
+		<h1 id="contact-heading">Contact Padma Pura Foundation</h1>
+		<p class="contact-opening__intro">For questions about Padma Pura Foundation, Rinpoche’s activities in the Netherlands, practice gatherings or supporting the foundation, you are welcome to contact us.</p>
+	</section>
+
+	<section class="contact-details" aria-label="Email and address">
+		<div class="contact-details__row">
+			<h2>Email</h2>
+			<p><a href="mailto:info@padmapura.com">info@padmapura.com</a></p>
+		</div>
+		<div class="contact-details__row">
+			<h2>Address</h2>
+			<p>Padma Pura Foundation<br />Versteegstraat 21<br />7425 CH Deventer<br />The Netherlands</p>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.contact-opening {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-7), 8vw, 8rem);
+		margin-inline: auto;
+	}
+
+	.contact-opening__label {
+		margin: 0 0 var(--space-6);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		line-height: 1.4;
+	}
+
+	.contact-opening h1 {
+		max-width: 16ch;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 5.5vw, 5rem);
+		font-weight: 380;
+		letter-spacing: 0;
+		line-height: 1.02;
+		font-optical-sizing: auto;
+	}
+
+	.contact-opening__intro {
+		max-width: 34rem;
+		margin: clamp(var(--space-6), 5vw, var(--space-7)) 0 0 clamp(0rem, 8vw, 6rem);
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.contact-details {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(var(--space-6), 6vw, var(--space-8));
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.contact-details h2 {
+		margin: 0 0 var(--space-4);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.contact-details p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	@media (max-width: 48rem) {
+		.contact-opening {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-8) var(--space-9);
+		}
+
+		.contact-opening h1 {
+			max-width: none;
+			font-size: clamp(2.25rem, 10vw, 3rem);
+			line-height: 1.05;
+		}
+
+		.contact-opening__intro {
+			max-width: none;
+			margin: var(--space-6) 0 0;
+			font-size: var(--text-base);
+		}
+
+		.contact-details {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.contact-details__row + .contact-details__row {
+			margin-top: var(--space-7);
+		}
+	}
+</style>
