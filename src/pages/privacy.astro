@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Privacy | Padma Pura Foundation"
+	description="How Padma Pura Foundation handles personal information."
+>
+	<section class="privacy-opening" aria-labelledby="privacy-heading">
+		<p class="privacy-opening__label">Privacy</p>
+		<h1 id="privacy-heading">Privacy</h1>
+		<p class="privacy-opening__intro">Padma Pura Foundation respects your privacy and handles personal information with care.</p>
+	</section>
+
+	<section class="privacy" aria-label="Privacy information">
+		<div class="privacy__block">
+			<h2>Information we receive</h2>
+			<div class="privacy__prose">
+				<p>When you contact Padma Pura Foundation by email, we receive the information you choose to provide, such as your name, email address and the contents of your message.</p>
+				<p>Information may also be provided when you register for activities, become an annual supporter or otherwise correspond with the foundation.</p>
+			</div>
+		</div>
+
+		<div class="privacy__block">
+			<h2>How we use information</h2>
+			<div class="privacy__prose">
+				<p>Personal information is used only where necessary for the administration of Padma Pura Foundation and its activities. This may include responding to enquiries, organising activities, communicating practical information and administering support for the foundation.</p>
+				<p>Personal information is not sold or used for commercial advertising.</p>
+			</div>
+		</div>
+
+		<div class="privacy__block">
+			<h2>Sharing and retention</h2>
+			<div class="privacy__prose">
+				<p>Personal information is shared only where necessary for the work of Padma Pura Foundation or where required by law.</p>
+				<p>Information is retained only for as long as reasonably necessary for the purpose for which it was collected and for any applicable administrative or legal obligations.</p>
+			</div>
+		</div>
+
+		<div class="privacy__block">
+			<h2>Your rights</h2>
+			<div class="privacy__prose">
+				<p>Under applicable data protection law, you may have rights regarding your personal information, including the right to request access, correction or deletion.</p>
+				<p>For questions or requests concerning your personal information, please contact:</p>
+				<p><a href="mailto:info@padmapura.com">info@padmapura.com</a></p>
+			</div>
+		</div>
+
+		<div class="privacy__block">
+			<h2>Website technology</h2>
+			<div class="privacy__prose">
+				<p>This website does not currently use analytics, advertising trackers or marketing cookies.</p>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.privacy-opening {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-7), 8vw, 8rem);
+		margin-inline: auto;
+	}
+
+	.privacy-opening__label {
+		margin: 0 0 var(--space-6);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		line-height: 1.4;
+	}
+
+	.privacy-opening h1 {
+		max-width: 16ch;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 5.5vw, 5rem);
+		font-weight: 380;
+		letter-spacing: 0;
+		line-height: 1.02;
+		font-optical-sizing: auto;
+	}
+
+	.privacy-opening__intro {
+		max-width: 34rem;
+		margin: clamp(var(--space-6), 5vw, var(--space-7)) 0 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.privacy {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.privacy__block {
+		max-width: 42rem;
+	}
+
+	.privacy__block + .privacy__block {
+		margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+	}
+
+	.privacy__block h2 {
+		margin: 0 0 var(--space-5);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.privacy__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.privacy__prose p + p {
+		margin-top: var(--space-5);
+	}
+
+	@media (max-width: 48rem) {
+		.privacy-opening {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-8) var(--space-9);
+		}
+
+		.privacy-opening h1 {
+			max-width: none;
+			font-size: clamp(2.25rem, 10vw, 3rem);
+			line-height: 1.05;
+		}
+
+		.privacy-opening__intro {
+			max-width: none;
+			margin-top: var(--space-6);
+			font-size: var(--text-base);
+		}
+
+		.privacy {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.privacy__block {
+			max-width: none;
+		}
+	}
+</style>
