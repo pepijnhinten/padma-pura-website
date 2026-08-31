@@ -1,10 +1,58 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const upcoming = [
-	{ name: "Tsog Practice", status: "Date to be confirmed" },
-	{ name: "Rinpoche in the Netherlands", status: "Dates to be confirmed" },
-];
+const activities = await getCollection(
+	"activities",
+	({ data }) => data.publicationStatus === "published",
+);
+
+const today = new Date();
+today.setUTCHours(0, 0, 0, 0);
+
+const upcoming = activities
+	.map((activity) => {
+		let displayStart = activity.data.startDate;
+		let displayEnd = activity.data.endDate;
+
+		if (
+			activity.data.activityType === "rinpoche-visit" &&
+			!displayStart &&
+			!displayEnd
+		) {
+			const eventDates = activity.data.events
+				?.flatMap((event) => event.date ? [event.date] : [])
+				.sort((first, second) => first.getTime() - second.getTime());
+
+			displayStart = eventDates?.[0];
+			displayEnd = eventDates?.at(-1);
+		}
+
+		return {
+			activity,
+			displayStart,
+			displayEnd,
+			effectiveStart: displayStart ?? displayEnd,
+			effectiveEnd: displayEnd ?? displayStart,
+		};
+	})
+	.filter(({ effectiveEnd }) => !effectiveEnd || effectiveEnd >= today)
+	.sort((first, second) => {
+		const firstDate = first.effectiveStart?.getTime() ?? Number.POSITIVE_INFINITY;
+		const secondDate = second.effectiveStart?.getTime() ?? Number.POSITIVE_INFINITY;
+
+		return firstDate - secondDate;
+	});
+
+const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+	day: "numeric",
+	month: "long",
+	year: "numeric",
+	timeZone: "UTC",
+});
+
+const formatDate = (date: Date) => dateFormatter.format(date);
+const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 ---
 
 <BaseLayout
@@ -25,14 +73,34 @@ const upcoming = [
 			<h2 id="upcoming-heading">Upcoming</h2>
 			<p class="upcoming__intro">Upcoming Dharma activities organised or supported by Padma Pura Foundation.</p>
 		</div>
-		<ul class="upcoming__list">
-			{upcoming.map(({ name, status }) => (
-				<li class="upcoming__item">
-					<span class="upcoming__name">{name}</span>
-					<span class="upcoming__status">{status}</span>
-				</li>
-			))}
-		</ul>
+		{upcoming.length > 0 ? (
+			<ul class="upcoming__list">
+				{upcoming.map(({ activity, displayStart, displayEnd }) => (
+					<li class="upcoming__item">
+						<a class="upcoming__name" href={`/activities/${activity.id}`}>
+							{activity.data.title}
+						</a>
+						{(displayStart || displayEnd || activity.data.location) && (
+							<span class="upcoming__status">
+								{displayStart && (
+									<time datetime={isoDate(displayStart)}>{formatDate(displayStart)}</time>
+								)}
+								{displayStart && displayEnd && displayStart.getTime() !== displayEnd.getTime() && (
+									<> – <time datetime={isoDate(displayEnd)}>{formatDate(displayEnd)}</time></>
+								)}
+								{!displayStart && displayEnd && (
+									<time datetime={isoDate(displayEnd)}>{formatDate(displayEnd)}</time>
+								)}
+								{(displayStart || displayEnd) && activity.data.location && <br />}
+								{activity.data.location}
+							</span>
+						)}
+					</li>
+				))}
+			</ul>
+		) : (
+			<p class="upcoming__empty">No upcoming activities are currently confirmed.</p>
+		)}
 	</section>
 
 	<section class="visits" aria-labelledby="visits-heading">
@@ -160,6 +228,7 @@ const upcoming = [
 	}
 
 	.upcoming__name {
+		color: inherit;
 		font-family: var(--font-sans);
 		font-size: var(--text-lg);
 		font-weight: 450;
@@ -172,6 +241,13 @@ const upcoming = [
 		font-size: var(--text-base);
 		font-weight: 400;
 		line-height: 1.4;
+	}
+
+	.upcoming__empty {
+		margin: 0;
+		padding-block: var(--space-5);
+		border-block: 1px solid var(--color-border);
+		color: var(--color-muted);
 	}
 
 	.visits {
