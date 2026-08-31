@@ -1,0 +1,380 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const details = [
+	{ label: "Name", value: ["Padma Pura Foundation"] },
+	{ label: "RSIN", value: ["861789659"] },
+	{ label: "Address", value: ["Versteegstraat 21", "7425 CH Deventer", "The Netherlands"] },
+	{ label: "Board", value: ["Tenzin Samphel Rinpoche — Chair", "Pepijn Hinten White — Secretary & Treasurer"] },
+];
+---
+
+<BaseLayout
+	title="Foundation & ANBI | Padma Pura Foundation"
+	description="Formal information, policies and financial documents published by Padma Pura Foundation."
+>
+	<section class="foundation-opening" aria-labelledby="foundation-heading">
+		<p class="foundation-opening__label">Foundation</p>
+		<h1 id="foundation-heading">Foundation &amp; ANBI</h1>
+		<div class="foundation-opening__intro">
+			<p>Padma Pura Foundation is a Dutch foundation supporting the Dharma activity of Tenzin Samphel Rinpoche for students in the Netherlands. Through his teachings and guidance, students learn to cultivate compassion and a good heart, while developing the understanding and skills to help themselves and others more effectively.</p>
+			<p>The foundation has ANBI status. This page provides the formal information, policies and financial documents published by Padma Pura Foundation.</p>
+		</div>
+	</section>
+
+	<section class="details" aria-labelledby="details-heading">
+		<h2 id="details-heading">Foundation details</h2>
+		<dl class="details__list">
+			{details.map(({ label, value }) => (
+				<div class="details__row">
+					<dt>{label}</dt>
+					<dd>
+						{value.map((line) => <span class="details__line">{line}</span>)}
+					</dd>
+				</div>
+			))}
+			<div class="details__row">
+				<dt>Email</dt>
+				<dd><a href="mailto:info@padmapura.com">info@padmapura.com</a></dd>
+			</div>
+		</dl>
+	</section>
+
+	<section class="policy" aria-labelledby="policy-heading">
+		<h2 id="policy-heading">Purpose &amp; policy</h2>
+		<div class="policy__prose">
+			<p>Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche for students in the Netherlands. Through his teachings and guidance, students learn to cultivate compassion and a good heart, while developing the understanding and skills to help themselves and others more effectively.</p>
+			<p>The foundation’s current activities are primarily focused on creating the conditions for Rinpoche’s teachings, transmissions, practice and other Dharma activities in the Netherlands. Its objectives, activities, financial management and intended use of resources are described in the policy plan.</p>
+			<p>The foundation’s objectives also include supporting education for underprivileged children and promoting the health and well-being of elderly people. Padma Pura Foundation is currently exploring possibilities for future initiatives in these areas, but no dedicated projects have yet been established.</p>
+		</div>
+	</section>
+
+	<section class="governance" aria-label="Board and remuneration policy">
+		<div class="governance__col">
+			<h2 id="board-heading">Board</h2>
+			<div class="governance__prose">
+				<p>Padma Pura Foundation is governed by a small board responsible for the formal administration and oversight of the foundation.</p>
+				<p>Tenzin Samphel Rinpoche — Chair<br />Pepijn Hinten White — Secretary &amp; Treasurer</p>
+			</div>
+		</div>
+		<div class="governance__col">
+			<h2 id="remuneration-heading">Remuneration policy</h2>
+			<div class="governance__prose">
+				<p>Board members receive no remuneration for their board duties. Reasonable expenses incurred in the performance of those duties may be reimbursed in accordance with applicable rules.</p>
+				<p>Separate activities carried out for Padma Pura Foundation outside the board role may be compensated where appropriate and are administered separately in accordance with applicable tax rules.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="publications" aria-label="Activities report and financial accountability">
+		<!-- TODO: add approved annual-report document links here once the current document inventory has been confirmed -->
+		<div class="publications__row">
+			<h2 id="activities-report-heading">Activities report</h2>
+			<div class="publications__prose">
+				<p>Padma Pura Foundation publishes an annual report describing the activities carried out during the year.</p>
+				<p>The foundation’s current activities are primarily focused on supporting Tenzin Samphel Rinpoche’s Dharma activity in the Netherlands, including visits, teachings and transmissions, practice activities and related organisational work.</p>
+			</div>
+		</div>
+		<!-- TODO: add approved financial-accountability document links here once the current document inventory has been confirmed -->
+		<div class="publications__row">
+			<h2 id="financial-accountability-heading">Financial accountability</h2>
+			<div class="publications__prose">
+				<p>Padma Pura Foundation publishes its financial accountability in accordance with the requirements for ANBI organisations.</p>
+				<p>The published documents provide information about the foundation’s income, expenditure, assets and the use of its resources.</p>
+			</div>
+		</div>
+		<!-- TODO: add approved policy-plan and formal-document links here once the current document inventory has been confirmed -->
+		<div class="publications__row">
+			<h2 id="documents-heading">Documents</h2>
+			<div class="publications__prose">
+				<p>The foundation’s current policy plan and other formal documents are published here for transparency and public access.</p>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.foundation-opening {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-7), 8vw, 8rem);
+		margin-inline: auto;
+	}
+
+	.foundation-opening__label {
+		margin: 0 0 var(--space-6);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		line-height: 1.4;
+	}
+
+	.foundation-opening h1 {
+		max-width: 16ch;
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: clamp(3.25rem, 6vw, 5.5rem);
+		font-weight: 380;
+		letter-spacing: 0;
+		line-height: 1;
+		font-optical-sizing: auto;
+	}
+
+	.foundation-opening__intro {
+		max-width: 40rem;
+		margin-top: clamp(var(--space-7), 6vw, var(--space-9));
+		margin-left: clamp(0rem, 8vw, 8rem);
+	}
+
+	.foundation-opening__intro p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	.foundation-opening__intro p + p {
+		margin-top: var(--space-5);
+	}
+
+	.details {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.details h2 {
+		width: min(100%, var(--content-width-narrow));
+		margin: 0 0 var(--space-7);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.details__list {
+		max-width: 42rem;
+		margin: 0;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.details__row {
+		display: grid;
+		grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
+		gap: var(--space-5);
+		align-items: baseline;
+		padding-block: var(--space-5);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.details__row dt,
+	.details__row dd {
+		margin: 0;
+		font-family: var(--font-sans);
+		line-height: 1.4;
+	}
+
+	.details__row dt {
+		color: var(--color-muted);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.02em;
+	}
+
+	.details__row dd {
+		display: flex;
+		flex-direction: column;
+		font-size: var(--text-base);
+		font-weight: 400;
+	}
+
+	.policy {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+	}
+
+	.policy h2 {
+		max-width: 16ch;
+		margin: 0 0 var(--space-7) clamp(1.5rem, 6vw, 5rem);
+		font-family: var(--font-display);
+		font-size: clamp(2.5rem, 3.5vw, 3rem);
+		font-weight: 370;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.policy__prose {
+		max-width: 42rem;
+		margin-left: clamp(1.5rem, 6vw, 5rem);
+	}
+
+	.policy__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.policy__prose p + p {
+		margin-top: var(--space-6);
+	}
+
+	.governance {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(var(--space-6), 6vw, var(--space-8));
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.governance h2 {
+		margin: 0 0 var(--space-5);
+		font-family: var(--font-display);
+		font-size: var(--text-lg);
+		font-weight: 380;
+		line-height: 1.1;
+		font-optical-sizing: auto;
+	}
+
+	.governance__prose {
+		max-width: 30rem;
+	}
+
+	.governance__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.governance__prose p + p {
+		margin-top: var(--space-4);
+	}
+
+	.publications {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		margin-inline: auto;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.publications__row {
+		max-width: 42rem;
+		padding-block: var(--space-7);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.publications h2 {
+		margin: 0 0 var(--space-5);
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 360;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.publications__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.publications__prose p + p {
+		margin-top: var(--space-5);
+	}
+
+	@media (max-width: 48rem) {
+		.foundation-opening {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-block: var(--space-8) var(--space-9);
+		}
+
+		.foundation-opening h1 {
+			max-width: none;
+			font-size: clamp(2.5rem, 11vw, 3.5rem);
+			line-height: 1.02;
+		}
+
+		.foundation-opening__intro {
+			max-width: none;
+			margin-top: var(--space-7);
+			margin-left: 0;
+		}
+
+		.foundation-opening__intro p {
+			font-size: var(--text-base);
+		}
+
+		.details {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.details h2 {
+			width: 100%;
+			margin: 0 0 var(--space-6);
+		}
+
+		.details__list {
+			max-width: none;
+		}
+
+		.details__row {
+			display: block;
+			padding-block: var(--space-5);
+		}
+
+		.details__row dt {
+			margin-bottom: var(--space-2);
+		}
+
+		.policy {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.policy h2 {
+			max-width: none;
+			margin: 0 0 var(--space-6);
+			font-size: clamp(2rem, 8vw, 2.5rem);
+		}
+
+		.policy__prose {
+			max-width: none;
+			margin-left: 0;
+		}
+
+		.governance {
+			display: block;
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.governance__col + .governance__col {
+			margin-top: var(--space-7);
+		}
+
+		.governance__prose {
+			max-width: none;
+		}
+
+		.publications {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.publications__row {
+			max-width: none;
+			padding-block: var(--space-6);
+		}
+	}
+</style>
