@@ -4,7 +4,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const activities = await getCollection(
 	"activities",
-	({ data }) => data.publicationStatus === "published",
+	({ data }) =>
+		data.publicationStatus === "published" &&
+		data.activityType === "rinpoche-visit",
 );
 
 const today = new Date();
@@ -71,7 +73,7 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	<section class="upcoming" aria-labelledby="upcoming-heading">
 		<div class="upcoming__heading">
 			<h2 id="upcoming-heading">Upcoming</h2>
-			<p class="upcoming__intro">Upcoming Dharma activities organised or supported by Padma Pura Foundation.</p>
+			<p class="upcoming__intro">Confirmed information about Tenzin Samphel Rinpoche’s annual visit to the Netherlands.</p>
 		</div>
 		{upcoming.length > 0 ? (
 			<ul class="upcoming__list">
@@ -99,14 +101,14 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 				))}
 			</ul>
 		) : (
-			<p class="upcoming__empty">No upcoming activities are currently confirmed.</p>
+			<p class="upcoming__empty">Dates for Rinpoche’s next annual visit have not yet been confirmed.</p>
 		)}
 	</section>
 
 	<section class="visits" aria-labelledby="visits-heading">
 		<h2 id="visits-heading">Rinpoche in the Netherlands</h2>
 		<div class="visits__prose">
-			<p>Tenzin Samphel Rinpoche visits the Netherlands to give teachings, empowerments, oral transmissions and practice guidance, and to meet with students.</p>
+			<p>Tenzin Samphel Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance, and to meet with students.</p>
 			<p>Padma Pura Foundation supports the organisation of these visits and the Dharma activities that take place during them. Confirmed dates and practical information are published in the Upcoming programme.</p>
 		</div>
 	</section>

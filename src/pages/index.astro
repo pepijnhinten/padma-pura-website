@@ -1,5 +1,56 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const visits = await getCollection(
+	"activities",
+	({ data }) =>
+		data.publicationStatus === "published" &&
+		data.activityType === "rinpoche-visit",
+);
+
+const today = new Date();
+today.setUTCHours(0, 0, 0, 0);
+
+const upcomingVisits = visits
+	.map((visit) => {
+		let displayStart = visit.data.startDate;
+		let displayEnd = visit.data.endDate;
+
+		if (!displayStart && !displayEnd) {
+			const eventDates = visit.data.events
+				?.flatMap((event) => event.date ? [event.date] : [])
+				.sort((first, second) => first.getTime() - second.getTime());
+
+			displayStart = eventDates?.[0];
+			displayEnd = eventDates?.at(-1);
+		}
+
+		return {
+			visit,
+			displayStart,
+			displayEnd,
+			effectiveStart: displayStart ?? displayEnd,
+			effectiveEnd: displayEnd ?? displayStart,
+		};
+	})
+	.filter(({ effectiveEnd }) => !effectiveEnd || effectiveEnd >= today)
+	.sort((first, second) => {
+		const firstDate = first.effectiveStart?.getTime() ?? Number.POSITIVE_INFINITY;
+		const secondDate = second.effectiveStart?.getTime() ?? Number.POSITIVE_INFINITY;
+
+		return firstDate - secondDate;
+	});
+
+const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+	day: "numeric",
+	month: "long",
+	year: "numeric",
+	timeZone: "UTC",
+});
+
+const formatDate = (date: Date) => dateFormatter.format(date);
+const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 ---
 
 <BaseLayout title="Padma Pura Foundation" description="Padma Pura Foundation.">
@@ -7,12 +58,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		<div class="teacher-introduction__copy">
 			<p class="teacher-introduction__label">Our Teacher</p>
 			<h1 id="teacher-name">Tenzin Samphel Rinpoche</h1>
+			<p class="teacher-introduction__text">Tenzin Samphel Rinpoche is a teacher in the Nyingma tradition of Tibetan Buddhism. His life has been devoted to study, practice and the transmission of the Dharma.</p>
+			<p class="teacher-introduction__link"><a href="/our-teacher">About Tenzin Samphel Rinpoche →</a></p>
 		</div>
 
 		<figure class="teacher-portrait">
 			<img
 				class="teacher-portrait__image"
-				src="/images/rinpoche/tenzin-samphel-reference.jpeg"
+				src="/images/rinpoche/tenzin-samphel-reference.png"
 				alt="Tenzin Samphel Rinpoche"
 			/>
 		</figure>
@@ -21,24 +74,47 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	<section class="upcoming" aria-labelledby="upcoming-heading">
 		<div class="upcoming__heading">
 			<h2 id="upcoming-heading">Upcoming</h2>
+			<p>Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance.</p>
 		</div>
 
-		<div class="upcoming__list">
-			<article class="upcoming__item">
-				<h3>Tsog Practice</h3>
-				<p>Date to be confirmed</p>
-			</article>
-			<article class="upcoming__item">
-				<h3>Rinpoche in the Netherlands</h3>
-				<p>Dates to be confirmed</p>
-			</article>
-		</div>
+		{upcomingVisits.length > 0 ? (
+			<div class="upcoming__list">
+				{upcomingVisits.map(({ visit, displayStart, displayEnd }) => (
+					<article class="upcoming__item">
+						<h3><a href={`/activities/${visit.id}`}>{visit.data.title}</a></h3>
+						{(displayStart || displayEnd || visit.data.location) && (
+							<p>
+								{displayStart && (
+									<time datetime={isoDate(displayStart)}>{formatDate(displayStart)}</time>
+								)}
+								{displayStart && displayEnd && displayStart.getTime() !== displayEnd.getTime() && (
+									<> – <time datetime={isoDate(displayEnd)}>{formatDate(displayEnd)}</time></>
+								)}
+								{!displayStart && displayEnd && (
+									<time datetime={isoDate(displayEnd)}>{formatDate(displayEnd)}</time>
+								)}
+								{(displayStart || displayEnd) && visit.data.location && <br />}
+								{visit.data.location}
+							</p>
+						)}
+					</article>
+				))}
+			</div>
+		) : (
+			<div class="upcoming__list">
+				<article class="upcoming__item">
+					<h3>Rinpoche in the Netherlands</h3>
+					<p>Dates to be confirmed</p>
+				</article>
+			</div>
+		)}
 	</section>
 
 	<section class="lineage" aria-labelledby="lineage-heading">
 		<div class="lineage__intro">
 			<h2 id="lineage-heading">Lineage &amp; Transmission</h2>
 		</div>
+		<p class="lineage__context">Rinpoche’s Dharma activity is rooted in the living transmission of the Nyingma tradition. Through teachings, empowerments, oral transmissions and practice guidance, students receive teachings and practices that have been transmitted from teacher to student through generations.</p>
 		<div class="lineage__content">
 			<div class="lineage__nyingma">
 				<h3>Nyingma</h3>
@@ -49,6 +125,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 				<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings Rinpoche gives during Padma Pura Foundation activities.</p>
 			</div>
 		</div>
+		<p class="lineage__link"><a href="/lineage">Explore Lineage &amp; Transmission →</a></p>
 	</section>
 
 	<section class="dharma-activity" aria-labelledby="dharma-activity-heading">
@@ -56,10 +133,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			<h2 id="dharma-activity-heading">Dharma Activity</h2>
 		</div>
 		<ul class="dharma-activity__list">
-			<li>Teachings &amp; Empowerments</li>
-			<li>Practice</li>
-			<li>Tsetar</li>
+			<li>
+				<h3>Teachings &amp; Empowerments</h3>
+				<p>During his annual visits to the Netherlands, Rinpoche gives teachings, empowerments, oral transmissions and practice guidance according to the needs of his students.</p>
+			</li>
+			<li>
+				<h3>Practice</h3>
+				<p>Students gather for practice connected with Rinpoche’s teachings and guidance. Tsog practice is organised regularly, with invitations and practical information shared through the mailing list.</p>
+			</li>
+			<li>
+				<h3>Tsetar</h3>
+				<p>Padma Pura Foundation supports Tsetar activities carried out under Rinpoche’s guidance. Because these activities require careful preparation, practical information is shared only where appropriate.</p>
+			</li>
 		</ul>
+		<p class="dharma-activity__link"><a href="/activities">Explore Activities →</a></p>
 	</section>
 
 	<section class="photographic-intermezzo" aria-label="Tenzin Samphel Rinpoche teaching">
@@ -76,7 +163,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	<section class="padma-pura" aria-labelledby="padma-pura-heading">
 		<h2 id="padma-pura-heading">Padma Pura Foundation</h2>
-		<p>Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands.</p>
+		<div class="padma-pura__copy">
+			<p>Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands and helps create the practical conditions for his annual visits, teachings, transmissions and practice activities.</p>
+			<p>Through Rinpoche’s teachings and guidance, students are encouraged to cultivate compassion and a good heart, while developing the understanding and skills to help themselves and others more effectively.</p>
+			<p class="padma-pura__link"><a href="/padma-pura">About Padma Pura Foundation →</a></p>
+		</div>
 	</section>
 
 	<section class="support" aria-labelledby="support-heading">
@@ -85,11 +176,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			<p>Support Padma Pura Foundation and help make Rinpoche's Dharma activity in the Netherlands possible.</p>
 		</div>
 		<ul class="support__options">
-			<li>Annual Support</li>
-			<li>Tsetar Fund</li>
-			<li>Practical support</li>
+			<li class="support__option">
+				<h3 class="support__option-title">Annual Support</h3>
+				<p class="support__option-description">Regular contributions help support Rinpoche’s Dharma activity and the ongoing work of Padma Pura Foundation in the Netherlands.</p>
+			</li>
+			<li class="support__option">
+				<h3 class="support__option-title">Tsetar Fund</h3>
+				<p class="support__option-description">Contributions to the Tsetar Fund help make Tsetar activities under Rinpoche’s guidance possible.</p>
+			</li>
+			<li class="support__option">
+				<h3 class="support__option-title">Practical support</h3>
+				<p class="support__option-description">Volunteers help with the practical work around Rinpoche’s visits, teachings and other Dharma activities.</p>
+			</li>
 		</ul>
-		<p class="support__link"><a href="/support">Explore Support →</a></p>
+		<div class="support__closing">
+			<p class="support__link"><a href="/support">Explore Support →</a></p>
+		</div>
 	</section>
 </BaseLayout>
 
@@ -130,26 +232,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		font-optical-sizing: auto;
 	}
 
+	.teacher-introduction__text {
+		max-width: 34rem;
+		margin: var(--space-6) 0 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.teacher-introduction__link {
+		margin: var(--space-5) 0 0;
+		font-size: var(--text-sm);
+	}
+
 	.teacher-portrait {
 		width: 100%;
-		max-width: 21rem;
+		max-width: 23.5rem;
 		margin: 0;
 		justify-self: end;
+		transform: translateY(var(--space-6));
 	}
 
 	.teacher-portrait__image {
 		display: block;
 		width: 100%;
-		aspect-ratio: 4 / 5;
-		object-fit: cover;
-		object-position: center top;
+		height: auto;
 	}
 
 	.upcoming {
 		--upcoming-inline-padding: var(--space-6);
 		width: calc(100% - (var(--space-6) * 2));
 		max-width: var(--content-width);
-		padding-top: clamp(var(--space-8), 10vw, 8rem);
+		padding-top: clamp(var(--space-8), 7.5vw, var(--space-9));
 		margin-inline: max(var(--upcoming-inline-padding), (100% - var(--content-width)) / 2);
 		border-top: 1px solid var(--color-border);
 	}
@@ -166,6 +281,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		font-weight: 380;
 		line-height: 1.05;
 		font-optical-sizing: auto;
+	}
+
+	.upcoming__heading p {
+		max-width: 38rem;
+		margin: var(--space-4) 0 0;
+		font-size: var(--text-base);
+		line-height: 1.6;
 	}
 
 	.upcoming__list {
@@ -193,10 +315,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		line-height: 1.25;
 	}
 
+	.upcoming__item h3 a {
+		color: inherit;
+	}
+
 	.upcoming__item p {
 		color: var(--color-muted);
 		font-size: var(--text-base);
 		line-height: 1.4;
+	}
+
+	.upcoming__empty {
+		margin: 0;
+		padding-block: var(--space-5);
+		border-block: 1px solid var(--color-border);
+		color: var(--color-muted);
 	}
 
 	.lineage {
@@ -230,9 +363,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		line-height: 1.1;
 	}
 
+	.lineage .lineage__context {
+		max-width: 38rem;
+		margin-top: clamp(var(--space-7), 5vw, var(--space-8));
+		color: var(--color-muted);
+	}
+
 	.lineage__content {
-		padding-top: clamp(var(--space-8), 8vw, var(--space-9));
-		padding-bottom: clamp(var(--space-8), 10vw, 8rem);
+		padding-top: clamp(var(--space-7), 4vw, var(--space-8));
+		padding-bottom: clamp(var(--space-5), 2.5vw, var(--space-6));
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 		gap: clamp(var(--space-8), 8vw, 8rem);
@@ -269,6 +408,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		line-height: 1.6;
 	}
 
+	.lineage .lineage__link {
+		max-width: none;
+		padding-bottom: clamp(var(--space-8), 10vw, 8rem);
+		font-size: var(--text-sm);
+	}
+
 	.padma-pura {
 		display: grid;
 		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
@@ -295,11 +440,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.padma-pura p {
-		max-width: 30rem;
+		max-width: 38rem;
 		font-family: var(--font-sans);
-		font-size: var(--text-lg);
+		font-size: var(--text-base);
 		font-weight: 400;
-		line-height: 1.5;
+		line-height: 1.6;
+	}
+
+	.padma-pura__copy > p + p:not(.padma-pura__link) {
+		margin-top: var(--space-5);
+	}
+
+	.padma-pura .padma-pura__link {
+		margin-top: var(--space-6);
+		font-size: var(--text-sm);
 	}
 
 	.support {
@@ -376,30 +530,58 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.support__options {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		width: 100%;
 		padding: 0;
 		margin: 0;
 		list-style: none;
-		display: flex;
-		flex-wrap: wrap;
 		gap: clamp(var(--space-6), 4vw, var(--space-8));
 	}
 
-	.support__options li {
+	.support__option {
+		min-width: 0;
 		padding: 0;
 		border: none;
+	}
+
+	.support__option-title {
+		margin: 0;
 		font-family: var(--font-display);
 		font-size: clamp(1.1rem, 1.5vw, 1.5rem);
 		font-weight: 380;
+		font-style: normal;
 		line-height: 1.3;
+		font-optical-sizing: auto;
 		color: var(--color-foreground);
 	}
 
-	.support__link {
+	.support .support__option-description {
+		max-width: 20rem;
+		margin-top: var(--space-3);
+		font-family: var(--font-sans);
+		font-size: 1.0625rem;
+		font-weight: 400;
+		font-style: normal;
+		line-height: 1.6;
+	}
+
+	.support__closing {
 		width: 100%;
-		margin-top: var(--space-7);
+		padding-top: var(--space-7);
+	}
+
+	.support__link {
+		display: block;
+		width: 100%;
+		margin-right: auto;
+		margin-left: 0;
+		align-self: start;
+		justify-self: start;
 		font-family: var(--font-sans);
 		font-size: var(--text-base);
 		font-weight: 500;
+		text-align: left;
 	}
 
 	@media (max-width: 48rem) {
@@ -425,6 +607,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		.teacher-portrait {
 			width: min(82%, 22rem);
 			align-self: flex-end;
+			transform: none;
 		}
 
 		.teacher-portrait__image {
@@ -460,7 +643,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			grid-template-columns: 1fr;
 			gap: var(--space-7);
 			padding-top: var(--space-7);
-			padding-bottom: var(--space-8);
+			padding-bottom: var(--space-7);
 		}
 
 		.lineage__nyingma {
@@ -485,6 +668,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			max-width: 100%;
 			padding-top: var(--space-3);
 			font-size: var(--text-base);
+		}
+
+		.lineage .lineage__context {
+			padding-top: 0;
+		}
+
+		.lineage .lineage__link {
+			padding-top: 0;
+			padding-bottom: var(--space-8);
+			font-size: var(--text-sm);
 		}
 
 		.padma-pura {
@@ -513,7 +706,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.support__options {
+			grid-template-columns: 1fr;
 			gap: var(--space-5);
+		}
+
+		.support__closing {
+			padding-top: var(--space-6);
 		}
 
 	}
@@ -523,7 +721,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	.dharma-activity {
 		display: grid;
 		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
-		gap: clamp(var(--space-6), 7vw, 8rem);
+		column-gap: clamp(var(--space-6), 7vw, 8rem);
 		width: calc(100% - (var(--space-6) * 2));
 		max-width: var(--content-width);
 		padding-block: clamp(var(--space-7), 7vw, var(--space-9)) clamp(var(--space-7), 7vw, var(--space-9));
@@ -554,11 +752,33 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	.dharma-activity__list li {
 		padding-block: clamp(var(--space-5), 3vw, var(--space-6));
 		border-bottom: 1px solid var(--color-border);
+	}
+
+	.dharma-activity__list li > h3 {
+		margin: 0;
 		font-family: var(--font-display);
 		font-size: clamp(1.75rem, 3vw, 3.25rem);
 		font-weight: 360;
 		line-height: 1.05;
 		font-optical-sizing: auto;
+	}
+
+	.dharma-activity__list li > p {
+		max-width: 38rem;
+		margin: var(--space-4) 0 0;
+		font-family: var(--font-sans);
+		font-size: 1.125rem;
+		font-weight: 400;
+		line-height: 1.6;
+		font-optical-sizing: auto;
+	}
+
+	.dharma-activity__link {
+		grid-column: 2;
+		margin: var(--space-6) 0 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 400;
 	}
 
 	@media (max-width: 48rem) {
@@ -574,7 +794,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 		.dharma-activity__list li {
 			padding-block: var(--space-5);
+		}
+
+		.dharma-activity__list li > h3 {
 			font-size: clamp(1.75rem, 9vw, 2.5rem);
+		}
+
+		.dharma-activity__list li > p {
+			font-size: var(--text-base);
+		}
+
+		.dharma-activity__link {
+			margin-top: var(--space-6);
 		}
 	}
 </style>
