@@ -18,42 +18,40 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		<h2 id="nyingma-heading">The Nyingma tradition</h2>
 		<div class="nyingma__prose">
 			<p>Nyingma is the oldest of the major traditions of Tibetan Buddhism. Over many centuries, its teachings and practices have been preserved and transmitted through numerous lineages and practice cycles.</p>
-			<p>Within the Nyingma tradition, different forms of transmission coexist. These include teachings passed from teacher to student as well as revealed treasure traditions known as terma.</p>
+			<p>The Nyingma tradition includes both long-established transmission lineages and terma traditions — revealed teachings and practice cycles that form an important part of its heritage.</p>
 		</div>
 	</section>
 
-	<section class="transmission" aria-labelledby="transmission-heading">
-		<h2 id="transmission-heading">Transmission</h2>
-		<div class="transmission__prose">
-			<p>In Vajrayana Buddhism, teachings are transmitted through more than explanation alone. A practice may be received through empowerment, oral transmission and direct practice instructions from a qualified teacher.</p>
-			<p>These forms of transmission connect the practitioner not only with a text or method, but with a living stream of practice that has been received, practised and passed on through generations.</p>
-			<p>The exact form of transmission depends on the teaching or practice. Some transmissions may be given publicly, while others are connected with specific prerequisites, commitments or practice contexts.</p>
-		</div>
-	</section>
+
 
 	<section class="rinpoche-transmission" aria-labelledby="rinpoche-transmission-heading">
+		<h2 id="rinpoche-transmission-heading">Rinpoche's training and transmission</h2>
 		<div class="rinpoche-transmission__prose">
 			<p>Tenzin Samphel Rinpoche received teachings, empowerments, oral transmissions and practice instructions from masters including Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.</p>
-			<p>He holds multiple transmission lineages and practice cycles within the Nyingma tradition. These do not form a single linear chain, but come through different streams of teaching, transmission and practice.</p>
+			<p>He holds and transmits multiple transmission lineages and practice cycles within the Nyingma tradition. In 1999, Khetsun Sangpo Rinpoche enthroned him as a lineage holder and entrusted him with spiritual authority at Shedup Kunsang Chöling.</p>
 		</div>
-		<h2 id="rinpoche-transmission-heading">Rinpoche’s training and transmission</h2>
 	</section>
 
 	<section class="dudjom-tersar" aria-labelledby="dudjom-tersar-heading">
 		<h2 id="dudjom-tersar-heading">Dudjom Tersar</h2>
 		<div class="dudjom-tersar__prose">
-			<p>Dudjom Tersar is a terma tradition within the Nyingma school of Tibetan Buddhism. The name refers to the “New Treasures of Dudjom”: revealed teachings associated with Dudjom Lingpa and later Dudjom Rinpoche, Jigdral Yeshe Dorje.</p>
-			<p>It is not a separate school, but a body of revealed teachings and practice cycles transmitted within the wider Nyingma tradition.</p>
+			<p>Dudjom Tersar is a terma tradition within the Nyingma school of Tibetan Buddhism, associated with Dudjom Lingpa and Dudjom Rinpoche, Jigdral Yeshe Dorje. It is not a separate school, but a body of teachings and practice cycles transmitted within the wider Nyingma tradition.</p>
 			<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings that Tenzin Samphel Rinpoche gives through Padma Pura Foundation activities.</p>
 		</div>
-		<p class="dudjom-tersar__note">Rinpoche also holds transmission lineages of Yangti Nagpo, a Dzogchen terma cycle within the Nyingma tradition, and Longchen Nyingthig, the terma tradition revealed by Jigme Lingpa.</p>
+	</section>
+
+	<section class="yangti-nagpo" aria-labelledby="yangti-nagpo-heading">
+		<h2 id="yangti-nagpo-heading">Yangti Nagpo and Longchen Nyingthig</h2>
+		<div class="yangti-nagpo__prose">
+			<p>Rinpoche also holds transmission lineages of Yangti Nagpo, a Dzogchen terma cycle within the Nyingma tradition, and Longchen Nyingthig, the terma tradition revealed by Jigme Lingpa.</p>
+		</div>
 	</section>
 
 	<section class="living-transmission" aria-labelledby="living-transmission-heading">
 		<h2 id="living-transmission-heading">Living transmission</h2>
 		<div class="living-transmission__prose">
-			<p>Lineage is not only something preserved from the past. It remains living through practice and through the transmission of teachings, empowerments, oral transmissions and practice guidance from teacher to student.</p>
-			<p>Through his Dharma activity, Tenzin Samphel Rinpoche continues the transmission he has received and practised. Padma Pura Foundation supports this activity in the Netherlands, helping create the conditions for students to receive teachings and transmissions and to practise under Rinpoche’s guidance.</p>
+			<p>Through his Dharma activity, Tenzin Samphel Rinpoche continues to transmit the teachings and practice cycles he has received and practised, through teachings, empowerments, oral transmissions and practice guidance.</p>
+			<p>Padma Pura Foundation supports this activity in the Netherlands, helping create the practical conditions for Rinpoche's visits and for students to receive his guidance and practise together.</p>
 		</div>
 	</section>
 </BaseLayout>
@@ -133,41 +131,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		margin-top: var(--space-6);
 	}
 
-	.transmission {
-		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-7), 7.5vw, 7rem);
-		margin-inline: auto;
-	}
-
-	.transmission h2 {
-		max-width: 16ch;
-		margin: 0 0 var(--space-7);
-		font-family: var(--font-display);
-		font-size: 2.9375rem;
-		font-weight: 360;
-		line-height: 1.05;
-		font-optical-sizing: auto;
-	}
-
-	.transmission__prose {
-		max-width: 42rem;
-	}
-
-	.transmission__prose p {
-		margin: 0;
-		font-family: var(--font-sans);
-		font-size: var(--text-base);
-		font-weight: 400;
-		line-height: 1.6;
-	}
-
-	.transmission__prose p + p {
-		margin-top: var(--space-6);
-	}
-
 	.rinpoche-transmission {
 		display: grid;
-		grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
 		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
 		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
@@ -245,6 +211,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		line-height: 1.6;
 	}
 
+	.yangti-nagpo {
+		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		padding-bottom: clamp(var(--space-7), 7.5vw, 7rem);
+		margin-inline: auto;
+	}
+
+	.yangti-nagpo h2 {
+		max-width: 20ch;
+		margin: 0 0 var(--space-8) clamp(1.5rem, 6vw, 5rem);
+		font-family: var(--font-display);
+		font-size: clamp(3rem, 4vw, 3.5rem);
+		font-weight: 380;
+		line-height: 1.05;
+		font-optical-sizing: auto;
+	}
+
+	.yangti-nagpo__prose {
+		max-width: 44rem;
+		margin-left: clamp(1.5rem, 6vw, 5rem);
+	}
+
+	.yangti-nagpo__prose p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.yangti-nagpo__prose p + p {
+		margin-top: var(--space-6);
+	}
+
 	.living-transmission {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
 		padding-bottom: clamp(var(--space-7), 6vw, var(--space-8));
@@ -309,25 +308,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			font-size: var(--text-base);
 		}
 
-		.transmission {
-			width: calc(100% - (var(--space-5) * 2));
-			padding-bottom: var(--space-9);
-		}
-
-		.transmission h2 {
-			max-width: none;
-			margin: 0 0 var(--space-6);
-			font-size: clamp(2rem, 8vw, 2.5rem);
-		}
-
-		.transmission__prose {
-			max-width: none;
-		}
-
-		.transmission__prose p {
-			font-size: var(--text-base);
-		}
-
 		.rinpoche-transmission {
 			display: flex;
 			flex-direction: column;
@@ -367,6 +347,26 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		.dudjom-tersar__note {
 			max-width: none;
 			margin: var(--space-6) 0 0;
+		}
+
+		.yangti-nagpo {
+			width: calc(100% - (var(--space-5) * 2));
+			padding-bottom: var(--space-9);
+		}
+
+		.yangti-nagpo h2 {
+			max-width: none;
+			margin: 0 0 var(--space-6);
+			font-size: clamp(2.25rem, 9vw, 2.75rem);
+		}
+
+		.yangti-nagpo__prose {
+			max-width: none;
+			margin-left: 0;
+		}
+
+		.yangti-nagpo__prose p {
+			font-size: var(--text-base);
 		}
 
 		.living-transmission {
