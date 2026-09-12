@@ -50,6 +50,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			<p>Shedup Kunsang Chöling is a Buddhist centre in Septvaux, France, established by Tenzin Samphel Rinpoche in 1999 with the advice and encouragement of Khetsun Sangpo Rinpoche.</p>
 			<p>It is an important centre for Rinpoche’s Dharma activity in France, where he gives teachings, empowerments and practice guidance and where students and practitioners gather for retreats, teachings and group practice.</p>
 		</div>
+		<img class="shedup__image" src="/images/rinpoche/shedup-kunsang-choling.webp" alt="Shedup Kunsang Chöling in Septvaux, France" />
 	</section>
 
 	<figure class="teacher-photo">
@@ -254,6 +255,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		margin-top: var(--space-6);
 	}
 
+	.shedup__image {
+		display: block;
+		width: 60%;
+		max-width: 47rem;
+		height: auto;
+		margin-top: 3rem;
+	}
+
 	.teacher-photo {
 		width: min(100% - (var(--space-6) * 2), 80rem);
 		padding-bottom: clamp(var(--space-9), 10vw, 10rem);
@@ -436,6 +445,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 		.shedup__prose p {
 			font-size: var(--text-base);
+		}
+
+		.shedup__image {
+			width: 100%;
+			margin-top: var(--space-7);
 		}
 
 		.teacher-photo {
