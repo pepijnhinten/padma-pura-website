@@ -111,6 +111,9 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 			<p>Tenzin Samphel Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance, and to meet with students.</p>
 			<p>Padma Pura Foundation supports the organisation of these annual visits and the Dharma activities that take place during them. Confirmed dates and practical information are published in Upcoming.</p>
 		</div>
+		<figure class="visits__image">
+			<img src="/images/activities/rinpoche-with-students.jpg" alt="Tenzin Samphel Rinpoche in conversation with students" />
+		</figure>
 	</section>
 
 	<section class="tsog" aria-labelledby="tsog-heading">
@@ -121,6 +124,10 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		</div>
 		<div class="tsog__participation">
 			<p>If you would like to take part, please email <a href="mailto:info@padmapura.com">info@padmapura.com</a>. We will add you to the Tsog mailing list, through which invitations and practical information for upcoming Tsog practices are shared.</p>
+		</div>
+		<div class="tsog__images">
+			<img src="/images/activities/guru-tsokye-tuktik.jpg" alt="Guru Tsokye Tuktik thangka" />
+			<img src="/images/activities/khandro-tuktik.jpg" alt="Khandro Tuktik thangka" />
 		</div>
 	</section>
 
@@ -299,6 +306,18 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		margin-top: var(--space-6);
 	}
 
+	.visits__image {
+		grid-column: 1 / -1;
+		width: 70%;
+		margin: calc(var(--space-8) * 0.75) auto 0 0;
+	}
+
+	.visits__image img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
 	.tsog {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
 		padding-bottom: clamp(var(--space-7), 8vw, 8rem);
@@ -344,6 +363,21 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		font-size: var(--text-base);
 		font-weight: 400;
 		line-height: 1.6;
+	}
+
+	.tsog__images {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		align-items: flex-start;
+		gap: var(--space-5);
+		width: 68%;
+		margin-top: var(--space-8);
+	}
+
+	.tsog__images img {
+		display: block;
+		width: 100%;
+		height: auto;
 	}
 
 	.tsetar {
@@ -501,6 +535,11 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 			margin-top: 0;
 		}
 
+		.visits__image {
+			width: 100%;
+			margin-top: var(--space-7);
+		}
+
 		.tsog {
 			width: calc(100% - (var(--space-5) * 2));
 			padding-bottom: var(--space-9);
@@ -520,6 +559,17 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 			max-width: none;
 			margin-top: var(--space-6);
 			padding-top: var(--space-5);
+		}
+
+		.tsog__images {
+			grid-template-columns: minmax(0, 1fr);
+			gap: var(--space-7);
+			width: 82%;
+			margin-top: var(--space-7);
+		}
+
+		.tsog__images img {
+			width: 100%;
 		}
 
 		.tsetar {
