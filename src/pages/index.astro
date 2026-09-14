@@ -1,56 +1,6 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const visits = await getCollection(
-	"activities",
-	({ data }) =>
-		data.publicationStatus === "published" &&
-		data.activityType === "rinpoche-visit",
-);
-
-const today = new Date();
-today.setUTCHours(0, 0, 0, 0);
-
-const upcomingVisits = visits
-	.map((visit) => {
-		let displayStart = visit.data.startDate;
-		let displayEnd = visit.data.endDate;
-
-		if (!displayStart && !displayEnd) {
-			const eventDates = visit.data.events
-				?.flatMap((event) => event.date ? [event.date] : [])
-				.sort((first, second) => first.getTime() - second.getTime());
-
-			displayStart = eventDates?.[0];
-			displayEnd = eventDates?.at(-1);
-		}
-
-		return {
-			visit,
-			displayStart,
-			displayEnd,
-			effectiveStart: displayStart ?? displayEnd,
-			effectiveEnd: displayEnd ?? displayStart,
-		};
-	})
-	.filter(({ effectiveEnd }) => !effectiveEnd || effectiveEnd >= today)
-	.sort((first, second) => {
-		const firstDate = first.effectiveStart?.getTime() ?? Number.POSITIVE_INFINITY;
-		const secondDate = second.effectiveStart?.getTime() ?? Number.POSITIVE_INFINITY;
-
-		return firstDate - secondDate;
-	});
-
-const dateFormatter = new Intl.DateTimeFormat("en-GB", {
-	day: "numeric",
-	month: "long",
-	year: "numeric",
-	timeZone: "UTC",
-});
-
-const formatDate = (date: Date) => dateFormatter.format(date);
-const isoDate = (date: Date) => date.toISOString().slice(0, 10);
+import { upcomingVisit } from "../data/upcoming";
 ---
 
 <BaseLayout title="Padma Pura Foundation" description="Padma Pura Foundation.">
@@ -77,37 +27,18 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 			<p>Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance.</p>
 		</div>
 
-		{upcomingVisits.length > 0 ? (
-			<div class="upcoming__list">
-				{upcomingVisits.map(({ visit, displayStart, displayEnd }) => (
-					<article class="upcoming__item">
-						<h3><a href={`/activities/${visit.id}`}>{visit.data.title}</a></h3>
-						{(displayStart || displayEnd || visit.data.location) && (
-							<p>
-								{displayStart && (
-									<time datetime={isoDate(displayStart)}>{formatDate(displayStart)}</time>
-								)}
-								{displayStart && displayEnd && displayStart.getTime() !== displayEnd.getTime() && (
-									<> – <time datetime={isoDate(displayEnd)}>{formatDate(displayEnd)}</time></>
-								)}
-								{!displayStart && displayEnd && (
-									<time datetime={isoDate(displayEnd)}>{formatDate(displayEnd)}</time>
-								)}
-								{(displayStart || displayEnd) && visit.data.location && <br />}
-								{visit.data.location}
-							</p>
-						)}
-					</article>
-				))}
-			</div>
-		) : (
-			<div class="upcoming__list">
-				<article class="upcoming__item">
-					<h3>Rinpoche in the Netherlands</h3>
-					<p>Dates to be confirmed</p>
-				</article>
-			</div>
-		)}
+		<div class="upcoming__list">
+			<article class="upcoming__item">
+				<div class="upcoming__primary">
+					<h3>{upcomingVisit.title}</h3>
+					<p>{upcomingVisit.attribution}</p>
+				</div>
+				<div class="upcoming__status">
+					<p>{upcomingVisit.expectedPeriod}</p>
+					<p>{upcomingVisit.status}</p>
+				</div>
+			</article>
+		</div>
 	</section>
 
 	<section class="lineage" aria-labelledby="lineage-heading">
@@ -329,6 +260,15 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		line-height: 1.4;
 	}
 
+	.upcoming__primary p,
+	.upcoming__status p + p {
+		margin-top: var(--space-2);
+	}
+
+	.upcoming__status p + p {
+		font-size: var(--text-sm);
+	}
+
 	.upcoming__empty {
 		margin: 0;
 		padding-block: var(--space-5);
@@ -375,34 +315,18 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	}
 
 	.lineage__content {
-		display: grid;
-		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-		gap: clamp(var(--space-7), 7vw, 7rem);
+		max-width: 42rem;
 		padding-top: clamp(var(--space-7), 4vw, var(--space-8));
 		padding-bottom: clamp(var(--space-5), 2.5vw, var(--space-6));
 		border-top: 1px solid var(--color-border);
-		align-items: start;
 	}
 
 	.lineage__nyingma {
-		max-width: 42rem;
+		margin-bottom: clamp(var(--space-7), 5vw, var(--space-8));
 	}
 
 	.lineage__tersar {
-		position: relative;
-		max-width: 34rem;
-		padding-top: clamp(var(--space-6), 4vw, var(--space-8));
-		padding-left: clamp(var(--space-5), 4vw, var(--space-8));
-	}
-
-	.lineage__tersar::before {
-		position: absolute;
-		top: clamp(var(--space-6), 4vw, var(--space-8));
-		bottom: 0;
-		left: 0;
-		width: 1px;
-		background: var(--color-border);
-		content: "";
+		max-width: 42rem;
 	}
 
 	.lineage__tersar-label {
@@ -412,11 +336,11 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	}
 
 	.lineage .lineage__tersar h3 {
-		font-size: clamp(2.25rem, 4vw, 4rem);
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
 	}
 
 	.lineage h3 {
-		font-size: clamp(2.75rem, 5vw, 5.5rem);
+		font-size: clamp(2rem, 3vw, 2.75rem);
 		font-weight: 360;
 		line-height: 1.1;
 		margin-bottom: var(--space-4);
@@ -679,8 +603,6 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		}
 
 		.lineage__content {
-			grid-template-columns: 1fr;
-			gap: var(--space-7);
 			padding-top: var(--space-7);
 			padding-bottom: var(--space-7);
 		}
@@ -691,12 +613,6 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 
 		.lineage__tersar {
 			max-width: 100%;
-			padding-top: 0;
-			padding-left: var(--space-4);
-		}
-
-		.lineage__tersar::before {
-			top: 0;
 		}
 
 		.lineage h3 {

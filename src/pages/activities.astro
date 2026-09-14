@@ -1,60 +1,6 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-
-const activities = await getCollection(
-	"activities",
-	({ data }) =>
-		data.publicationStatus === "published" &&
-		data.activityType === "rinpoche-visit",
-);
-
-const today = new Date();
-today.setUTCHours(0, 0, 0, 0);
-
-const upcoming = activities
-	.map((activity) => {
-		let displayStart = activity.data.startDate;
-		let displayEnd = activity.data.endDate;
-
-		if (
-			activity.data.activityType === "rinpoche-visit" &&
-			!displayStart &&
-			!displayEnd
-		) {
-			const eventDates = activity.data.events
-				?.flatMap((event) => event.date ? [event.date] : [])
-				.sort((first, second) => first.getTime() - second.getTime());
-
-			displayStart = eventDates?.[0];
-			displayEnd = eventDates?.at(-1);
-		}
-
-		return {
-			activity,
-			displayStart,
-			displayEnd,
-			effectiveStart: displayStart ?? displayEnd,
-			effectiveEnd: displayEnd ?? displayStart,
-		};
-	})
-	.filter(({ effectiveEnd }) => !effectiveEnd || effectiveEnd >= today)
-	.sort((first, second) => {
-		const firstDate = first.effectiveStart?.getTime() ?? Number.POSITIVE_INFINITY;
-		const secondDate = second.effectiveStart?.getTime() ?? Number.POSITIVE_INFINITY;
-
-		return firstDate - secondDate;
-	});
-
-const dateFormatter = new Intl.DateTimeFormat("en-GB", {
-	day: "numeric",
-	month: "long",
-	year: "numeric",
-	timeZone: "UTC",
-});
-
-const formatDate = (date: Date) => dateFormatter.format(date);
-const isoDate = (date: Date) => date.toISOString().slice(0, 10);
+import { upcomingVisit } from "../data/upcoming";
 ---
 
 <BaseLayout
@@ -73,36 +19,22 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	<section class="upcoming" aria-labelledby="upcoming-heading">
 		<div class="upcoming__heading">
 			<h2 id="upcoming-heading">Upcoming</h2>
-			<p class="upcoming__intro">Confirmed information about Tenzin Samphel Rinpoche’s annual visit to the Netherlands.</p>
+			<p class="upcoming__intro">Information about Tenzin Samphel Rinpoche’s annual visit to the Netherlands.</p>
 		</div>
-		{upcoming.length > 0 ? (
-			<ul class="upcoming__list">
-				{upcoming.map(({ activity, displayStart, displayEnd }) => (
-					<li class="upcoming__item">
-						<a class="upcoming__name" href={`/activities/${activity.id}`}>
-							{activity.data.title}
-						</a>
-						{(displayStart || displayEnd || activity.data.location) && (
-							<span class="upcoming__status">
-								{displayStart && (
-									<time datetime={isoDate(displayStart)}>{formatDate(displayStart)}</time>
-								)}
-								{displayStart && displayEnd && displayStart.getTime() !== displayEnd.getTime() && (
-									<> – <time datetime={isoDate(displayEnd)}>{formatDate(displayEnd)}</time></>
-								)}
-								{!displayStart && displayEnd && (
-									<time datetime={isoDate(displayEnd)}>{formatDate(displayEnd)}</time>
-								)}
-								{(displayStart || displayEnd) && activity.data.location && <br />}
-								{activity.data.location}
-							</span>
-						)}
-					</li>
-				))}
-			</ul>
-		) : (
-			<p class="upcoming__empty">Dates for Rinpoche’s next annual visit have not yet been confirmed.</p>
-		)}
+		<ul class="upcoming__list">
+			<li class="upcoming__item">
+				<div class="upcoming__name">
+					<span class="upcoming__title">{upcomingVisit.title}</span>
+					<span class="upcoming__subtitle">{upcomingVisit.attribution}</span>
+				</div>
+				<div class="upcoming__status">
+					<span>{upcomingVisit.expectedPeriod}</span>
+					<span>{upcomingVisit.status}</span>
+				</div>
+				<p class="upcoming__description" set:html={upcomingVisit.seriesNote.replace(upcomingVisit.title, `<em>${upcomingVisit.title}</em>`)}></p>
+				<p class="upcoming__closing">{upcomingVisit.detailsStatus}</p>
+			</li>
+		</ul>
 	</section>
 
 	<section class="visits" aria-labelledby="visits-heading">
@@ -137,6 +69,9 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 			<p>Tsetar is the Buddhist practice of saving animals from situations in which they would otherwise be killed and releasing them into conditions where they can continue their lives.</p>
 			<p>Padma Pura Foundation supports Tsetar activities under Rinpoche’s guidance. Because each activity requires careful preparation, information is shared only when and where appropriate.</p>
 		</div>
+		<figure class="tsetar__image">
+			<img src="/images/activities/tsetar.png" alt="Tsetar activity" />
+		</figure>
 	</section>
 
 	<section class="gutor" aria-labelledby="gutor-heading">
@@ -144,6 +79,9 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		<div class="gutor__prose">
 			<p>Gutor is a Vajrayana practice traditionally held before Losar, the Tibetan New Year. It is a practice of purification and the clearing of obstacles, helping create auspicious conditions for the year ahead.</p>
 		</div>
+		<figure class="gutor__image">
+			<img src="/images/activities/gutor.png" alt="Gutor practice" />
+		</figure>
 	</section>
 
 	<section class="activities-closing" aria-labelledby="activities-closing-heading">
@@ -244,9 +182,29 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	.upcoming__name {
 		color: inherit;
 		font-family: var(--font-sans);
-		font-size: var(--text-lg);
 		font-weight: 450;
 		line-height: 1.25;
+	}
+
+	.upcoming__title,
+	.upcoming__subtitle,
+	.upcoming__closing {
+		display: block;
+	}
+
+	.upcoming__title {
+		font-family: var(--font-display);
+		font-size: var(--text-lg);
+		font-weight: 380;
+		line-height: 1.15;
+	}
+
+	.upcoming__subtitle {
+		display: block;
+		margin-top: var(--space-3);
+		color: var(--color-muted);
+		font-size: var(--text-base);
+		font-weight: 400;
 	}
 
 	.upcoming__status {
@@ -257,6 +215,31 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		line-height: 1.4;
 	}
 
+	.upcoming__status span {
+		display: block;
+	}
+
+	.upcoming__status span + span {
+		margin-top: var(--space-3);
+		font-size: var(--text-sm);
+	}
+
+	.upcoming__description,
+	.upcoming__closing {
+		grid-column: 1 / -1;
+		max-width: 42rem;
+		margin: var(--space-6) 0 0;
+		font-family: var(--font-sans);
+		font-size: var(--text-base);
+		font-weight: 400;
+		line-height: 1.6;
+	}
+
+	.upcoming__closing {
+		margin-top: var(--space-4);
+		color: var(--color-muted);
+	}
+
 	.upcoming__empty {
 		margin: 0;
 		padding-block: var(--space-5);
@@ -265,21 +248,14 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	}
 
 	.visits {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr) minmax(0, 0.65fr);
-		align-items: start;
-		gap: clamp(var(--space-6), 6vw, var(--space-9));
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
 		padding-bottom: clamp(var(--space-7), 8vw, 8rem);
 		margin-inline: auto;
 	}
 
 	.visits h2 {
-		grid-column: 2;
-		grid-row: 1;
 		max-width: 18ch;
-		margin: 0;
-		text-align: right;
+		margin: 0 0 var(--space-7);
 		font-family: var(--font-display);
 		font-size: clamp(2.5rem, 3.5vw, 3rem);
 		font-weight: 360;
@@ -288,10 +264,7 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	}
 
 	.visits__prose {
-		grid-column: 1;
-		grid-row: 1;
 		max-width: 42rem;
-		margin-top: var(--space-3);
 	}
 
 	.visits__prose p {
@@ -307,9 +280,8 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	}
 
 	.visits__image {
-		grid-column: 1 / -1;
 		width: 70%;
-		margin: calc(var(--space-8) * 0.75) auto 0 0;
+		margin: calc(var(--space-8) * 0.75) 0 0;
 	}
 
 	.visits__image img {
@@ -388,7 +360,7 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 
 	.tsetar h2 {
 		max-width: 16ch;
-		margin: 0 0 var(--space-7) clamp(1.5rem, 5vw, 4rem);
+		margin: 0 0 var(--space-7);
 		font-family: var(--font-display);
 		font-size: clamp(2.5rem, 3.75vw, 3rem);
 		font-weight: 370;
@@ -398,7 +370,6 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 
 	.tsetar__prose {
 		max-width: 42rem;
-		margin-left: clamp(1.5rem, 5vw, 4rem);
 	}
 
 	.tsetar__prose p {
@@ -413,10 +384,18 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		margin-top: var(--space-6);
 	}
 
+	.tsetar__image {
+		width: 48%;
+		margin: calc(var(--space-8) * 0.75) 0 0;
+	}
+
+	.tsetar__image img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
 	.gutor {
-		display: grid;
-		grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
-		gap: clamp(var(--space-6), 6vw, var(--space-8));
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
 		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
@@ -428,7 +407,7 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	}
 
 	.gutor h2 {
-		padding-top: var(--space-2);
+		margin-bottom: var(--space-7);
 		font-family: var(--font-display);
 		font-size: var(--text-xl);
 		font-weight: 360;
@@ -437,7 +416,19 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 	}
 
 	.gutor__prose {
-		max-width: 34rem;
+		max-width: 42rem;
+	}
+
+	.gutor__image {
+		grid-column: 1 / -1;
+		width: min(48%, 34.56rem);
+		margin: var(--space-7) 0 0;
+	}
+
+	.gutor__image img {
+		display: block;
+		width: 100%;
+		height: auto;
 	}
 
 	.gutor p {
@@ -518,15 +509,13 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		}
 
 		.visits {
-			display: block;
 			width: calc(100% - (var(--space-5) * 2));
 			padding-bottom: var(--space-9);
 		}
 
 		.visits h2 {
 			max-width: none;
-			margin: 0 0 var(--space-6);
-			text-align: left;
+			margin-bottom: var(--space-6);
 			font-size: clamp(2rem, 8vw, 2.5rem);
 		}
 
@@ -588,6 +577,11 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 			margin-left: 0;
 		}
 
+		.tsetar__image {
+			width: 100%;
+			margin-top: var(--space-7);
+		}
+
 		.gutor {
 			display: block;
 			width: calc(100% - (var(--space-5) * 2));
@@ -595,11 +589,17 @@ const isoDate = (date: Date) => date.toISOString().slice(0, 10);
 		}
 
 		.gutor h2 {
+			margin: 0;
 			padding: 0 0 var(--space-6);
 		}
 
 		.gutor__prose {
 			max-width: none;
+		}
+
+		.gutor__image {
+			width: 100%;
+			margin-top: var(--space-7);
 		}
 
 		.activities-closing {
