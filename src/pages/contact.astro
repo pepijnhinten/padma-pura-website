@@ -12,14 +12,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		<p class="contact-opening__intro">For questions about Padma Pura Foundation, Rinpoche’s activities in the Netherlands, practice gatherings or supporting the foundation, you are welcome to contact us.</p>
 	</section>
 
-	<section class="contact-details" aria-label="Email and address">
+	<section class="contact-details" aria-label="Email">
 		<div class="contact-details__row">
 			<h2>Email</h2>
 			<p><a href="mailto:info@padmapura.com">info@padmapura.com</a></p>
-		</div>
-		<div class="contact-details__row">
-			<h2>Address</h2>
-			<p>Padma Pura Foundation<br />Versteegstraat 21<br />7425 CH Deventer<br />The Netherlands</p>
 		</div>
 	</section>
 </BaseLayout>
@@ -27,7 +23,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <style>
 	.contact-opening {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-7), 8vw, 8rem);
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-6), 5vw, var(--space-7));
 		margin-inline: auto;
 	}
 
@@ -53,21 +49,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.contact-opening__intro {
-		max-width: 34rem;
-		margin: clamp(var(--space-6), 5vw, var(--space-7)) 0 0 clamp(0rem, 8vw, 6rem);
+		max-width: var(--content-width-narrow);
+		margin: clamp(var(--space-6), 5vw, var(--space-7)) 0 0;
 		font-family: var(--font-sans);
-		font-size: var(--text-lg);
+		font-size: var(--text-base);
 		font-weight: 400;
-		line-height: 1.5;
+		line-height: 1.6;
+		color: var(--color-foreground);
 	}
 
 	.contact-details {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: clamp(var(--space-6), 6vw, var(--space-8));
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
+		max-width: var(--content-width-narrow);
 		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
-		margin-inline: auto;
+		margin-inline: max(var(--space-6), (100% - var(--content-width)) / 2);
 	}
 
 	.contact-details h2 {
@@ -90,7 +85,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	@media (max-width: 48rem) {
 		.contact-opening {
 			width: calc(100% - (var(--space-5) * 2));
-			padding-block: var(--space-8) var(--space-9);
+			padding-block: var(--space-8) var(--space-7);
 		}
 
 		.contact-opening h1 {
@@ -109,10 +104,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			display: block;
 			width: calc(100% - (var(--space-5) * 2));
 			padding-bottom: var(--space-9);
+			margin-inline: auto;
 		}
 
-		.contact-details__row + .contact-details__row {
-			margin-top: var(--space-7);
-		}
 	}
 </style>

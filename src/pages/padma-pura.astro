@@ -86,7 +86,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.pp-opening__intro {
-		max-width: var(--content-width);
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(var(--space-6), 5vw, var(--space-8));
+		max-width: none;
 		margin-top: clamp(var(--space-7), 6vw, var(--space-9));
 	}
 
@@ -100,15 +103,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.pp-opening__intro p:last-child {
-		margin: var(--space-6) 0 0 auto;
+		margin: 0;
 	}
 
 	.purpose {
-		display: grid;
-		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
-		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
@@ -118,9 +118,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.purpose h2 {
-		padding-top: var(--space-2);
+		margin-bottom: var(--space-6);
 		font-family: var(--font-display);
-		font-size: var(--text-xl);
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
 		font-weight: 360;
 		line-height: 1.05;
 		font-optical-sizing: auto;
@@ -143,15 +143,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.how-we-work {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
 	.how-we-work h2 {
-		max-width: 16ch;
-		margin: 0 0 var(--space-7);
+		max-width: none;
+		margin: 0 0 var(--space-6);
 		font-family: var(--font-display);
-		font-size: var(--text-xl);
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
 		font-weight: 360;
 		line-height: 1.05;
 		font-optical-sizing: auto;
@@ -180,10 +180,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.activities-we-support h2 {
-		max-width: 16ch;
+		max-width: none;
 		margin: 0 0 var(--space-6);
 		font-family: var(--font-display);
-		font-size: var(--text-xl);
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
 		font-weight: 360;
 		line-height: 1.05;
 		font-optical-sizing: auto;
@@ -219,10 +219,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.foundation-anbi-summary h2 {
-		max-width: 16ch;
+		max-width: none;
 		margin: 0 0 var(--space-6);
 		font-family: var(--font-display);
-		font-size: var(--text-xl);
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
 		font-weight: 360;
 		line-height: 1.05;
 		font-optical-sizing: auto;
@@ -234,7 +234,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.foundation-anbi-summary__prose p {
 		margin: 0;
-		color: var(--color-muted);
 		font-family: var(--font-sans);
 		font-size: var(--text-base);
 		font-weight: 400;
@@ -259,10 +258,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.support-summary h2 {
-		max-width: 16ch;
+		max-width: none;
 		margin: 0 0 var(--space-6);
 		font-family: var(--font-display);
-		font-size: var(--text-xl);
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
 		font-weight: 360;
 		line-height: 1.05;
 		font-optical-sizing: auto;
@@ -300,6 +299,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.pp-opening__intro {
+			display: block;
 			margin-top: var(--space-7);
 		}
 
@@ -316,10 +316,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			display: block;
 			width: calc(100% - (var(--space-5) * 2));
 			padding-bottom: var(--space-9);
-		}
-
-		.purpose h2 {
-			padding: 0 0 var(--space-6);
 		}
 
 		.purpose p {

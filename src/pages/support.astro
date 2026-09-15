@@ -87,7 +87,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.support-opening__intro {
-		max-width: 44rem;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(var(--space-6), 5vw, var(--space-8));
+		max-width: none;
 		margin-top: clamp(var(--space-7), 6vw, var(--space-9));
 	}
 
@@ -100,8 +103,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.support-opening__intro p + p {
-		margin-top: var(--space-5);
-		margin-left: clamp(0rem, 4vw, 3rem);
+		margin-top: 0;
 	}
 
 	.annual {
@@ -137,9 +139,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.annual__amount {
-		font-family: var(--font-display);
-		font-size: 1.3em;
-		font-weight: 500;
+		font-family: inherit;
+		font-size: inherit;
+		font-weight: 600;
+		line-height: inherit;
 	}
 
 	.other-donations {
@@ -164,7 +167,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.other-donations__prose p {
 		margin: 0;
-		color: var(--color-muted);
 		font-family: var(--font-sans);
 		font-size: var(--text-base);
 		font-weight: 400;
@@ -261,7 +263,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.transparency__prose p {
 		margin: 0;
-		color: var(--color-muted);
 		font-family: var(--font-sans);
 		font-size: var(--text-base);
 		font-weight: 400;
@@ -288,6 +289,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.support-opening__intro {
+			display: block;
 			max-width: none;
 			margin-top: var(--space-7);
 		}
@@ -297,6 +299,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.support-opening__intro p + p {
+			margin-top: var(--space-5);
 			margin-left: 0;
 		}
 

@@ -92,12 +92,14 @@ import { upcomingVisit } from "../data/upcoming";
 	</section>
 
 	<section class="padma-pura" aria-labelledby="padma-pura-heading">
+		<div class="padma-pura__heading">
+			<h2 id="padma-pura-heading">Padma Pura Foundation</h2>
+		</div>
 		<div class="padma-pura__composition">
 			<figure class="padma-pura__logo">
 				<img src="/brand/padma-pura-seal.png" alt="Padma Pura Foundation seal" />
 			</figure>
 			<div class="padma-pura__copy">
-				<h2 id="padma-pura-heading">Padma Pura Foundation</h2>
 				<p>Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands and helps create the practical conditions for his annual visits, teachings, transmissions and practice activities.</p>
 				<p>Through Rinpoche’s teachings and guidance, students are encouraged to cultivate compassion and a good heart, while developing the understanding and skills to help themselves and others more effectively.</p>
 				<p class="padma-pura__link"><a href="/padma-pura">About Padma Pura Foundation →</a></p>
@@ -302,16 +304,20 @@ import { upcomingVisit } from "../data/upcoming";
 	}
 
 	.lineage h2 {
-		font-size: clamp(1.5rem, 2vw, 2.25rem);
+		font-size: clamp(2rem, 3.5vw, 3.25rem);
 		font-weight: 360;
-		line-height: 1.1;
+		line-height: 1.05;
 	}
 
 	.lineage .lineage__context {
 		max-width: 46rem;
-		margin-top: clamp(var(--space-7), 5vw, var(--space-8));
-		color: var(--color-muted);
-		font-size: var(--text-lg);
+		margin-top: clamp(var(--space-6), 4vw, var(--space-7));
+		color: var(--color-foreground);
+		font-family: var(--font-sans);
+		font-size: 1.0625rem;
+		font-weight: 400;
+		line-height: 1.6;
+		font-optical-sizing: auto;
 	}
 
 	.lineage__image {
@@ -401,6 +407,11 @@ import { upcomingVisit } from "../data/upcoming";
 		align-items: start;
 	}
 
+	.padma-pura__heading {
+		width: min(100%, var(--content-width-narrow));
+		padding-bottom: calc(clamp(var(--space-6), 4vw, var(--space-7)) + var(--space-2));
+	}
+
 	.padma-pura__logo {
 		width: 100%;
 		max-width: 14rem;
@@ -419,11 +430,11 @@ import { upcomingVisit } from "../data/upcoming";
 	}
 
 	.padma-pura h2 {
-		padding-top: var(--space-2);
+		margin: 0;
 		font-family: var(--font-display);
-		font-size: clamp(2.5rem, 4vw, 4rem);
+		font-size: clamp(2rem, 3.5vw, 3.25rem);
 		font-weight: 360;
-		line-height: 1;
+		line-height: 1.05;
 		font-optical-sizing: auto;
 	}
 
@@ -469,9 +480,9 @@ import { upcomingVisit } from "../data/upcoming";
 
 	.support h2 {
 		font-family: var(--font-display);
-		font-size: clamp(1.5rem, 2vw, 2.25rem);
+		font-size: clamp(2rem, 3.5vw, 3.25rem);
 		font-weight: 360;
-		line-height: 1.1;
+		line-height: 1.05;
 		font-optical-sizing: auto;
 		padding-bottom: var(--space-5);
 	}
@@ -659,14 +670,14 @@ import { upcomingVisit } from "../data/upcoming";
 			display: block;
 		}
 
+		.padma-pura__heading {
+			padding-bottom: calc(var(--space-7) + var(--space-2));
+		}
+
 		.padma-pura__logo {
 			width: 52%;
 			max-width: 12rem;
 			margin: 0 auto var(--space-7);
-		}
-
-		.padma-pura h2 {
-			padding: 0 0 var(--space-5);
 		}
 
 		.support {
@@ -680,7 +691,6 @@ import { upcomingVisit } from "../data/upcoming";
 		}
 
 		.support h2 {
-			font-size: var(--text-lg);
 			padding-bottom: var(--space-4);
 		}
 
