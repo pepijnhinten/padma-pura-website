@@ -1,5 +1,28 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import type { Locale } from "../lib/locale";
+
+interface Props { locale?: Locale }
+const { locale = "en" } = Astro.props;
+const copy = locale === "nl" ? {
+	intro: "Padma Pura Foundation respecteert uw privacy en gaat zorgvuldig om met persoonsgegevens.",
+	blocks: [
+		{ heading: "Gegevens die we ontvangen", paragraphs: ["Wanneer u per e-mail contact opneemt met Padma Pura Foundation, ontvangen we de informatie die u kiest te verstrekken, zoals uw naam, e-mailadres en de inhoud van uw bericht.", "Informatie kan ook worden verstrekt wanneer u zich aanmeldt voor activiteiten, een jaarlijkse bijdrage gaat leveren of op andere wijze met de stichting correspondeert."] },
+		{ heading: "Hoe we gegevens gebruiken", paragraphs: ["Persoonsgegevens worden alleen gebruikt waar dat nodig is voor de administratie van Padma Pura Foundation en haar activiteiten. Dit kan onder meer betekenen: reageren op vragen, activiteiten organiseren, praktische informatie delen en de ondersteuning van de stichting administreren.", "Persoonsgegevens worden niet verkocht en niet gebruikt voor commerciële reclame."] },
+		{ heading: "Delen en bewaren", paragraphs: ["Persoonsgegevens worden alleen gedeeld waar dat nodig is voor het werk van Padma Pura Foundation of wanneer dit wettelijk verplicht is.", "Gegevens worden alleen bewaard zolang dat redelijkerwijs nodig is voor het doel waarvoor ze zijn verzameld en voor eventuele toepasselijke administratieve of wettelijke verplichtingen."] },
+		{ heading: "Uw rechten", paragraphs: ["Op grond van toepasselijke wetgeving inzake gegevensbescherming kunt u rechten hebben met betrekking tot uw persoonsgegevens, waaronder het recht om toegang, correctie of verwijdering te vragen.", "Voor vragen of verzoeken over uw persoonsgegevens kunt u contact opnemen:"] },
+		{ heading: "Websitetechnologie", paragraphs: ["Deze website gebruikt momenteel geen analytics, advertentietrackers of marketingcookies."] },
+	],
+} : {
+	intro: "Padma Pura Foundation respects your privacy and handles personal information with care.",
+	blocks: [
+		{ heading: "Information we receive", paragraphs: ["When you contact Padma Pura Foundation by email, we receive the information you choose to provide, such as your name, email address and the contents of your message.", "Information may also be provided when you register for activities, become an annual supporter or otherwise correspond with the foundation."] },
+		{ heading: "How we use information", paragraphs: ["Personal information is used only where necessary for the administration of Padma Pura Foundation and its activities. This may include responding to enquiries, organising activities, communicating practical information and administering support for the foundation.", "Personal information is not sold or used for commercial advertising."] },
+		{ heading: "Sharing and retention", paragraphs: ["Personal information is shared only where necessary for the work of Padma Pura Foundation or where required by law.", "Information is retained only for as long as reasonably necessary for the purpose for which it was collected and for any applicable administrative or legal obligations."] },
+		{ heading: "Your rights", paragraphs: ["Under applicable data protection law, you may have rights regarding your personal information, including the right to request access, correction or deletion.", "For questions or requests concerning your personal information, please contact:"] },
+		{ heading: "Website technology", paragraphs: ["This website does not currently use analytics, advertising trackers or marketing cookies."] },
+	],
+};
 ---
 
 <BaseLayout
@@ -9,49 +32,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	<section class="privacy-opening" aria-labelledby="privacy-heading">
 		<p class="privacy-opening__label">Privacy</p>
 		<h1 id="privacy-heading">Privacy</h1>
-		<p class="privacy-opening__intro">Padma Pura Foundation respects your privacy and handles personal information with care.</p>
+		<p class="privacy-opening__intro">{copy.intro}</p>
 	</section>
 
 	<section class="privacy" aria-label="Privacy information">
-		<div class="privacy__block">
-			<h2>Information we receive</h2>
+		{copy.blocks.map((block, index) => <div class="privacy__block">
+			<h2>{block.heading}</h2>
 			<div class="privacy__prose">
-				<p>When you contact Padma Pura Foundation by email, we receive the information you choose to provide, such as your name, email address and the contents of your message.</p>
-				<p>Information may also be provided when you register for activities, become an annual supporter or otherwise correspond with the foundation.</p>
+				{block.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+				{index === 3 && <p><a href="mailto:info@padmapura.com">info@padmapura.com</a></p>}
 			</div>
-		</div>
-
-		<div class="privacy__block">
-			<h2>How we use information</h2>
-			<div class="privacy__prose">
-				<p>Personal information is used only where necessary for the administration of Padma Pura Foundation and its activities. This may include responding to enquiries, organising activities, communicating practical information and administering support for the foundation.</p>
-				<p>Personal information is not sold or used for commercial advertising.</p>
-			</div>
-		</div>
-
-		<div class="privacy__block">
-			<h2>Sharing and retention</h2>
-			<div class="privacy__prose">
-				<p>Personal information is shared only where necessary for the work of Padma Pura Foundation or where required by law.</p>
-				<p>Information is retained only for as long as reasonably necessary for the purpose for which it was collected and for any applicable administrative or legal obligations.</p>
-			</div>
-		</div>
-
-		<div class="privacy__block">
-			<h2>Your rights</h2>
-			<div class="privacy__prose">
-				<p>Under applicable data protection law, you may have rights regarding your personal information, including the right to request access, correction or deletion.</p>
-				<p>For questions or requests concerning your personal information, please contact:</p>
-				<p><a href="mailto:info@padmapura.com">info@padmapura.com</a></p>
-			</div>
-		</div>
-
-		<div class="privacy__block">
-			<h2>Website technology</h2>
-			<div class="privacy__prose">
-				<p>This website does not currently use analytics, advertising trackers or marketing cookies.</p>
-			</div>
-		</div>
+		</div>)}
 	</section>
 </BaseLayout>
 

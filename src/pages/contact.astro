@@ -1,5 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { type Locale } from "../lib/locale";
+
+interface Props { locale?: Locale }
+const { locale = "en" } = Astro.props;
+const intro = locale === "nl"
+	? "Voor vragen over Padma Pura Foundation, Rinpoche’s activiteiten in Nederland, gezamenlijke beoefening of steun aan de stichting kunt u contact met ons opnemen."
+	: "For questions about Padma Pura Foundation, Rinpoche’s activities in the Netherlands, practice gatherings or supporting the foundation, you are welcome to contact us.";
 ---
 
 <BaseLayout
@@ -9,12 +16,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	<section class="contact-opening" aria-labelledby="contact-heading">
 		<p class="contact-opening__label">Padma Pura Foundation</p>
 		<h1 id="contact-heading">Contact</h1>
-		<p class="contact-opening__intro">For questions about Padma Pura Foundation, Rinpoche’s activities in the Netherlands, practice gatherings or supporting the foundation, you are welcome to contact us.</p>
+		<p class="contact-opening__intro">{intro}</p>
 	</section>
 
 	<section class="contact-details" aria-label="Email">
 		<div class="contact-details__row">
-			<h2>Email</h2>
+			<h2>{locale === "nl" ? "E-mail" : "Email"}</h2>
 			<p><a href="mailto:info@padmapura.com">info@padmapura.com</a></p>
 		</div>
 	</section>

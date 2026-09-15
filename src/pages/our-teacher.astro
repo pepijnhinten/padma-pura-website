@@ -1,5 +1,81 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getLocalizedPath, type Locale } from "../lib/locale";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = "en" } = Astro.props;
+const copy = locale === "nl"
+	? {
+		label: "Onze leraar",
+		intro: "Het leven van Tenzin Samphel Rinpoche staat in het teken van studie, beoefening en de overdracht van de Dharma. Zijn Dharma-activiteit is geworteld in de Nyingma-traditie, in de overdrachtslijnen die hij heeft ontvangen en voortzet, en in de beoefeningscycli die hij diepgaand heeft bestudeerd en beoefend.",
+		biographyHeading: "Biografie",
+		biography: [
+			"Tenzin Samphel Rinpoche werd in 1961 geboren in Spiti, in de Indiase Himalaya. Hij begon zijn monastieke studie in het klooster van Kyabjé Dudjom Rinpoche in Orissa, India. Later studeerde en beoefende hij twaalf jaar aan Urgyen Dongak Chöling, het klooster van Dudjom Rinpoche in Boudhanath, Kathmandu, Nepal. Vervolgens gaf hij in hetzelfde klooster boeddhisme en filosofie onder begeleiding van Khetsun Sangpo Rinpoche.",
+			"In 1987 verhuisde Rinpoche op verzoek van Dudjom Rinpoche naar Frankrijk om daar zijn Dharma-activiteit als lama en leraar voort te zetten.",
+			"In 1999 richtte Tenzin Samphel Rinpoche, met het advies en de aanmoediging van Khetsun Sangpo Rinpoche, Shedup Kunsang Chöling in Frankrijk op. Na een traditionele rituele ceremonie benoemde Khetsun Sangpo Rinpoche hem tot lineagehouder en vertrouwde hem de spirituele verantwoordelijkheid over het centrum toe. Rinpoche woont daar sinds 2002 en geeft onderricht en begeleiding aan beoefenaars.",
+			"Rinpoche woont in Shedup Kunsang Chöling met zijn Amerikaanse vrouw, bij studenten bekend als Khandro-la, en hun vier zonen. Zijn gezinsleven is een belangrijk onderdeel van de lekencontext waarin hij leeft, beoefent en zijn Dharma-activiteit verricht.",
+		],
+		trainingHeading: "Opleiding en leraren",
+		training: [
+			"Tijdens zijn opleiding ontving Tenzin Samphel Rinpoche onderricht, inwijdingen en mondelinge overdrachten van vele bekwame meesters van de Nyingma-traditie. Tot zijn belangrijkste leraren behoorden Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche en Khetsun Sangpo Rinpoche.",
+			"Rinpoche houdt verschillende overdrachtslijnen en beoefeningscycli binnen de Nyingma-traditie en draagt deze over. Dudjom Tersar neemt een centrale plaats in binnen veel van de beoefeningen die hij door middel van inwijdingen, mondelinge overdrachten en onderricht overdraagt. Daarnaast houdt hij onder meer de overdrachtslijnen van Yangti Nagpo en Longchen Nyingthig.",
+		],
+		shedup: [
+			"Shedup Kunsang Chöling is een boeddhistisch centrum in Septvaux, Frankrijk, dat in 1999 door Tenzin Samphel Rinpoche werd opgericht met het advies en de aanmoediging van Khetsun Sangpo Rinpoche.",
+			"Het is een belangrijk centrum voor Rinpoche’s Dharma-activiteit in Frankrijk. Hij geeft er onderricht, inwijdingen en beoefeningsinstructies, en studenten en beoefenaars komen er samen voor retraites, onderricht en gezamenlijke beoefening.",
+		],
+		teachingHeading: "Dharma-onderricht",
+		teaching: [
+			"Rinpoche geeft onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies, waarbij hij de Dharma overdraagt overeenkomstig de behoeften en omstandigheden van zijn studenten.",
+			"Zijn Dharma-onderricht vindt zijn centrum in Shedup Kunsang Chöling en strekt zich uit tot bezoeken elders, waaronder zijn jaarlijkse bezoeken aan Nederland. Padma Pura Foundation ondersteunt deze bezoeken en de daarmee verbonden Dharma-activiteiten, waardoor studenten zijn begeleiding kunnen ontvangen en samen kunnen beoefenen.",
+		],
+		academicHeading: "Academisch werk",
+		academic: [
+			"Naast zijn Dharma-activiteit heeft Rinpoche ook bijgedragen aan academisch werk op het gebied van de Tibetaanse taal en boeddhistische tradities.",
+			"Hij gaf acht jaar les aan Inalco in Parijs, waar hij ook bijdroeg aan onderzoek binnen de Tibetologie. Daarnaast heeft hij gewerkt met promovendi aan Rice University in Houston.",
+		],
+		lineageHeading: "Lineage & overdracht",
+		lineageText: "Lees meer over de Nyingma-traditie en de overdrachtslijnen en beoefeningscycli die deel uitmaken van Rinpoche’s opleiding en Dharma-activiteit.",
+		lineageLink: "Ontdek Lineage & overdracht",
+	}
+	: {
+		label: "Our Teacher",
+		intro: "Tenzin Samphel Rinpoche’s life has been devoted to the study, practice and transmission of the Dharma. His training and Dharma activity are rooted in the Nyingma tradition, in transmission lineages he has received and continues to transmit, and in practice cycles he has studied and practised.",
+		biographyHeading: "Biography",
+		biography: [
+			"Born in 1961 in Spiti, in the Indian Himalayas, Tenzin Samphel Rinpoche began his monastic studies at Kyabjé Dudjom Rinpoche’s monastery in Orissa, India. He later spent twelve years studying and practising at Urgyen Dongak Chöling, Dudjom Rinpoche’s monastery in Boudhanath, Kathmandu, Nepal. He subsequently taught Buddhism and philosophy at the same monastery under the guidance of Khetsun Sangpo Rinpoche.",
+			"In 1987, at the request of Dudjom Rinpoche, Rinpoche moved to France to continue his Dharma activity there as a lama and teacher.",
+			"In 1999, with the advice and encouragement of Khetsun Sangpo Rinpoche, Tenzin Samphel Rinpoche established Shedup Kunsang Chöling in France. Following a traditional ritual ceremony, Khetsun Sangpo Rinpoche enthroned him as a lineage holder and entrusted him with spiritual authority at the centre. Rinpoche has lived there since 2002, teaching and guiding practitioners.",
+			"Rinpoche lives at Shedup Kunsang Chöling with his American wife, known to students as Khandro-la, and their four sons. His family life is an important part of the householder context in which he lives, practises and carries out his Dharma activity.",
+		],
+		trainingHeading: "Training and teachers",
+		training: [
+			"Throughout his training, Tenzin Samphel Rinpoche received teachings, empowerments and oral transmissions from many accomplished masters of the Nyingma tradition. Among his principal teachers were Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.",
+			"Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition. Dudjom Tersar has a central place in many of the practices he transmits through empowerments, oral transmissions and teachings. He also holds transmission lineages of Yangti Nagpo and Longchen Nyingthig, among others.",
+		],
+		shedup: [
+			"Shedup Kunsang Chöling is a Buddhist centre in Septvaux, France, established by Tenzin Samphel Rinpoche in 1999 with the advice and encouragement of Khetsun Sangpo Rinpoche.",
+			"It is an important centre for Rinpoche’s Dharma activity in France, where he gives teachings, empowerments and practice guidance and where students and practitioners gather for retreats, teachings and group practice.",
+		],
+		teachingHeading: "Teaching activity",
+		teaching: [
+			"Rinpoche gives teachings, empowerments, oral transmissions and practice guidance, transmitting the Dharma according to the needs and circumstances of his students.",
+			"His teaching activity is centred at Shedup Kunsang Chöling and extends through visits elsewhere, including his annual visits to the Netherlands. Padma Pura Foundation supports these visits and the related Dharma activities through which students receive his guidance and practise together.",
+		],
+		academicHeading: "Academic work",
+		academic: [
+			"Alongside his Dharma activity, Rinpoche has also contributed to academic work relating to Tibetan language and Buddhist traditions.",
+			"He taught for eight years at Inalco in Paris, where he also contributed to research in Tibetology. He has also worked with graduate students at Rice University in Houston.",
+		],
+		lineageHeading: "Lineage & Transmission",
+		lineageText: "Learn more about the Nyingma tradition and the transmission lineages and practice cycles that form part of Rinpoche’s training and Dharma activity.",
+		lineageLink: "Explore Lineage & Transmission",
+	};
+
+const localizedPath = (path: string) => getLocalizedPath(path, locale);
 ---
 
 <BaseLayout
@@ -9,12 +85,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	<section class="teacher-opening" aria-labelledby="teacher-heading">
 		<div class="teacher-opening__copy">
 			<header class="teacher-opening__heading">
-				<p class="teacher-opening__label">Our Teacher</p>
+				<p class="teacher-opening__label">{copy.label}</p>
 				<h1 id="teacher-heading">Tenzin Samphel Rinpoche</h1>
 			</header>
 
 			<p class="teacher-opening__intro">
-				Tenzin Samphel Rinpoche’s life has been devoted to the study, practice and transmission of the Dharma. His training and Dharma activity are rooted in the Nyingma tradition, in transmission lineages he has received and continues to transmit, and in practice cycles he has studied and practised.
+				{copy.intro}
 			</p>
 		</div>
 
@@ -29,37 +105,31 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	</section>
 
 	<section class="biography" aria-labelledby="biography-heading">
-		<h2 id="biography-heading">Biography</h2>
+		<h2 id="biography-heading">{copy.biographyHeading}</h2>
 		<div class="biography__prose">
-			<p>Born in 1961 in Spiti, in the Indian Himalayas, Tenzin Samphel Rinpoche began his monastic studies at Kyabjé Dudjom Rinpoche’s monastery in Orissa, India. He later spent twelve years studying and practising at Urgyen Dongak Chöling, Dudjom Rinpoche’s monastery in Boudhanath, Kathmandu, Nepal. He subsequently taught Buddhism and philosophy at the same monastery under the guidance of Khetsun Sangpo Rinpoche.</p>
-			<p>In 1987, at the request of Dudjom Rinpoche, Rinpoche moved to France to continue his Dharma activity there as a lama and teacher.</p>
-			<p>In 1999, with the advice and encouragement of Khetsun Sangpo Rinpoche, Tenzin Samphel Rinpoche established Shedup Kunsang Chöling in France. Following a traditional ritual ceremony, Khetsun Sangpo Rinpoche enthroned him as a lineage holder and entrusted him with spiritual authority at the centre. Rinpoche has lived there since 2002, teaching and guiding practitioners.</p>
-			<p>Rinpoche lives at Shedup Kunsang Chöling with his American wife, known to students as Khandro-la, and their four sons. His family life is an important part of the householder context in which he lives, practises and carries out his Dharma activity.</p>
+			{copy.biography.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 
 	<section class="training" aria-labelledby="training-heading">
-		<h2 id="training-heading">Training and teachers</h2>
+		<h2 id="training-heading">{copy.trainingHeading}</h2>
 		<div class="training__prose">
-			<p>Throughout his training, Tenzin Samphel Rinpoche received teachings, empowerments and oral transmissions from many accomplished masters of the Nyingma tradition. Among his principal teachers were Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.</p>
-			<p>Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition. Dudjom Tersar has a central place in many of the practices he transmits through empowerments, oral transmissions and teachings. He also holds transmission lineages of Yangti Nagpo and Longchen Nyingthig, among others.</p>
+			{copy.training.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 
 	<section class="shedup" aria-labelledby="shedup-heading">
 		<h2 id="shedup-heading">Shedup Kunsang Chöling</h2>
 		<div class="shedup__prose">
-			<p>Shedup Kunsang Chöling is a Buddhist centre in Septvaux, France, established by Tenzin Samphel Rinpoche in 1999 with the advice and encouragement of Khetsun Sangpo Rinpoche.</p>
-			<p>It is an important centre for Rinpoche’s Dharma activity in France, where he gives teachings, empowerments and practice guidance and where students and practitioners gather for retreats, teachings and group practice.</p>
+			{copy.shedup.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 		<img class="shedup__image" src="/images/rinpoche/shedup-kunsang-choling.webp" alt="Shedup Kunsang Chöling in Septvaux, France" />
 	</section>
 
 	<section class="teaching" aria-labelledby="teaching-heading">
-		<h2 id="teaching-heading">Teaching activity</h2>
+		<h2 id="teaching-heading">{copy.teachingHeading}</h2>
 		<div class="teaching__prose">
-			<p>Rinpoche gives teachings, empowerments, oral transmissions and practice guidance, transmitting the Dharma according to the needs and circumstances of his students.</p>
-			<p>His teaching activity is centred at Shedup Kunsang Chöling and extends through visits elsewhere, including his annual visits to the Netherlands. Padma Pura Foundation supports these visits and the related Dharma activities through which students receive his guidance and practise together.</p>
+			{copy.teaching.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 		<figure class="teaching__image">
 			<img
@@ -73,18 +143,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	</section>
 
 	<section class="academic" aria-labelledby="academic-heading">
-		<h2 id="academic-heading">Academic work</h2>
+		<h2 id="academic-heading">{copy.academicHeading}</h2>
 		<div class="academic__prose">
-			<p>Alongside his Dharma activity, Rinpoche has also contributed to academic work relating to Tibetan language and Buddhist traditions.</p>
-			<p>He taught for eight years at Inalco in Paris, where he also contributed to research in Tibetology. He has also worked with graduate students at Rice University in Houston.</p>
+			{copy.academic.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 
 	<section class="lineage-transition" aria-labelledby="lineage-transition-heading">
-		<h2 id="lineage-transition-heading">Lineage &amp; Transmission</h2>
-		<p>Learn more about the Nyingma tradition and the transmission lineages and practice cycles that form part of Rinpoche’s training and Dharma activity.</p>
+		<h2 id="lineage-transition-heading">{copy.lineageHeading}</h2>
+		<p>{copy.lineageText}</p>
 		<p class="lineage-transition__link">
-			<a href="/lineage">Explore Lineage &amp; Transmission</a>
+			<a href={localizedPath("/lineage")}>{copy.lineageLink}</a>
 		</p>
 	</section>
 </BaseLayout>

@@ -1,5 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getLocalizedPath, type Locale } from "../lib/locale";
+
+interface Props { locale?: Locale }
+const { locale = "en" } = Astro.props;
+const copy = locale === "nl" ? {
+	label: "Steun", heading: "Steun Padma Pura Foundation", opening: ["Padma Pura Foundation is afhankelijk van de steun van studenten, beoefenaars en anderen die helpen de Dharma-activiteit van Tenzin Samphel Rinpoche in Nederland mogelijk te maken.", "Financiële bijdragen en praktische hulp scheppen de voorwaarden voor Rinpoche’s bezoeken, onderricht, overdrachten, beoefeningsactiviteiten en ander werk dat met zijn begeleiding verbonden is."],
+	annualHeading: "Jaarlijkse bijdrage", annual: ["De jaarlijkse bijdrage vormt een belangrijk onderdeel van de doorlopende financiële basis van Padma Pura Foundation en helpt de reguliere kosten van het werk van de stichting gedurende het jaar te dekken.", "De jaarlijkse bijdrage bedraagt €50. Supporters ontvangen korting op geselecteerde evenementen die door Padma Pura Foundation worden georganiseerd.", "Als u supporter wilt worden, kunt u e-mailen naar"],
+	donationsHeading: "Andere donaties", donations: ["Naast de jaarlijkse bijdrage helpen eenmalige en periodieke donaties Padma Pura Foundation om Rinpoche’s Dharma-activiteit in Nederland te ondersteunen en in praktische behoeften te voorzien wanneer die zich voordoen.", "Als u een donatie wilt doen, kunt u contact met ons opnemen via"],
+	tsetarHeading: "Tsetar-fonds", tsetar: ["Het Tsetar-fonds wordt specifiek gebruikt om Tsetar-activiteiten te ondersteunen die onder begeleiding van Rinpoche worden uitgevoerd.", "Bijdragen aan het fonds helpen de praktische kosten te dekken die verbonden zijn aan de voorbereiding en uitvoering van deze activiteiten. Omdat Tsetar zorgvuldige voorbereiding vereist, wordt gedetailleerde operationele informatie alleen gedeeld waar dat passend is.", "Als u het Tsetar-fonds wilt ondersteunen, kunt u e-mailen naar"],
+	practicalHeading: "Praktische ondersteuning", practical: ["Steun hoeft niet alleen financieel te zijn. Praktische hulp van studenten en vrijwilligers draagt er ook aan bij om Rinpoche’s Dharma-activiteit in Nederland mogelijk te maken.", "Afhankelijk van wat nodig is, kan dit betekenen dat u helpt met Rinpoche’s bezoeken, accommodatie, de organisatie van evenementen, communicatie en andere praktische taken. Als u uw tijd of vaardigheden wilt bijdragen, kunt u contact met ons opnemen via"],
+	transparencyHeading: "Transparantie", transparency: "Padma Pura Foundation is een Nederlandse stichting met ANBI-status. Informatie over de stichting, het bestuur, het beleid en formele documenten is beschikbaar op de pagina Stichting & ANBI.", transparencyLink: "Stichting & ANBI →",
+} : {
+	label: "Support", heading: "Support Padma Pura Foundation", opening: ["Padma Pura Foundation depends on the support of students, practitioners and others who help make Tenzin Samphel Rinpoche’s Dharma activity in the Netherlands possible.", "Financial contributions and practical help create the conditions for Rinpoche’s visits, teachings, transmissions, practice activities and other work connected with his guidance."],
+	annualHeading: "Annual Support", annual: ["Annual Support provides an important part of the ongoing financial basis for Padma Pura Foundation and helps cover the regular costs of the foundation’s work throughout the year.", "The annual contribution is €50. Supporters receive a discount on selected events organised by Padma Pura Foundation.", "If you would like to become a supporter, please email"],
+	donationsHeading: "Other donations", donations: ["In addition to Annual Support, one-off and recurring donations help Padma Pura Foundation support Rinpoche’s Dharma activity in the Netherlands and meet practical needs as they arise.", "If you would like to make a donation, please contact us at"],
+	tsetarHeading: "Tsetar Fund", tsetar: ["The Tsetar Fund is used specifically to support Tsetar activities carried out under Rinpoche’s guidance.", "Contributions to the fund help cover the practical costs involved in preparing and carrying out these activities. Because Tsetar requires careful preparation, detailed operational information is shared only where appropriate.", "If you would like to support the Tsetar Fund, please email"],
+	practicalHeading: "Practical support", practical: ["Support does not only have to be financial. Practical help from students and volunteers also contributes to making Rinpoche’s Dharma activity in the Netherlands possible.", "Depending on what is needed, this may include helping with Rinpoche’s visits, accommodation, event organisation, communication and other practical tasks. If you would like to contribute your time or skills, please contact us at"],
+	transparencyHeading: "Transparency", transparency: "Padma Pura Foundation is a Dutch foundation with ANBI status. Information about the foundation, its board, policy and formal documents is available on the Foundation & ANBI page.", transparencyLink: "Foundation & ANBI →",
+};
+const localizedPath = (path: string) => getLocalizedPath(path, locale);
 ---
 
 <BaseLayout
@@ -7,54 +27,53 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	description="Padma Pura Foundation depends on the support of students, practitioners and others who wish to help make Rinpoche’s Dharma activity in the Netherlands possible."
 >
 	<section class="support-opening" aria-labelledby="support-heading">
-		<p class="support-opening__label">Support</p>
-		<h1 id="support-heading">Support Padma Pura Foundation</h1>
+		<p class="support-opening__label">{copy.label}</p>
+		<h1 id="support-heading">{copy.heading}</h1>
 		<div class="support-opening__intro">
-			<p>Padma Pura Foundation depends on the support of students, practitioners and others who help make Tenzin Samphel Rinpoche’s Dharma activity in the Netherlands possible.</p>
-			<p>Financial contributions and practical help create the conditions for Rinpoche’s visits, teachings, transmissions, practice activities and other work connected with his guidance.</p>
+			{copy.opening.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 
 	<section class="annual" aria-labelledby="annual-heading">
-		<h2 id="annual-heading">Annual Support</h2>
+		<h2 id="annual-heading">{copy.annualHeading}</h2>
 		<div class="annual__prose">
-			<p>Annual Support provides an important part of the ongoing financial basis for Padma Pura Foundation and helps cover the regular costs of the foundation’s work throughout the year.</p>
-			<p>The annual contribution is <span class="annual__amount">€50</span>. Supporters receive a discount on selected events organised by Padma Pura Foundation.</p>
-			<p>If you would like to become a supporter, please email <a href="mailto:info@padmapura.com">info@padmapura.com</a>. We will send you the information needed to register.</p>
+			<p>{copy.annual[0]}</p>
+			<p>{copy.annual[1]}</p>
+			<p>{copy.annual[2]} <a href="mailto:info@padmapura.com">info@padmapura.com</a>. {locale === "nl" ? "We sturen u de informatie die nodig is om u te registreren." : "We will send you the information needed to register."}</p>
 		</div>
 	</section>
 
 	<section class="other-donations" aria-labelledby="other-donations-heading">
-		<h2 id="other-donations-heading">Other donations</h2>
+		<h2 id="other-donations-heading">{copy.donationsHeading}</h2>
 		<div class="other-donations__prose">
-			<p>In addition to Annual Support, one-off and recurring donations help Padma Pura Foundation support Rinpoche’s Dharma activity in the Netherlands and meet practical needs as they arise.</p>
-			<p>If you would like to make a donation, please contact us at <a href="mailto:info@padmapura.com">info@padmapura.com</a> for the current payment details.</p>
+			<p>{copy.donations[0]}</p>
+			<p>{copy.donations[1]} <a href="mailto:info@padmapura.com">info@padmapura.com</a> {locale === "nl" ? "voor de actuele betalingsgegevens." : "for the current payment details."}</p>
 		</div>
 	</section>
 
 	<section class="tsetar-fund" aria-labelledby="tsetar-fund-heading">
-		<h2 id="tsetar-fund-heading">Tsetar Fund</h2>
+		<h2 id="tsetar-fund-heading">{copy.tsetarHeading}</h2>
 		<div class="tsetar-fund__prose">
-			<p>The Tsetar Fund is used specifically to support Tsetar activities carried out under Rinpoche’s guidance.</p>
-			<p>Contributions to the fund help cover the practical costs involved in preparing and carrying out these activities. Because Tsetar requires careful preparation, detailed operational information is shared only where appropriate.</p>
-			<p>If you would like to support the Tsetar Fund, please email <a href="mailto:info@padmapura.com">info@padmapura.com</a> for current payment information.</p>
+			<p>{copy.tsetar[0]}</p>
+			<p>{copy.tsetar[1]}</p>
+			<p>{copy.tsetar[2]} <a href="mailto:info@padmapura.com">info@padmapura.com</a> {locale === "nl" ? "voor actuele betalingsinformatie." : "for current payment information."}</p>
 		</div>
 	</section>
 
 	<section class="practical-support" aria-labelledby="practical-support-heading">
-		<h2 id="practical-support-heading">Practical support</h2>
+		<h2 id="practical-support-heading">{copy.practicalHeading}</h2>
 		<div class="practical-support__prose">
-			<p>Support does not only have to be financial. Practical help from students and volunteers also contributes to making Rinpoche’s Dharma activity in the Netherlands possible.</p>
-			<p>Depending on what is needed, this may include helping with Rinpoche’s visits, accommodation, event organisation, communication and other practical tasks. If you would like to contribute your time or skills, please contact us at <a href="mailto:info@padmapura.com">info@padmapura.com</a>.</p>
+			<p>{copy.practical[0]}</p>
+			<p>{copy.practical[1]} <a href="mailto:info@padmapura.com">info@padmapura.com</a>.</p>
 		</div>
 	</section>
 
 	<section class="transparency" aria-labelledby="transparency-heading">
-		<h2 id="transparency-heading">Transparency</h2>
+		<h2 id="transparency-heading">{copy.transparencyHeading}</h2>
 		<div class="transparency__prose">
-			<p>Padma Pura Foundation is a Dutch foundation with ANBI status. Information about the foundation, its board, policy and formal documents is available on the Foundation &amp; ANBI page.</p>
+			<p>{copy.transparency}</p>
 		</div>
-		<p class="transparency__link"><a href="/foundation">Foundation &amp; ANBI →</a></p>
+		<p class="transparency__link"><a href={localizedPath("/foundation")}>{copy.transparencyLink}</a></p>
 	</section>
 </BaseLayout>
 

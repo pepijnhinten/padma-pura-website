@@ -1,6 +1,27 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { upcomingVisit } from "../data/upcoming";
+import type { Locale } from "../lib/locale";
+
+interface Props { locale?: Locale }
+const { locale = "en" } = Astro.props;
+const isDutch = locale === "nl";
+const copy = isDutch ? {
+	label: "Activiteiten", heading: "Dharma-activiteiten", opening: ["De Dharma-activiteit van Tenzin Samphel Rinpoche in Nederland omvat onderricht, inwijdingen, mondelinge overdrachten, beoefeningsinstructies en gelegenheden om samen te beoefenen.", "Padma Pura Foundation ondersteunt deze activiteiten en helpt de voorwaarden te scheppen waaronder studenten Rinpoche’s onderricht kunnen ontvangen en onder zijn begeleiding kunnen beoefenen."],
+	upcoming: "Komend bezoek", upcomingIntro: "Informatie over het jaarlijkse bezoek van Tenzin Samphel Rinpoche aan Nederland.", visits: "Rinpoche in Nederland", visitsText: ["Tenzin Samphel Rinpoche bezoekt Nederland jaarlijks om onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies te geven en studenten te ontmoeten.", "Padma Pura Foundation ondersteunt de organisatie van deze jaarlijkse bezoeken en de Dharma-activiteiten die tijdens deze bezoeken plaatsvinden. Bevestigde data en praktische informatie worden gepubliceerd bij Komend bezoek."],
+	tsogHeading: "Tsog", tsogText: ["Tsog is een Vajrayana-groepsbeoefening waarin beoefenaars samenkomen voor beoefening en offerandes.", "Padma Pura Foundation organiseert Tsog-beoefening doorgaans online via Microsoft Teams, rond Guru Rinpoche Dag en Dakini Dag wanneer de omstandigheden dit toelaten."], tsogParticipation: "Als u wilt deelnemen, kunt u e-mailen naar", tsogMailing: "We voegen u toe aan de Tsog-mailinglijst, waarop uitnodigingen en praktische informatie over komende Tsog-beoefeningen worden gedeeld.",
+	tsetar: "Tsetar", tsetarText: ["Tsetar is de boeddhistische beoefening waarbij dieren worden gered uit situaties waarin ze anders zouden worden gedood en worden vrijgelaten in omstandigheden waarin ze hun leven kunnen voortzetten.", "Padma Pura Foundation ondersteunt Tsetar-activiteiten onder begeleiding van Rinpoche. Omdat deze activiteiten zorgvuldige voorbereiding vereisen, wordt praktische informatie alleen gedeeld waar dat passend is."],
+	gutor: "Gutor", gutorText: "Gutor is een Vajrayana-beoefening die traditioneel vóór Losar, het Tibetaans Nieuwjaar, wordt gehouden. Het is een beoefening van zuivering en het wegnemen van obstakels, die helpt gunstige omstandigheden voor het komende jaar te scheppen.", mailing: "Algemene mailinglijst", closing: "Belangrijke updates en informatie over Rinpoche’s activiteiten worden gedeeld via de algemene mailinglijst, samen met informatie over andere activiteiten van Padma Pura Foundation, waaronder Tsetar en Gutor. Om u aan te melden voor de algemene mailinglijst, kunt u e-mailen naar",
+	upcomingAttribution: "van Mipham Rinpoche", upcomingPeriod: "Verwacht in juni / juli 2027", upcomingStatus: "Data nog niet bevestigd", seriesNote: "Het volgende jaarlijkse bezoek van Rinpoche aan Nederland wordt momenteel verwacht in juni of juli 2027. Dit zou het tweede jaar zijn van onderricht over Sword of Wisdom for Thoroughly Ascertaining Reality van Mipham Rinpoche, als vervolg op de in 2026 begonnen reeks.", detailsStatus: "Data, locatie en programma worden gepubliceerd zodra deze zijn bevestigd.",
+} : {
+	label: "Activities", heading: "Dharma Activity", opening: ["Tenzin Samphel Rinpoche’s Dharma activity in the Netherlands includes teachings, empowerments, oral transmissions, practice guidance and opportunities to practise together.", "Padma Pura Foundation supports these activities and helps create the conditions for students to receive Rinpoche’s teachings and practise under his guidance."],
+	upcoming: "Upcoming", upcomingIntro: "Information about Tenzin Samphel Rinpoche’s annual visit to the Netherlands.", visits: "Rinpoche in the Netherlands", visitsText: ["Tenzin Samphel Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance, and to meet with students.", "Padma Pura Foundation supports the organisation of these annual visits and the Dharma activities that take place during them. Confirmed dates and practical information are published in Upcoming."],
+	tsogHeading: "Tsog practice", tsogText: ["Tsog is a Vajrayana group practice in which practitioners come together for practice and offerings.", "Padma Pura Foundation usually organises Tsog practice online via Microsoft Teams, around Guru Rinpoche Day and Dakini Day when circumstances allow."], tsogParticipation: "If you would like to take part, please email", tsogMailing: "We will add you to the Tsog mailing list, through which invitations and practical information for upcoming Tsog practices are shared.",
+	tsetar: "Tsetar", tsetarText: ["Tsetar is the Buddhist practice of saving animals from situations in which they would otherwise be killed and releasing them into conditions where they can continue their lives.", "Padma Pura Foundation supports Tsetar activities under Rinpoche’s guidance. Because these activities require careful preparation, information is shared only when and where appropriate."],
+	gutor: "Gutor", gutorText: "Gutor is a Vajrayana practice traditionally held before Losar, the Tibetan New Year. It is a practice of purification and the clearing of obstacles, helping create auspicious conditions for the year ahead.", mailing: "General mailing list", closing: "Important updates and information about Rinpoche’s activities are shared through the general mailing list, together with information about other Padma Pura Foundation activities, including Tsetar and Gutor. To join the general mailing list, please email",
+	upcomingAttribution: upcomingVisit.attribution, upcomingPeriod: upcomingVisit.expectedPeriod, upcomingStatus: upcomingVisit.status, seriesNote: upcomingVisit.seriesNote, detailsStatus: upcomingVisit.detailsStatus,
+};
+const localizedUpcoming = { ...upcomingVisit, attribution: copy.upcomingAttribution, expectedPeriod: copy.upcomingPeriod, status: copy.upcomingStatus, seriesNote: copy.seriesNote, detailsStatus: copy.detailsStatus };
 ---
 
 <BaseLayout
@@ -8,40 +29,38 @@ import { upcomingVisit } from "../data/upcoming";
 	description="Dharma activities connected with Tenzin Samphel Rinpoche and Padma Pura Foundation in the Netherlands."
 >
 	<section class="activities-opening" aria-labelledby="activities-heading">
-		<p class="activities-opening__label">Activities</p>
-		<h1 id="activities-heading">Dharma Activity</h1>
+		<p class="activities-opening__label">{copy.label}</p>
+		<h1 id="activities-heading">{copy.heading}</h1>
 		<div class="activities-opening__intro">
-			<p>Tenzin Samphel Rinpoche’s Dharma activity in the Netherlands includes teachings, empowerments, oral transmissions, practice guidance and opportunities to practise together.</p>
-			<p>Padma Pura Foundation supports these activities and helps create the conditions for students to receive Rinpoche’s teachings and practise under his guidance.</p>
+			{copy.opening.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 
 	<section class="upcoming" aria-labelledby="upcoming-heading">
 		<div class="upcoming__heading">
-			<h2 id="upcoming-heading">Upcoming</h2>
-			<p class="upcoming__intro">Information about Tenzin Samphel Rinpoche’s annual visit to the Netherlands.</p>
+			<h2 id="upcoming-heading">{copy.upcoming}</h2>
+			<p class="upcoming__intro">{copy.upcomingIntro}</p>
 		</div>
 		<ul class="upcoming__list">
 			<li class="upcoming__item">
 				<div class="upcoming__name">
 					<span class="upcoming__title">{upcomingVisit.title}</span>
-					<span class="upcoming__subtitle">{upcomingVisit.attribution}</span>
+					<span class="upcoming__subtitle">{localizedUpcoming.attribution}</span>
 				</div>
 				<div class="upcoming__status">
-					<span>{upcomingVisit.expectedPeriod}</span>
-					<span>{upcomingVisit.status}</span>
+					<span>{localizedUpcoming.expectedPeriod}</span>
+					<span>{localizedUpcoming.status}</span>
 				</div>
-				<p class="upcoming__description" set:html={upcomingVisit.seriesNote.replace(upcomingVisit.title, `<em>${upcomingVisit.title}</em>`)}></p>
-				<p class="upcoming__closing">{upcomingVisit.detailsStatus}</p>
+				<p class="upcoming__description" set:html={localizedUpcoming.seriesNote.replace(localizedUpcoming.title, `<em>${localizedUpcoming.title}</em>`)}></p>
+				<p class="upcoming__closing">{localizedUpcoming.detailsStatus}</p>
 			</li>
 		</ul>
 	</section>
 
 	<section class="visits" aria-labelledby="visits-heading">
-		<h2 id="visits-heading">Rinpoche in the Netherlands</h2>
+		<h2 id="visits-heading">{copy.visits}</h2>
 		<div class="visits__prose">
-			<p>Tenzin Samphel Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance, and to meet with students.</p>
-			<p>Padma Pura Foundation supports the organisation of these annual visits and the Dharma activities that take place during them. Confirmed dates and practical information are published in Upcoming.</p>
+			{copy.visitsText.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 		<figure class="visits__image">
 			<img src="/images/activities/rinpoche-with-students.jpg" alt="Tenzin Samphel Rinpoche in conversation with students" />
@@ -49,13 +68,12 @@ import { upcomingVisit } from "../data/upcoming";
 	</section>
 
 	<section class="tsog" aria-labelledby="tsog-heading">
-		<h2 id="tsog-heading">Tsog practice</h2>
+		<h2 id="tsog-heading">{copy.tsogHeading}</h2>
 		<div class="tsog__prose">
-			<p>Tsog is a Vajrayana group practice in which practitioners come together for practice and offerings.</p>
-			<p>Padma Pura Foundation usually organises Tsog practice online via Microsoft Teams, around Guru Rinpoche Day and Dakini Day when circumstances allow.</p>
+			{copy.tsogText.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 		<div class="tsog__participation">
-			<p>If you would like to take part, please email <a href="mailto:info@padmapura.com">info@padmapura.com</a>. We will add you to the Tsog mailing list, through which invitations and practical information for upcoming Tsog practices are shared.</p>
+			<p>{copy.tsogParticipation} <a href="mailto:info@padmapura.com">info@padmapura.com</a>. {copy.tsogMailing}</p>
 		</div>
 		<div class="tsog__images">
 			<figure>
@@ -70,10 +88,9 @@ import { upcomingVisit } from "../data/upcoming";
 	</section>
 
 	<section class="tsetar" aria-labelledby="tsetar-heading">
-		<h2 id="tsetar-heading">Tsetar</h2>
+		<h2 id="tsetar-heading">{copy.tsetar}</h2>
 		<div class="tsetar__prose">
-			<p>Tsetar is the Buddhist practice of saving animals from situations in which they would otherwise be killed and releasing them into conditions where they can continue their lives.</p>
-			<p>Padma Pura Foundation supports Tsetar activities under Rinpoche’s guidance. Because each activity requires careful preparation, information is shared only when and where appropriate.</p>
+			{copy.tsetarText.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 		<figure class="tsetar__image">
 			<img src="/images/activities/tsetar.png" alt="Tsetar activity" />
@@ -81,9 +98,9 @@ import { upcomingVisit } from "../data/upcoming";
 	</section>
 
 	<section class="gutor" aria-labelledby="gutor-heading">
-		<h2 id="gutor-heading">Gutor</h2>
+		<h2 id="gutor-heading">{copy.gutor}</h2>
 		<div class="gutor__prose">
-			<p>Gutor is a Vajrayana practice traditionally held before Losar, the Tibetan New Year. It is a practice of purification and the clearing of obstacles, helping create auspicious conditions for the year ahead.</p>
+			<p>{copy.gutorText}</p>
 		</div>
 		<figure class="gutor__image">
 			<img src="/images/activities/gutor.png" alt="Gutor practice" />
@@ -92,8 +109,8 @@ import { upcomingVisit } from "../data/upcoming";
 	</section>
 
 	<section class="activities-closing" aria-labelledby="activities-closing-heading">
-		<h2 id="activities-closing-heading">General mailing list</h2>
-		<p>Important updates and information about Rinpoche’s activities are shared through the general mailing list, together with information about other Padma Pura Foundation activities, including Tsetar and Gutor. To join the general mailing list, please email <a href="mailto:info@padmapura.com">info@padmapura.com</a>.</p>
+		<h2 id="activities-closing-heading">{copy.mailing}</h2>
+		<p>{copy.closing} <a href="mailto:info@padmapura.com">info@padmapura.com</a>.</p>
 	</section>
 </BaseLayout>
 

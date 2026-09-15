@@ -1,24 +1,28 @@
 ---
+import { getLabels, getLocale, getLocalizedPath } from "../lib/locale";
+
+const locale = getLocale(Astro.url.pathname);
+const labels = getLabels(locale);
 const primaryLinks = [
-	{ href: "/our-teacher", label: "Our Teacher" },
-	{ href: "/lineage", label: "Lineage" },
-	{ href: "/activities", label: "Activities" },
-	{ href: "/padma-pura", label: "Padma Pura Foundation" },
-	{ href: "/support", label: "Support" },
+	{ href: "/our-teacher", label: labels.ourTeacher },
+	{ href: "/lineage", label: labels.lineage },
+	{ href: "/activities", label: labels.activities },
+	{ href: "/padma-pura", label: labels.foundation },
+	{ href: "/support", label: labels.support },
 ];
 
 const secondaryLinks = [
-	{ href: "/foundation", label: "Foundation & ANBI" },
-	{ href: "/updates", label: "Updates" },
-	{ href: "/contact", label: "Contact" },
-	{ href: "/privacy", label: "Privacy" },
+	{ href: "/foundation", label: labels.foundationAnbi },
+	{ href: "/updates", label: labels.updates },
+	{ href: "/contact", label: labels.contact },
+	{ href: "/privacy", label: labels.privacy },
 ];
 ---
 
 <footer class="site-footer">
 	<div class="site-footer__inner">
 		<div class="site-footer__identity">
-			<a class="site-footer__seal" href="/" aria-label="Padma Pura Foundation home">
+			<a class="site-footer__seal" href={getLocalizedPath("/", locale)} aria-label="Padma Pura Foundation home">
 				<img src="/brand/padma-pura-seal.png" alt="Padma Pura Foundation seal" />
 			</a>
 			<p>Padma Pura Foundation</p>
@@ -26,10 +30,10 @@ const secondaryLinks = [
 
 		<div class="site-footer__navigation">
 			<nav class="site-footer__primary" aria-label="Primary footer navigation">
-				{primaryLinks.map(({ href, label }) => <a href={href}>{label}</a>)}
+				{primaryLinks.map(({ href, label }) => <a href={getLocalizedPath(href, locale)}>{label}</a>)}
 			</nav>
 			<nav class="site-footer__secondary" aria-label="Institutional navigation">
-				{secondaryLinks.map(({ href, label }) => <a href={href}>{label}</a>)}
+				{secondaryLinks.map(({ href, label }) => <a href={getLocalizedPath(href, locale)}>{label}</a>)}
 			</nav>
 		</div>
 	</div>

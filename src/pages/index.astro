@@ -1,15 +1,91 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { upcomingVisit } from "../data/upcoming";
+import { getLocalizedPath, type Locale } from "../lib/locale";
+
+interface Props {
+	locale?: Locale;
+}
+
+const { locale = "en" } = Astro.props;
+const isDutch = locale === "nl";
+const copy = isDutch
+	? {
+		teacherLabel: "Onze leraar",
+		teacherIntro: "Tenzin Samphel Rinpoche is een leraar binnen de Nyingma-traditie van het Tibetaans boeddhisme. Zijn leven is gewijd aan studie, beoefening en de overdracht van de Dharma.",
+		teacherLink: "Over Tenzin Samphel Rinpoche →",
+		upcomingHeading: "Komend bezoek",
+		upcomingIntro: "Rinpoche bezoekt Nederland jaarlijks om onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies te geven.",
+		lineageHeading: "Lineage & overdracht",
+		lineageContext: "Rinpoche’s Dharma-activiteiten zijn geworteld in de levende overdracht van de Nyingma-traditie. Door onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies ontvangen studenten onderricht en beoefeningen die van leraar op leerling door generaties heen zijn overgedragen.",
+		lineageNyingma: "Tenzin Samphel Rinpoche is houder van verschillende overdrachtslijnen en beoefeningscycli binnen de Nyingma-traditie en draagt deze over.",
+		lineageLabel: "Binnen de Nyingma-traditie",
+		lineageTersar: "Dudjom Tersar neemt een centrale plaats in binnen veel van de beoefeningen, inwijdingen, mondelinge overdrachten en het onderricht dat Rinpoche geeft tijdens activiteiten van Padma Pura Foundation.",
+		lineageLink: "Meer over Lineage & overdracht →",
+		dharmaHeading: "Dharma-activiteiten",
+		teachingsHeading: "Onderricht & inwijdingen",
+		teachingsText: "Tijdens zijn jaarlijkse bezoeken aan Nederland geeft Rinpoche onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies, afgestemd op de behoeften van zijn studenten.",
+		practiceText: "Studenten komen samen voor beoefening die verbonden is met Rinpoche’s onderricht en begeleiding. Tsog-beoefening wordt regelmatig georganiseerd; uitnodigingen en praktische informatie worden via de mailinglijst gedeeld.",
+		tsetarText: "Padma Pura Foundation ondersteunt Tsetar-activiteiten die onder begeleiding van Rinpoche worden uitgevoerd. Omdat deze activiteiten zorgvuldige voorbereiding vereisen, wordt praktische informatie alleen gedeeld waar dat passend is.",
+		activitiesLink: "Meer over activiteiten →",
+		foundationText: "Padma Pura Foundation ondersteunt de Dharma-activiteiten van Tenzin Samphel Rinpoche in Nederland en helpt de praktische voorwaarden te scheppen voor zijn jaarlijkse bezoeken, onderricht, overdrachten en beoefeningsactiviteiten.",
+		foundationText2: "Door Rinpoche’s onderricht en begeleiding worden studenten aangemoedigd compassie en een goed hart te ontwikkelen, terwijl zij begrip en vaardigheden ontwikkelen om zichzelf en anderen effectiever te kunnen helpen.",
+		foundationLink: "Over Padma Pura Foundation →",
+		supportHeading: "Steun",
+		supportIntro: "Steun Padma Pura Foundation en help Rinpoche’s Dharma-activiteiten in Nederland mogelijk te maken.",
+		annualSupport: "Jaarlijkse bijdrage",
+		annualSupportText: "Regelmatige bijdragen ondersteunen Rinpoche’s Dharma-activiteiten en het doorlopende werk van Padma Pura Foundation in Nederland.",
+		tsetarFund: "Tsetar-fonds",
+		tsetarFundText: "Bijdragen aan het Tsetar-fonds helpen Tsetar-activiteiten onder begeleiding van Rinpoche mogelijk te maken.",
+		practicalSupport: "Praktische ondersteuning",
+		practicalSupportText: "Vrijwilligers helpen met het praktische werk rond Rinpoche’s bezoeken, onderricht en andere Dharma-activiteiten.",
+		supportLink: "Meer over steun →",
+	}
+	: {
+		teacherLabel: "Our Teacher",
+		teacherIntro: "Tenzin Samphel Rinpoche is a teacher in the Nyingma tradition of Tibetan Buddhism. His life has been devoted to study, practice and the transmission of the Dharma.",
+		teacherLink: "About Tenzin Samphel Rinpoche →",
+		upcomingHeading: "Upcoming",
+		upcomingIntro: "Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance.",
+		lineageHeading: "Lineage & Transmission",
+		lineageContext: "Rinpoche’s Dharma activity is rooted in the living transmission of the Nyingma tradition. Through teachings, empowerments, oral transmissions and practice guidance, students receive teachings and practices that have been transmitted from teacher to student through generations.",
+		lineageNyingma: "Tenzin Samphel Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition.",
+		lineageLabel: "Within the Nyingma tradition",
+		lineageTersar: "Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings Rinpoche gives during Padma Pura Foundation activities.",
+		lineageLink: "Explore Lineage & Transmission →",
+		dharmaHeading: "Dharma Activity",
+		teachingsHeading: "Teachings & Empowerments",
+		teachingsText: "During his annual visits to the Netherlands, Rinpoche gives teachings, empowerments, oral transmissions and practice guidance according to the needs of his students.",
+		practiceText: "Students gather for practice connected with Rinpoche’s teachings and guidance. Tsog practice is organised regularly, with invitations and practical information shared through the mailing list.",
+		tsetarText: "Padma Pura Foundation supports Tsetar activities carried out under Rinpoche’s guidance. Because these activities require careful preparation, practical information is shared only where appropriate.",
+		activitiesLink: "Explore Activities →",
+		foundationText: "Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands and helps create the practical conditions for his annual visits, teachings, transmissions and practice activities.",
+		foundationText2: "Through Rinpoche’s teachings and guidance, students are encouraged to cultivate compassion and a good heart, while developing the understanding and skills to help themselves and others more effectively.",
+		foundationLink: "About Padma Pura Foundation →",
+		supportHeading: "Support",
+		supportIntro: "Support Padma Pura Foundation and help make Rinpoche's Dharma activity in the Netherlands possible.",
+		annualSupport: "Annual Support",
+		annualSupportText: "Regular contributions help support Rinpoche’s Dharma activity and the ongoing work of Padma Pura Foundation in the Netherlands.",
+		tsetarFund: "Tsetar Fund",
+		tsetarFundText: "Contributions to the Tsetar Fund help make Tsetar activities under Rinpoche’s guidance possible.",
+		practicalSupport: "Practical support",
+		practicalSupportText: "Volunteers help with the practical work around Rinpoche’s visits, teachings and other Dharma activities.",
+		supportLink: "Explore Support →",
+	};
+
+const localizedPath = (path: string) => getLocalizedPath(path, locale);
+const localizedUpcoming = isDutch
+	? { ...upcomingVisit, attribution: "van Mipham Rinpoche", expectedPeriod: "Verwacht in juni / juli 2027", status: "Data nog niet bevestigd" }
+	: upcomingVisit;
 ---
 
 <BaseLayout title="Padma Pura Foundation" description="Padma Pura Foundation.">
 	<section class="teacher-introduction" aria-labelledby="teacher-name">
 		<div class="teacher-introduction__copy">
-			<p class="teacher-introduction__label">Our Teacher</p>
+			<p class="teacher-introduction__label">{copy.teacherLabel}</p>
 			<h1 id="teacher-name">Tenzin Samphel Rinpoche</h1>
-			<p class="teacher-introduction__text">Tenzin Samphel Rinpoche is a teacher in the Nyingma tradition of Tibetan Buddhism. His life has been devoted to study, practice and the transmission of the Dharma.</p>
-			<p class="teacher-introduction__link"><a href="/our-teacher">About Tenzin Samphel Rinpoche →</a></p>
+			<p class="teacher-introduction__text">{copy.teacherIntro}</p>
+			<p class="teacher-introduction__link"><a href={localizedPath("/our-teacher")}>{copy.teacherLink}</a></p>
 		</div>
 
 		<figure class="teacher-portrait">
@@ -23,19 +99,19 @@ import { upcomingVisit } from "../data/upcoming";
 
 	<section class="upcoming" aria-labelledby="upcoming-heading">
 		<div class="upcoming__heading">
-			<h2 id="upcoming-heading">Upcoming</h2>
-			<p>Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance.</p>
+			<h2 id="upcoming-heading">{copy.upcomingHeading}</h2>
+			<p>{copy.upcomingIntro}</p>
 		</div>
 
 		<div class="upcoming__list">
 			<article class="upcoming__item">
 				<div class="upcoming__primary">
-					<h3>{upcomingVisit.title}</h3>
-					<p>{upcomingVisit.attribution}</p>
+					<h3>{localizedUpcoming.title}</h3>
+					<p>{localizedUpcoming.attribution}</p>
 				</div>
 				<div class="upcoming__status">
-					<p>{upcomingVisit.expectedPeriod}</p>
-					<p>{upcomingVisit.status}</p>
+					<p>{localizedUpcoming.expectedPeriod}</p>
+					<p>{localizedUpcoming.status}</p>
 				</div>
 			</article>
 		</div>
@@ -43,9 +119,9 @@ import { upcomingVisit } from "../data/upcoming";
 
 	<section class="lineage" aria-labelledby="lineage-heading">
 		<div class="lineage__intro">
-			<h2 id="lineage-heading">Lineage &amp; Transmission</h2>
+			<h2 id="lineage-heading">{copy.lineageHeading}</h2>
 		</div>
-		<p class="lineage__context">Rinpoche’s Dharma activity is rooted in the living transmission of the Nyingma tradition. Through teachings, empowerments, oral transmissions and practice guidance, students receive teachings and practices that have been transmitted from teacher to student through generations.</p>
+		<p class="lineage__context">{copy.lineageContext}</p>
 		<div class="lineage__composition">
 			<figure class="lineage__image">
 				<img src="/images/home/lineage-transmission.png" alt="Lineage and Transmission" />
@@ -53,21 +129,21 @@ import { upcomingVisit } from "../data/upcoming";
 			<div class="lineage__content">
 				<div class="lineage__nyingma">
 					<h3>Nyingma</h3>
-					<p>Tenzin Samphel Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition.</p>
+					<p>{copy.lineageNyingma}</p>
 				</div>
 				<div class="lineage__tersar">
-					<p class="lineage__tersar-label">Within the Nyingma tradition</p>
+					<p class="lineage__tersar-label">{copy.lineageLabel}</p>
 					<h3>Dudjom Tersar</h3>
-					<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings Rinpoche gives during Padma Pura Foundation activities.</p>
+					<p>{copy.lineageTersar}</p>
 				</div>
 			</div>
 		</div>
-		<p class="lineage__link"><a href="/lineage">Explore Lineage &amp; Transmission →</a></p>
+		<p class="lineage__link"><a href={localizedPath("/lineage")}>{copy.lineageLink}</a></p>
 	</section>
 
 	<section class="dharma-activity" aria-labelledby="dharma-activity-heading">
 		<div class="dharma-activity__heading">
-			<h2 id="dharma-activity-heading">Dharma Activity</h2>
+			<h2 id="dharma-activity-heading">{copy.dharmaHeading}</h2>
 		</div>
 		<div class="dharma-activity__composition">
 			<figure class="dharma-activity__image">
@@ -75,20 +151,20 @@ import { upcomingVisit } from "../data/upcoming";
 			</figure>
 			<ul class="dharma-activity__list">
 				<li>
-					<h3>Teachings &amp; Empowerments</h3>
-					<p>During his annual visits to the Netherlands, Rinpoche gives teachings, empowerments, oral transmissions and practice guidance according to the needs of his students.</p>
+					<h3>{copy.teachingsHeading}</h3>
+					<p>{copy.teachingsText}</p>
 				</li>
 				<li>
 					<h3>Practice</h3>
-					<p>Students gather for practice connected with Rinpoche’s teachings and guidance. Tsog practice is organised regularly, with invitations and practical information shared through the mailing list.</p>
+					<p>{copy.practiceText}</p>
 				</li>
 				<li>
 					<h3>Tsetar</h3>
-					<p>Padma Pura Foundation supports Tsetar activities carried out under Rinpoche’s guidance. Because these activities require careful preparation, practical information is shared only where appropriate.</p>
+					<p>{copy.tsetarText}</p>
 				</li>
 			</ul>
 		</div>
-		<p class="dharma-activity__link"><a href="/activities">Explore Activities →</a></p>
+		<p class="dharma-activity__link"><a href={localizedPath("/activities")}>{copy.activitiesLink}</a></p>
 	</section>
 
 	<section class="padma-pura" aria-labelledby="padma-pura-heading">
@@ -100,34 +176,34 @@ import { upcomingVisit } from "../data/upcoming";
 				<img src="/brand/padma-pura-seal.png" alt="Padma Pura Foundation seal" />
 			</figure>
 			<div class="padma-pura__copy">
-				<p>Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands and helps create the practical conditions for his annual visits, teachings, transmissions and practice activities.</p>
-				<p>Through Rinpoche’s teachings and guidance, students are encouraged to cultivate compassion and a good heart, while developing the understanding and skills to help themselves and others more effectively.</p>
-				<p class="padma-pura__link"><a href="/padma-pura">About Padma Pura Foundation →</a></p>
+				<p>{copy.foundationText}</p>
+				<p>{copy.foundationText2}</p>
+				<p class="padma-pura__link"><a href={localizedPath("/padma-pura")}>{copy.foundationLink}</a></p>
 			</div>
 		</div>
 	</section>
 
 	<section class="support" aria-labelledby="support-heading">
 		<div class="support__introduction">
-			<h2 id="support-heading">Support</h2>
-			<p>Support Padma Pura Foundation and help make Rinpoche's Dharma activity in the Netherlands possible.</p>
+			<h2 id="support-heading">{copy.supportHeading}</h2>
+			<p>{copy.supportIntro}</p>
 		</div>
 		<ul class="support__options">
 			<li class="support__option">
-				<h3 class="support__option-title">Annual Support</h3>
-				<p class="support__option-description">Regular contributions help support Rinpoche’s Dharma activity and the ongoing work of Padma Pura Foundation in the Netherlands.</p>
+				<h3 class="support__option-title">{copy.annualSupport}</h3>
+				<p class="support__option-description">{copy.annualSupportText}</p>
 			</li>
 			<li class="support__option">
-				<h3 class="support__option-title">Tsetar Fund</h3>
-				<p class="support__option-description">Contributions to the Tsetar Fund help make Tsetar activities under Rinpoche’s guidance possible.</p>
+				<h3 class="support__option-title">{copy.tsetarFund}</h3>
+				<p class="support__option-description">{copy.tsetarFundText}</p>
 			</li>
 			<li class="support__option">
-				<h3 class="support__option-title">Practical support</h3>
-				<p class="support__option-description">Volunteers help with the practical work around Rinpoche’s visits, teachings and other Dharma activities.</p>
+				<h3 class="support__option-title">{copy.practicalSupport}</h3>
+				<p class="support__option-description">{copy.practicalSupportText}</p>
 			</li>
 		</ul>
 		<div class="support__closing">
-			<p class="support__link"><a href="/support">Explore Support →</a></p>
+			<p class="support__link"><a href={localizedPath("/support")}>{copy.supportLink}</a></p>
 		</div>
 	</section>
 </BaseLayout>

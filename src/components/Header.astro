@@ -1,13 +1,17 @@
 ---
+import { getLabels, getLocale, getLocalizedPath } from "../lib/locale";
+
+const locale = getLocale(Astro.url.pathname);
+const labels = getLabels(locale);
 const leftLinks = [
-	{ href: "/our-teacher", label: "Our Teacher" },
-	{ href: "/lineage", label: "Lineage" },
+	{ href: "/our-teacher", label: labels.ourTeacher },
+	{ href: "/lineage", label: labels.lineage },
 ];
 
 const rightLinks = [
-	{ href: "/activities", label: "Activities" },
-	{ href: "/padma-pura", label: "Padma Pura Foundation" },
-	{ href: "/support", label: "Support" },
+	{ href: "/activities", label: labels.activities },
+	{ href: "/padma-pura", label: labels.foundation },
+	{ href: "/support", label: labels.support },
 ];
 
 const navigationLinks = [...leftLinks, ...rightLinks];
@@ -16,21 +20,27 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 <header class="site-header">
 	<div class="site-header__inner">
 		<nav class="site-header__nav site-header__nav--left" aria-label="Primary navigation">
-			{leftLinks.map(({ href, label }) => <a href={href}>{label}</a>)}
+			{leftLinks.map(({ href, label }) => <a href={getLocalizedPath(href, locale)}>{label}</a>)}
 		</nav>
 
-		<a class="site-header__identity" href="/" aria-label="Padma Pura Foundation home">
+		<a class="site-header__identity" href={getLocalizedPath("/", locale)} aria-label="Padma Pura Foundation home">
 			<img src="/brand/padma-pura-seal.png" alt="Padma Pura Foundation seal" />
 		</a>
 
+		<nav class="site-header__language" aria-label="Language">
+			<a href={getLocalizedPath(Astro.url.pathname, "en")} aria-current={locale === "en" ? "page" : undefined}>EN</a>
+			<span aria-hidden="true">|</span>
+			<a href={getLocalizedPath(Astro.url.pathname, "nl")} aria-current={locale === "nl" ? "page" : undefined}>NL</a>
+		</nav>
+
 		<nav class="site-header__nav site-header__nav--right" aria-label="Primary navigation">
-			{rightLinks.map(({ href, label }) => <a href={href}>{label}</a>)}
+			{rightLinks.map(({ href, label }) => <a href={getLocalizedPath(href, locale)}>{label}</a>)}
 		</nav>
 
 		<details class="site-menu">
 			<summary>Menu</summary>
 			<nav aria-label="Primary navigation">
-				{navigationLinks.map(({ href, label }) => <a href={href}>{label}</a>)}
+				{navigationLinks.map(({ href, label }) => <a href={getLocalizedPath(href, locale)}>{label}</a>)}
 			</nav>
 		</details>
 	</div>
@@ -42,6 +52,7 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 	}
 
 	.site-header__inner {
+		position: relative;
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
 		align-items: center;
@@ -89,6 +100,34 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 		margin-inline: clamp(var(--space-6), 4vw, var(--space-8));
 	}
 
+	.site-header__language {
+		position: absolute;
+		top: var(--space-4);
+		right: 0;
+		display: flex;
+		gap: var(--space-2);
+		align-items: center;
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 400;
+		line-height: 1.4;
+	}
+
+	.site-header__language a {
+		color: var(--color-muted);
+		text-decoration: none;
+	}
+
+	.site-header__language a[aria-current="page"] {
+		color: var(--color-foreground);
+		font-weight: 600;
+	}
+
+	.site-header__language a:hover {
+		color: var(--color-accent);
+		text-decoration: underline;
+	}
+
 	.site-header__identity img {
 		display: block;
 		width: 100%;
@@ -101,6 +140,7 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 
 	@media (max-width: 48rem) {
 		.site-header__inner {
+			position: relative;
 			grid-template-columns: 1fr auto 1fr;
 			grid-template-rows: auto auto;
 			width: min(100% - (var(--space-5) * 2), 38rem);
@@ -119,15 +159,22 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 			margin: 0;
 		}
 
+		.site-header__language {
+			position: static;
+			grid-column: 1;
+			grid-row: 1;
+			justify-self: start;
+			top: 50%;
+			transform: none;
+		}
+
 		.site-menu {
-			display: grid;
-			grid-template-rows: 4.75rem auto;
-			grid-row: 1 / 3;
-			grid-column: 1 / -1;
+			display: contents;
 		}
 
 		.site-menu summary {
 			display: flex;
+			grid-column: 3;
 			grid-row: 1;
 			align-self: center;
 			justify-self: end;
@@ -149,6 +196,7 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 
 		.site-menu nav {
 			display: grid;
+			grid-column: 1 / -1;
 			grid-row: 2;
 			gap: var(--space-1);
 			width: 100%;

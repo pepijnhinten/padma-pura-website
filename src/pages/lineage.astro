@@ -1,5 +1,31 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getLocalizedPath, type Locale } from "../lib/locale";
+
+interface Props { locale?: Locale }
+const { locale = "en" } = Astro.props;
+const copy = locale === "nl" ? {
+	label: "Lineage", heading: "Lineage & overdracht", intro: "Tenzin Samphel Rinpoche geeft onderricht binnen de Nyingma-traditie van het Tibetaans boeddhisme. Hij houdt verschillende overdrachtslijnen en beoefeningscycli binnen deze traditie en draagt deze over.",
+	traditionHeading: "De Nyingma-traditie", tradition: ["Nyingma is de oudste van de belangrijkste tradities van het Tibetaans boeddhisme. Door de eeuwen heen zijn de onderrichtingen en beoefeningen ervan bewaard gebleven en via talrijke overdrachtslijnen en beoefeningscycli overgedragen.", "De Nyingma-traditie omvat zowel lang bestaande overdrachtslijnen als terma-tradities — onthulde onderrichtingen en beoefeningscycli die een belangrijk onderdeel van haar erfgoed vormen."],
+	trainingHeading: "Rinpoche’s opleiding en overdracht", training: ["Tenzin Samphel Rinpoche ontving onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies van meesters onder wie Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche en Khetsun Sangpo Rinpoche.", "Hij houdt meerdere overdrachtslijnen en beoefeningscycli binnen de Nyingma-traditie en draagt deze over. In 1999 benoemde Khetsun Sangpo Rinpoche hem tot lineagehouder en vertrouwde hem de spirituele verantwoordelijkheid over Shedup Kunsang Chöling toe."],
+	tersar: ["Dudjom Tersar is een terma-traditie binnen de Nyingma-school van het Tibetaans boeddhisme, verbonden met Dudjom Lingpa en Dudjom Rinpoche, Jigdral Yeshe Dorje. Het is geen afzonderlijke school, maar een geheel van onderrichtingen en beoefeningscycli die binnen de bredere Nyingma-traditie worden overgedragen.", "Dudjom Tersar neemt een centrale plaats in binnen veel van de beoefeningen, inwijdingen, mondelinge overdrachten en het onderricht dat Tenzin Samphel Rinpoche geeft via activiteiten van Padma Pura Foundation."],
+	yangti: "Rinpoche houdt ook overdrachtslijnen van Yangti Nagpo, een Dzogchen-terma-cyclus binnen de Nyingma-traditie, en van Longchen Nyingthig, de terma-traditie die door Jigme Lingpa is onthuld.",
+	livingHeading: "Levende overdracht", living: ["Door zijn Dharma-activiteit blijft Tenzin Samphel Rinpoche de onderrichtingen en beoefeningscycli die hij heeft ontvangen en beoefend overdragen, door middel van onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies.", "Padma Pura Foundation ondersteunt deze activiteit in Nederland en helpt de praktische voorwaarden te scheppen voor Rinpoche’s bezoeken en voor studenten om zijn begeleiding te ontvangen en samen te beoefenen."],
+	captionKhetsun: "Khetsun Sangpo Rinpoche", captionDudjom: "Dudjom Lingpa", captionRinpoche: "Kyabjé Dudjom Rinpoche",
+	imageAltKhetsun: "Khetsun Sangpo Rinpoche", imageAltDudjom: "Dudjom Lingpa", imageAltRinpoche: "Kyabjé Dudjom Rinpoche",
+	tersarHeading: "Dudjom Tersar", yangtiHeading: "Yangti Nagpo en Longchen Nyingthig",
+} : {
+	label: "Lineage", heading: "Lineage & Transmission", intro: "Tenzin Samphel Rinpoche teaches within the Nyingma tradition of Tibetan Buddhism. He holds and transmits several transmission lineages and practice cycles within that tradition.",
+	traditionHeading: "The Nyingma tradition", tradition: ["Nyingma is the oldest of the major traditions of Tibetan Buddhism. Over many centuries, its teachings and practices have been preserved and transmitted through numerous lineages and practice cycles.", "The Nyingma tradition includes both long-established transmission lineages and terma traditions — revealed teachings and practice cycles that form an important part of its heritage."],
+	trainingHeading: "Rinpoche's training and transmission", training: ["Tenzin Samphel Rinpoche received teachings, empowerments, oral transmissions and practice instructions from masters including Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.", "He holds and transmits multiple transmission lineages and practice cycles within the Nyingma tradition. In 1999, Khetsun Sangpo Rinpoche enthroned him as a lineage holder and entrusted him with spiritual authority at Shedup Kunsang Chöling."],
+	tersar: ["Dudjom Tersar is a terma tradition within the Nyingma school of Tibetan Buddhism, associated with Dudjom Lingpa and Dudjom Rinpoche, Jigdral Yeshe Dorje. It is not a separate school, but a body of teachings and practice cycles transmitted within the wider Nyingma tradition.", "Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings that Tenzin Samphel Rinpoche gives through Padma Pura Foundation activities."],
+	yangti: "Rinpoche also holds transmission lineages of Yangti Nagpo, a Dzogchen terma cycle within the Nyingma tradition, and Longchen Nyingthig, the terma tradition revealed by Jigme Lingpa.",
+	livingHeading: "Living transmission", living: ["Through his Dharma activity, Tenzin Samphel Rinpoche continues to transmit the teachings and practice cycles he has received and practised, through teachings, empowerments, oral transmissions and practice guidance.", "Padma Pura Foundation supports this activity in the Netherlands, helping create the practical conditions for Rinpoche's visits and for students to receive his guidance and practise together."],
+	captionKhetsun: "Khetsun Sangpo Rinpoche", captionDudjom: "Dudjom Lingpa", captionRinpoche: "Kyabjé Dudjom Rinpoche",
+	imageAltKhetsun: "Khetsun Sangpo Rinpoche", imageAltDudjom: "Dudjom Lingpa", imageAltRinpoche: "Kyabjé Dudjom Rinpoche",
+	tersarHeading: "Dudjom Tersar", yangtiHeading: "Yangti Nagpo and Longchen Nyingthig",
+};
+const localizedPath = (path: string) => getLocalizedPath(path, locale);
 ---
 
 <BaseLayout
@@ -7,65 +33,59 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	description="The Nyingma tradition and the transmission lineages and practice cycles held by Tenzin Samphel Rinpoche, taught through Padma Pura Foundation."
 >
 	<section class="lineage-opening" aria-labelledby="lineage-heading">
-		<p class="lineage-opening__label">Lineage</p>
-		<h1 id="lineage-heading">Lineage &amp; Transmission</h1>
-		<p class="lineage-opening__intro">
-			Tenzin Samphel Rinpoche teaches within the Nyingma tradition of Tibetan Buddhism. He holds and transmits several transmission lineages and practice cycles within that tradition.
-		</p>
+		<p class="lineage-opening__label">{copy.label}</p>
+		<h1 id="lineage-heading">{copy.heading}</h1>
+		<p class="lineage-opening__intro">{copy.intro}</p>
 	</section>
 
 	<section class="nyingma" aria-labelledby="nyingma-heading">
-		<h2 id="nyingma-heading">The Nyingma tradition</h2>
+		<h2 id="nyingma-heading">{copy.traditionHeading}</h2>
 		<div class="nyingma__prose">
-			<p>Nyingma is the oldest of the major traditions of Tibetan Buddhism. Over many centuries, its teachings and practices have been preserved and transmitted through numerous lineages and practice cycles.</p>
-			<p>The Nyingma tradition includes both long-established transmission lineages and terma traditions — revealed teachings and practice cycles that form an important part of its heritage.</p>
+			{copy.tradition.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 
 
 
 	<section class="rinpoche-transmission" aria-labelledby="rinpoche-transmission-heading">
-		<h2 id="rinpoche-transmission-heading">Rinpoche's training and transmission</h2>
+		<h2 id="rinpoche-transmission-heading">{copy.trainingHeading}</h2>
 		<div class="rinpoche-transmission__prose">
-			<p>Tenzin Samphel Rinpoche received teachings, empowerments, oral transmissions and practice instructions from masters including Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.</p>
-			<p>He holds and transmits multiple transmission lineages and practice cycles within the Nyingma tradition. In 1999, Khetsun Sangpo Rinpoche enthroned him as a lineage holder and entrusted him with spiritual authority at Shedup Kunsang Chöling.</p>
+			{copy.training.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 		<figure class="lineage__contextual-media">
 			<img src="/images/lineage/khetsun-sangpo-rinpoche.jpg" alt="Khetsun Sangpo Rinpoche" />
-			<figcaption>Khetsun Sangpo Rinpoche</figcaption>
+			<figcaption>{copy.captionKhetsun}</figcaption>
 		</figure>
 	</section>
 
 	<section class="dudjom-tersar" aria-labelledby="dudjom-tersar-heading">
-		<h2 id="dudjom-tersar-heading">Dudjom Tersar</h2>
+		<h2 id="dudjom-tersar-heading">{copy.tersarHeading}</h2>
 		<div class="dudjom-tersar__prose">
-			<p>Dudjom Tersar is a terma tradition within the Nyingma school of Tibetan Buddhism, associated with Dudjom Lingpa and Dudjom Rinpoche, Jigdral Yeshe Dorje. It is not a separate school, but a body of teachings and practice cycles transmitted within the wider Nyingma tradition.</p>
-			<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings that Tenzin Samphel Rinpoche gives through Padma Pura Foundation activities.</p>
+			{copy.tersar.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 		<div class="lineage__portrait-pair">
 			<figure>
 				<img src="/images/lineage/Dudjom_Lingpa.jpg" alt="Dudjom Lingpa" />
-				<figcaption>Dudjom Lingpa</figcaption>
+				<figcaption>{copy.captionDudjom}</figcaption>
 			</figure>
 			<figure>
 				<img src="/images/lineage/dudjom-rinpoche.webp" alt="Kyabjé Dudjom Rinpoche" />
-				<figcaption>Kyabjé Dudjom Rinpoche</figcaption>
+				<figcaption>{copy.captionRinpoche}</figcaption>
 			</figure>
 		</div>
 	</section>
 
 	<section class="yangti-nagpo" aria-labelledby="yangti-nagpo-heading">
-		<h2 id="yangti-nagpo-heading">Yangti Nagpo and Longchen Nyingthig</h2>
+		<h2 id="yangti-nagpo-heading">{copy.yangtiHeading}</h2>
 		<div class="yangti-nagpo__prose">
-			<p>Rinpoche also holds transmission lineages of Yangti Nagpo, a Dzogchen terma cycle within the Nyingma tradition, and Longchen Nyingthig, the terma tradition revealed by Jigme Lingpa.</p>
+			<p>{copy.yangti}</p>
 		</div>
 	</section>
 
 	<section class="living-transmission" aria-labelledby="living-transmission-heading">
-		<h2 id="living-transmission-heading">Living transmission</h2>
+		<h2 id="living-transmission-heading">{copy.livingHeading}</h2>
 		<div class="living-transmission__prose">
-			<p>Through his Dharma activity, Tenzin Samphel Rinpoche continues to transmit the teachings and practice cycles he has received and practised, through teachings, empowerments, oral transmissions and practice guidance.</p>
-			<p>Padma Pura Foundation supports this activity in the Netherlands, helping create the practical conditions for Rinpoche's visits and for students to receive his guidance and practise together.</p>
+			{copy.living.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 </BaseLayout>

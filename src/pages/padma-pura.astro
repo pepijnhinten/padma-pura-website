@@ -1,5 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getLocalizedPath, type Locale } from "../lib/locale";
+
+interface Props { locale?: Locale }
+const { locale = "en" } = Astro.props;
+const copy = locale === "nl" ? {
+	label: "Stichting", opening: ["Padma Pura Foundation ondersteunt de Dharma-activiteit van Tenzin Samphel Rinpoche in Nederland.", "Door praktische organisatie, communicatie en ondersteuning door vrijwilligers helpt de stichting de voorwaarden te scheppen voor Rinpoche’s bezoeken, onderricht, overdrachten en beoefeningsactiviteiten."],
+	purposeHeading: "Onze doelstelling", purpose: ["Padma Pura Foundation bestaat om Rinpoche’s Dharma-activiteit in Nederland te ondersteunen en het voor studenten mogelijk te maken zijn onderricht en begeleiding te ontvangen en samen te beoefenen.", "De rol van de stichting is praktisch en ondersteunend: bezoeken organiseren, onderricht en overdrachten faciliteren, beoefeningsactiviteiten ondersteunen en zorgen voor de voorwaarden waaronder deze activiteiten kunnen plaatsvinden."],
+	workHeading: "Hoe we werken", work: ["Padma Pura Foundation wordt ondersteund door een kleine groep mensen in Nederland die zorgt voor de praktische organisatie rond Rinpoche’s Dharma-activiteit.", "Dit omvat het coördineren van bezoeken, communicatie, beoefeningsactiviteiten, accommodatie en andere praktische ondersteuning. Veel van dit werk wordt gedaan door vrijwilligers en studenten die waar nodig hun tijd en vaardigheden bijdragen."],
+	activitiesHeading: "Activiteiten die we ondersteunen", activities: "De stichting ondersteunt Rinpoche’s jaarlijkse bezoeken aan Nederland, onderricht en overdrachten, en beoefeningsactiviteiten zoals Tsog, Tsetar en Gutor.", activitiesLink: "Ontdek Dharma-activiteiten →",
+	anbiHeading: "Stichting & ANBI", anbi: ["Padma Pura Foundation is een Nederlandse stichting met ANBI-status.", "Informatie over de stichting, het bestuur, het beleid en andere formele documenten is beschikbaar op de pagina Stichting & ANBI."], anbiLink: "Stichting & ANBI →",
+	supportHeading: "Steun", support: "Padma Pura Foundation is afhankelijk van de steun van studenten, beoefenaars en anderen die helpen Rinpoche’s Dharma-activiteit in Nederland mogelijk te maken.", supportLink: "Steun Padma Pura Foundation →",
+} : {
+	label: "Foundation", opening: ["Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands.", "Through practical organisation, communication and volunteer support, the foundation helps create the conditions for Rinpoche’s visits, teachings, transmissions and practice activities."],
+	purposeHeading: "Our purpose", purpose: ["Padma Pura Foundation exists to support Rinpoche’s Dharma activity in the Netherlands and to help make it possible for students to receive his teachings and guidance and to practise together.", "Its role is practical and supportive: organising visits, facilitating teachings and transmissions, supporting practice activities and taking care of the conditions that allow these activities to take place."],
+	workHeading: "How we work", work: ["Padma Pura Foundation is supported by a small group of people in the Netherlands who take care of the practical organisation around Rinpoche’s Dharma activity.", "This includes coordinating visits, communication, practice activities, accommodation and other practical support. Much of this work is carried by volunteers and students who contribute their time and skills where needed."],
+	activitiesHeading: "Activities we support", activities: "The foundation supports Rinpoche’s annual visits to the Netherlands, teachings and transmissions, and practice activities including Tsog, Tsetar and Gutor.", activitiesLink: "Explore Dharma Activity →",
+	anbiHeading: "Foundation & ANBI", anbi: ["Padma Pura Foundation is a Dutch foundation with ANBI status.", "Information about the foundation, its board, policy and other formal documents is available on the Foundation & ANBI page."], anbiLink: "Foundation & ANBI →",
+	supportHeading: "Support", support: "Padma Pura Foundation depends on the support of students, practitioners and others who help make Rinpoche’s Dharma activity in the Netherlands possible.", supportLink: "Support Padma Pura Foundation →",
+};
+const localizedPath = (path: string) => getLocalizedPath(path, locale);
 ---
 
 <BaseLayout
@@ -7,53 +27,49 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	description="Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands."
 >
 	<section class="pp-opening" aria-labelledby="pp-heading">
-		<p class="pp-opening__label">Foundation</p>
+		<p class="pp-opening__label">{copy.label}</p>
 		<h1 id="pp-heading">Padma Pura Foundation</h1>
 		<div class="pp-opening__intro">
-			<p>Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands.</p>
-			<p>Through practical organisation, communication and volunteer support, the foundation helps create the conditions for Rinpoche’s visits, teachings, transmissions and practice activities.</p>
+			{copy.opening.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 
 	<section class="purpose" aria-labelledby="purpose-heading">
-		<h2 id="purpose-heading">Our purpose</h2>
+		<h2 id="purpose-heading">{copy.purposeHeading}</h2>
 		<div class="purpose__prose">
-			<p>Padma Pura Foundation exists to support Rinpoche’s Dharma activity in the Netherlands and to help make it possible for students to receive his teachings and guidance and to practise together.</p>
-			<p>Its role is practical and supportive: organising visits, facilitating teachings and transmissions, supporting practice activities and taking care of the conditions that allow these activities to take place.</p>
+			{copy.purpose.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 
 	<section class="how-we-work" aria-labelledby="how-we-work-heading">
-		<h2 id="how-we-work-heading">How we work</h2>
+		<h2 id="how-we-work-heading">{copy.workHeading}</h2>
 		<div class="how-we-work__prose">
-			<p>Padma Pura Foundation is supported by a small group of people in the Netherlands who take care of the practical organisation around Rinpoche’s Dharma activity.</p>
-			<p>This includes coordinating visits, communication, practice activities, accommodation and other practical support. Much of this work is carried by volunteers and students who contribute their time and skills where needed.</p>
+			{copy.work.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
 	</section>
 
 	<section class="activities-we-support" aria-labelledby="activities-we-support-heading">
-		<h2 id="activities-we-support-heading">Activities we support</h2>
+		<h2 id="activities-we-support-heading">{copy.activitiesHeading}</h2>
 		<div class="activities-we-support__prose">
-			<p>The foundation supports Rinpoche’s annual visits to the Netherlands, teachings and transmissions, and practice activities including Tsog, Tsetar and Gutor.</p>
+			<p>{copy.activities}</p>
 		</div>
-		<p class="activities-we-support__link"><a href="/activities">Explore Dharma Activity →</a></p>
+		<p class="activities-we-support__link"><a href={localizedPath("/activities")}>{copy.activitiesLink}</a></p>
 	</section>
 
 	<section class="foundation-anbi-summary" aria-labelledby="foundation-anbi-summary-heading">
-		<h2 id="foundation-anbi-summary-heading">Foundation &amp; ANBI</h2>
+		<h2 id="foundation-anbi-summary-heading">{copy.anbiHeading}</h2>
 		<div class="foundation-anbi-summary__prose">
-			<p>Padma Pura Foundation is a Dutch foundation with ANBI status.</p>
-			<p>Information about the foundation, its board, policy and other formal documents is available on the Foundation &amp; ANBI page.</p>
+			{copy.anbi.map((paragraph) => <p>{paragraph}</p>)}
 		</div>
-		<p class="foundation-anbi-summary__link"><a href="/foundation">Foundation &amp; ANBI →</a></p>
+		<p class="foundation-anbi-summary__link"><a href={localizedPath("/foundation")}>{copy.anbiLink}</a></p>
 	</section>
 
 	<section class="support-summary" aria-labelledby="support-summary-heading">
-		<h2 id="support-summary-heading">Support</h2>
+		<h2 id="support-summary-heading">{copy.supportHeading}</h2>
 		<div class="support-summary__prose">
-			<p>Padma Pura Foundation depends on the support of students, practitioners and others who help make Rinpoche’s Dharma activity in the Netherlands possible.</p>
+			<p>{copy.support}</p>
 		</div>
-		<p class="support-summary__link"><a href="/support">Support Padma Pura Foundation →</a></p>
+		<p class="support-summary__link"><a href={localizedPath("/support")}>{copy.supportLink}</a></p>
 	</section>
 </BaseLayout>
 
