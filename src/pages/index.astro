@@ -46,15 +46,20 @@ import { upcomingVisit } from "../data/upcoming";
 			<h2 id="lineage-heading">Lineage &amp; Transmission</h2>
 		</div>
 		<p class="lineage__context">Rinpoche’s Dharma activity is rooted in the living transmission of the Nyingma tradition. Through teachings, empowerments, oral transmissions and practice guidance, students receive teachings and practices that have been transmitted from teacher to student through generations.</p>
-		<div class="lineage__content">
-			<div class="lineage__nyingma">
-				<h3>Nyingma</h3>
-				<p>Tenzin Samphel Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition.</p>
-			</div>
-			<div class="lineage__tersar">
-				<p class="lineage__tersar-label">Within the Nyingma tradition</p>
-				<h3>Dudjom Tersar</h3>
-				<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings Rinpoche gives during Padma Pura Foundation activities.</p>
+		<div class="lineage__composition">
+			<figure class="lineage__image">
+				<img src="/images/home/lineage-transmission.png" alt="Lineage and Transmission" />
+			</figure>
+			<div class="lineage__content">
+				<div class="lineage__nyingma">
+					<h3>Nyingma</h3>
+					<p>Tenzin Samphel Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition.</p>
+				</div>
+				<div class="lineage__tersar">
+					<p class="lineage__tersar-label">Within the Nyingma tradition</p>
+					<h3>Dudjom Tersar</h3>
+					<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings Rinpoche gives during Padma Pura Foundation activities.</p>
+				</div>
 			</div>
 		</div>
 		<p class="lineage__link"><a href="/lineage">Explore Lineage &amp; Transmission →</a></p>
@@ -64,44 +69,39 @@ import { upcomingVisit } from "../data/upcoming";
 		<div class="dharma-activity__heading">
 			<h2 id="dharma-activity-heading">Dharma Activity</h2>
 		</div>
-		<ul class="dharma-activity__list">
-			<li>
-				<span class="dharma-activity__index" aria-hidden="true">01</span>
-				<h3>Teachings &amp; Empowerments</h3>
-				<p>During his annual visits to the Netherlands, Rinpoche gives teachings, empowerments, oral transmissions and practice guidance according to the needs of his students.</p>
-			</li>
-			<li>
-				<span class="dharma-activity__index" aria-hidden="true">02</span>
-				<h3>Practice</h3>
-				<p>Students gather for practice connected with Rinpoche’s teachings and guidance. Tsog practice is organised regularly, with invitations and practical information shared through the mailing list.</p>
-			</li>
-			<li>
-				<span class="dharma-activity__index" aria-hidden="true">03</span>
-				<h3>Tsetar</h3>
-				<p>Padma Pura Foundation supports Tsetar activities carried out under Rinpoche’s guidance. Because these activities require careful preparation, practical information is shared only where appropriate.</p>
-			</li>
-		</ul>
+		<div class="dharma-activity__composition">
+			<figure class="dharma-activity__image">
+				<img src="/images/home/dharma-wheel1.png" alt="Dharma wheel" />
+			</figure>
+			<ul class="dharma-activity__list">
+				<li>
+					<h3>Teachings &amp; Empowerments</h3>
+					<p>During his annual visits to the Netherlands, Rinpoche gives teachings, empowerments, oral transmissions and practice guidance according to the needs of his students.</p>
+				</li>
+				<li>
+					<h3>Practice</h3>
+					<p>Students gather for practice connected with Rinpoche’s teachings and guidance. Tsog practice is organised regularly, with invitations and practical information shared through the mailing list.</p>
+				</li>
+				<li>
+					<h3>Tsetar</h3>
+					<p>Padma Pura Foundation supports Tsetar activities carried out under Rinpoche’s guidance. Because these activities require careful preparation, practical information is shared only where appropriate.</p>
+				</li>
+			</ul>
+		</div>
 		<p class="dharma-activity__link"><a href="/activities">Explore Activities →</a></p>
 	</section>
 
-	<section class="photographic-intermezzo" aria-label="Tenzin Samphel Rinpoche teaching">
-		<figure class="photographic-intermezzo__figure">
-			<img
-				class="photographic-intermezzo__image"
-				src="/images/home/rinpoche-teaching-reference.webp"
-				alt="Tenzin Samphel Rinpoche during a teaching"
-				width="1366"
-				height="768"
-			/>
-		</figure>
-	</section>
-
 	<section class="padma-pura" aria-labelledby="padma-pura-heading">
-		<h2 id="padma-pura-heading">Padma Pura Foundation</h2>
-		<div class="padma-pura__copy">
-			<p>Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands and helps create the practical conditions for his annual visits, teachings, transmissions and practice activities.</p>
-			<p>Through Rinpoche’s teachings and guidance, students are encouraged to cultivate compassion and a good heart, while developing the understanding and skills to help themselves and others more effectively.</p>
-			<p class="padma-pura__link"><a href="/padma-pura">About Padma Pura Foundation →</a></p>
+		<div class="padma-pura__composition">
+			<figure class="padma-pura__logo">
+				<img src="/brand/padma-pura-seal.png" alt="Padma Pura Foundation seal" />
+			</figure>
+			<div class="padma-pura__copy">
+				<h2 id="padma-pura-heading">Padma Pura Foundation</h2>
+				<p>Padma Pura Foundation supports the Dharma activity of Tenzin Samphel Rinpoche in the Netherlands and helps create the practical conditions for his annual visits, teachings, transmissions and practice activities.</p>
+				<p>Through Rinpoche’s teachings and guidance, students are encouraged to cultivate compassion and a good heart, while developing the understanding and skills to help themselves and others more effectively.</p>
+				<p class="padma-pura__link"><a href="/padma-pura">About Padma Pura Foundation →</a></p>
+			</div>
 		</div>
 	</section>
 
@@ -314,11 +314,30 @@ import { upcomingVisit } from "../data/upcoming";
 		font-size: var(--text-lg);
 	}
 
+	.lineage__image {
+		width: 100%;
+		max-width: 1800px;
+		margin: 0;
+	}
+
+	.lineage__image img {
+		display: block;
+		width: 100%;
+		max-width: 1800px;
+		height: auto;
+	}
+
+	.lineage__composition {
+		display: grid;
+		grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
+		gap: clamp(var(--space-6), 7vw, var(--space-8));
+		align-items: start;
+		margin-top: clamp(var(--space-6), 4vw, var(--space-7));
+	}
+
 	.lineage__content {
 		max-width: 42rem;
-		padding-top: clamp(var(--space-7), 4vw, var(--space-8));
 		padding-bottom: clamp(var(--space-5), 2.5vw, var(--space-6));
-		border-top: 1px solid var(--color-border);
 	}
 
 	.lineage__nyingma {
@@ -362,21 +381,36 @@ import { upcomingVisit } from "../data/upcoming";
 
 	.lineage .lineage__link {
 		max-width: none;
-		padding-top: var(--space-5);
+		padding-top: clamp(var(--space-6), 4vw, var(--space-7));
 		padding-bottom: clamp(var(--space-8), 10vw, 8rem);
-		border-top: 1px solid var(--color-border);
 		font-size: var(--text-sm);
 	}
 
 	.padma-pura {
-		display: grid;
-		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
-		gap: clamp(var(--space-6), 7vw, 8rem);
+		display: block;
 		width: calc(100% - (var(--space-6) * 2));
 		max-width: var(--content-width);
 		padding-block: clamp(var(--space-7), 5.5vw, 6rem) clamp(var(--space-7), 7vw, var(--space-9));
 		margin-inline: auto;
-		border-block: 1px solid var(--color-border);
+	}
+
+	.padma-pura__composition {
+		display: grid;
+		grid-template-columns: minmax(0, 24%) minmax(0, 1fr);
+		gap: clamp(var(--space-6), 7vw, var(--space-8));
+		align-items: start;
+	}
+
+	.padma-pura__logo {
+		width: 100%;
+		max-width: 14rem;
+		margin: 0;
+	}
+
+	.padma-pura__logo img {
+		display: block;
+		width: 100%;
+		height: auto;
 	}
 
 	.padma-pura h2,
@@ -428,44 +462,6 @@ import { upcomingVisit } from "../data/upcoming";
 		margin-bottom: clamp(var(--space-7), 5vw, var(--space-8));
 	}
 
-	.photographic-intermezzo {
-		width: 100%;
-		padding-block: clamp(var(--space-6), 4vw, var(--space-7));
-		background-color: var(--color-background);
-	}
-
-	.photographic-intermezzo__figure {
-		width: calc(100% - (var(--space-6) * 2));
-		max-width: clamp(50rem, 90%, var(--content-width));
-		margin-inline: auto;
-		margin-block: 0;
-	}
-
-	.photographic-intermezzo__image {
-		display: block;
-		width: 100%;
-		height: auto;
-		aspect-ratio: 16 / 9;
-		object-fit: cover;
-		object-position: center center;
-	}
-
-	@media (max-width: 48rem) {
-		.photographic-intermezzo {
-			padding-block: var(--space-7);
-		}
-
-		.photographic-intermezzo__figure {
-			width: calc(100% - (var(--space-5) * 2));
-			max-width: none;
-		}
-
-		.photographic-intermezzo__image {
-			aspect-ratio: 16 / 9;
-		}
-	}
-
-	.support h2,
 	.support p,
 	.support__options {
 		margin: 0;
@@ -603,8 +599,22 @@ import { upcomingVisit } from "../data/upcoming";
 		}
 
 		.lineage__content {
-			padding-top: var(--space-7);
+			padding-top: 0;
 			padding-bottom: var(--space-7);
+		}
+
+		.lineage__composition {
+			display: block;
+		}
+
+		.lineage__image {
+			width: 70%;
+			max-width: 18rem;
+			margin: var(--space-6) auto 0;
+		}
+
+		.lineage__content {
+			margin-top: var(--space-7);
 		}
 
 		.lineage__nyingma {
@@ -643,6 +653,16 @@ import { upcomingVisit } from "../data/upcoming";
 			display: block;
 			width: calc(100% - (var(--space-5) * 2));
 			padding-block: var(--space-7) var(--space-8);
+		}
+
+		.padma-pura__composition {
+			display: block;
+		}
+
+		.padma-pura__logo {
+			width: 52%;
+			max-width: 12rem;
+			margin: 0 auto var(--space-7);
 		}
 
 		.padma-pura h2 {
@@ -685,7 +705,7 @@ import { upcomingVisit } from "../data/upcoming";
 	}
 </style>
 
-<style is:global>
+<style>
 	.dharma-activity {
 		width: calc(100% - (var(--space-6) * 2));
 		max-width: var(--content-width);
@@ -695,7 +715,15 @@ import { upcomingVisit } from "../data/upcoming";
 	}
 
 	.dharma-activity__heading {
+		width: min(100%, var(--content-width-narrow));
 		padding-bottom: clamp(var(--space-6), 4vw, var(--space-7));
+	}
+
+	.dharma-activity__composition {
+		display: grid;
+		grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
+		gap: clamp(var(--space-6), 7vw, var(--space-8));
+		align-items: start;
 	}
 
 	.dharma-activity h2 {
@@ -708,42 +736,45 @@ import { upcomingVisit } from "../data/upcoming";
 	}
 
 	.dharma-activity__list {
+		width: min(100%, var(--content-width-narrow));
 		padding: 0;
 		margin: 0;
 		list-style: none;
-		border-top: 1px solid var(--color-border);
 	}
 
 	.dharma-activity__list li {
-		display: grid;
-		grid-template-columns: auto minmax(15rem, 1fr) minmax(18rem, 1fr);
-		column-gap: clamp(var(--space-5), 4vw, var(--space-8));
-		align-items: start;
-		padding-block: clamp(var(--space-5), 3vw, var(--space-6));
-		border-bottom: 1px solid var(--color-border);
+		padding: 0;
 	}
 
-	.dharma-activity__index {
-		padding-top: 0.35rem;
-		color: var(--color-muted);
-		font-family: var(--font-sans);
-		font-size: var(--text-sm);
-		font-weight: 500;
-		line-height: 1.3;
+	.dharma-activity__image {
+		width: 100%;
+		max-width: 1800px;
+		margin: 0;
+	}
+
+	.dharma-activity__image img {
+		display: block;
+		width: 100%;
+		max-width: 1800px;
+		height: auto;
+	}
+
+	.dharma-activity__list li + li {
+		margin-top: clamp(var(--space-6), 4vw, var(--space-7));
 	}
 
 	.dharma-activity__list li > h3 {
 		margin: 0;
 		font-family: var(--font-display);
-		font-size: clamp(1.75rem, 3vw, 3.25rem);
+		font-size: clamp(1.5rem, 2vw, 2.25rem);
 		font-weight: 360;
-		line-height: 1.05;
+		line-height: 1.1;
 		font-optical-sizing: auto;
 	}
 
 	.dharma-activity__list li > p {
-		max-width: 38rem;
-		margin: 0;
+		max-width: 42rem;
+		margin: var(--space-3) 0 0;
 		font-family: var(--font-sans);
 		font-size: 1.0625rem;
 		font-weight: 400;
@@ -752,6 +783,7 @@ import { upcomingVisit } from "../data/upcoming";
 	}
 
 	.dharma-activity__link {
+		width: min(100%, var(--content-width-narrow));
 		margin: var(--space-6) 0 0;
 		font-family: var(--font-sans);
 		font-size: var(--text-sm);
@@ -769,28 +801,26 @@ import { upcomingVisit } from "../data/upcoming";
 			padding: 0 0 var(--space-7);
 		}
 
+		.dharma-activity__composition {
+			display: block;
+		}
+
+		.dharma-activity__image {
+			width: 70%;
+			max-width: 18rem;
+			margin: 0 auto var(--space-7);
+		}
+
 		.dharma-activity__list {
 			display: block;
-		}
-
-		.dharma-activity__list li {
-			display: block;
-			position: relative;
-			padding-block: var(--space-5);
-		}
-
-		.dharma-activity__index {
-			display: block;
-			padding: 0;
-			margin-bottom: var(--space-2);
+			width: 100%;
 		}
 
 		.dharma-activity__list li > h3 {
-			font-size: clamp(1.75rem, 9vw, 2.5rem);
+			font-size: var(--text-lg);
 		}
 
 		.dharma-activity__list li > p {
-			margin-top: var(--space-3);
 			font-size: var(--text-base);
 		}
 

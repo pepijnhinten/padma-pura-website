@@ -7,14 +7,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	description="Tenzin Samphel Rinpoche, teacher in the Nyingma tradition of Tibetan Buddhism."
 >
 	<section class="teacher-opening" aria-labelledby="teacher-heading">
-		<header class="teacher-opening__heading">
-			<p class="teacher-opening__label">Our Teacher</p>
-			<h1 id="teacher-heading">Tenzin Samphel Rinpoche</h1>
-		</header>
+		<div class="teacher-opening__copy">
+			<header class="teacher-opening__heading">
+				<p class="teacher-opening__label">Our Teacher</p>
+				<h1 id="teacher-heading">Tenzin Samphel Rinpoche</h1>
+			</header>
 
-		<p class="teacher-opening__intro">
-			Tenzin Samphel Rinpoche’s life has been devoted to the study, practice and transmission of the Dharma. His training and Dharma activity are rooted in the Nyingma tradition, in transmission lineages he has received and continues to transmit, and in practice cycles he has studied and practised.
-		</p>
+			<p class="teacher-opening__intro">
+				Tenzin Samphel Rinpoche’s life has been devoted to the study, practice and transmission of the Dharma. His training and Dharma activity are rooted in the Nyingma tradition, in transmission lineages he has received and continues to transmit, and in practice cycles he has studied and practised.
+			</p>
+		</div>
 
 		<figure class="teacher-opening__portrait">
 			<img
@@ -37,11 +39,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	</section>
 
 	<section class="training" aria-labelledby="training-heading">
+		<h2 id="training-heading">Training and teachers</h2>
 		<div class="training__prose">
 			<p>Throughout his training, Tenzin Samphel Rinpoche received teachings, empowerments and oral transmissions from many accomplished masters of the Nyingma tradition. Among his principal teachers were Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.</p>
 			<p>Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition. Dudjom Tersar has a central place in many of the practices he transmits through empowerments, oral transmissions and teachings. He also holds transmission lineages of Yangti Nagpo and Longchen Nyingthig, among others.</p>
 		</div>
-		<h2 id="training-heading">Training and teachers</h2>
 	</section>
 
 	<section class="shedup" aria-labelledby="shedup-heading">
@@ -53,22 +55,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		<img class="shedup__image" src="/images/rinpoche/shedup-kunsang-choling.webp" alt="Shedup Kunsang Chöling in Septvaux, France" />
 	</section>
 
-	<figure class="teacher-photo">
-		<img
-			src="/images/home/rinpoche-teaching-reference.webp"
-			alt="Tenzin Samphel Rinpoche during a teaching"
-			width="1366"
-			height="768"
-			loading="lazy"
-		/>
-	</figure>
-
 	<section class="teaching" aria-labelledby="teaching-heading">
 		<h2 id="teaching-heading">Teaching activity</h2>
 		<div class="teaching__prose">
 			<p>Rinpoche gives teachings, empowerments, oral transmissions and practice guidance, transmitting the Dharma according to the needs and circumstances of his students.</p>
 			<p>His teaching activity is centred at Shedup Kunsang Chöling and extends through visits elsewhere, including his annual visits to the Netherlands. Padma Pura Foundation supports these visits and the related Dharma activities through which students receive his guidance and practise together.</p>
 		</div>
+		<figure class="teaching__image">
+			<img
+				src="/images/home/rinpoche-teaching-reference.webp"
+				alt="Tenzin Samphel Rinpoche during a teaching"
+				width="1366"
+				height="768"
+				loading="lazy"
+			/>
+		</figure>
 	</section>
 
 	<section class="academic" aria-labelledby="academic-heading">
@@ -91,12 +92,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <style>
 	.teacher-opening {
 		display: grid;
-		grid-template-columns: minmax(0, 0.9fr) minmax(16rem, 0.65fr) minmax(14rem, 0.45fr);
-		column-gap: clamp(var(--space-6), 5vw, var(--space-9));
+		grid-template-columns: minmax(0, 1fr) minmax(16rem, 28%);
+		gap: clamp(var(--space-6), 7vw, var(--space-8));
 		align-items: start;
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-9), 10vw, 10rem);
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-8), 8vw, 7.5rem);
 		margin-inline: auto;
+	}
+
+	.teacher-opening__copy {
+		max-width: 44rem;
 	}
 
 	.teacher-opening__heading {
@@ -125,8 +130,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.teacher-opening__intro {
-		max-width: 26rem;
-		padding-top: clamp(var(--space-8), 8vw, 8rem);
+		max-width: 38rem;
+		padding-top: clamp(var(--space-6), 5vw, var(--space-8));
 		margin: 0;
 		font-family: var(--font-sans);
 		font-size: var(--text-lg);
@@ -136,7 +141,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.teacher-opening__portrait {
 		width: 100%;
-		max-width: 19rem;
+		max-width: 18rem;
 		margin: 0;
 		justify-self: end;
 	}
@@ -148,11 +153,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.biography {
-		display: grid;
-		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
-		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
@@ -162,9 +164,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.biography h2 {
-		padding-top: var(--space-2);
+		margin-bottom: var(--space-6);
 		font-family: var(--font-display);
-		font-size: var(--text-xl);
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
 		font-weight: 360;
 		line-height: 1.05;
 		font-optical-sizing: auto;
@@ -186,11 +188,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.training {
-		display: grid;
-		grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
-		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
@@ -200,9 +199,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.training h2 {
-		padding-top: var(--space-2);
+		margin-bottom: var(--space-6);
 		font-family: var(--font-display);
-		font-size: var(--text-xl);
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
 		font-weight: 360;
 		line-height: 1.05;
 		font-optical-sizing: auto;
@@ -225,12 +224,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.shedup {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-9), 10vw, 10rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
 	.shedup h2 {
-		margin: 0 0 var(--space-7);
+		margin: 0 0 var(--space-6);
 		font-family: var(--font-display);
 		font-size: var(--text-xl);
 		font-weight: 360;
@@ -240,7 +239,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.shedup__prose {
 		max-width: 42rem;
-		margin-inline: auto;
 	}
 
 	.shedup__prose p {
@@ -260,31 +258,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		width: 60%;
 		max-width: 47rem;
 		height: auto;
-		margin-top: 3rem;
-	}
-
-	.teacher-photo {
-		width: min(100% - (var(--space-6) * 2), 80rem);
-		padding-bottom: clamp(var(--space-9), 10vw, 10rem);
-		margin: 0 auto;
-	}
-
-	.teacher-photo img {
-		display: block;
-		width: 100%;
-		height: auto;
-		aspect-ratio: 16 / 9;
+		margin-top: clamp(var(--space-6), 4vw, var(--space-7));
 	}
 
 	.teaching {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
 	.teaching h2 {
-		max-width: 16ch;
-		margin: 0 0 var(--space-7);
+		margin: 0 0 var(--space-6);
 		font-family: var(--font-display);
 		font-size: 2.9375rem;
 		font-weight: 360;
@@ -308,12 +292,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		margin-top: var(--space-6);
 	}
 
+	.teaching__image {
+		width: 70%;
+		max-width: 60rem;
+		margin: clamp(var(--space-6), 4vw, var(--space-7)) 0 0;
+	}
+
+	.teaching__image img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
 	.academic {
-		display: grid;
-		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
-		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
@@ -323,9 +316,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.academic h2 {
-		padding-top: var(--space-2);
+		margin-bottom: var(--space-6);
 		font-family: var(--font-display);
-		font-size: var(--text-xl);
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
 		font-weight: 360;
 		line-height: 1.05;
 		font-optical-sizing: auto;
@@ -347,18 +340,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.lineage-transition {
-		max-width: 34rem;
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-7), 6vw, var(--space-8));
+		padding-block: clamp(var(--space-7), 6vw, var(--space-8));
 		margin-inline: auto;
+		border-top: 1px solid var(--color-border);
 	}
 
 	.lineage-transition h2 {
-		margin: 0 0 var(--space-5);
+		margin: 0 0 var(--space-4);
 		font-family: var(--font-display);
-		font-size: var(--text-lg);
-		font-weight: 380;
-		line-height: 1.2;
+		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+		font-weight: 360;
+		line-height: 1.1;
 		font-optical-sizing: auto;
 	}
 
@@ -395,9 +388,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.teacher-opening__portrait {
-			width: min(78%, 20rem);
+			width: min(76%, 20rem);
 			max-width: none;
-			margin-top: var(--space-8);
+			margin: var(--space-8) auto 0;
 		}
 
 		.biography {
@@ -407,7 +400,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.biography h2 {
-			padding: 0 0 var(--space-6);
+			margin-bottom: var(--space-6);
 		}
 
 		.biography p {
@@ -415,15 +408,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.training {
-			display: flex;
-			flex-direction: column;
+			display: block;
 			width: calc(100% - (var(--space-5) * 2));
 			padding-bottom: var(--space-9);
 		}
 
 		.training h2 {
-			order: -1;
-			padding: 0 0 var(--space-6);
+			margin-bottom: var(--space-6);
 		}
 
 		.training p {
@@ -452,18 +443,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			margin-top: var(--space-7);
 		}
 
-		.teacher-photo {
-			width: calc(100% - (var(--space-5) * 2));
-			padding-bottom: var(--space-9);
-		}
-
 		.teaching {
 			width: calc(100% - (var(--space-5) * 2));
 			padding-bottom: var(--space-9);
 		}
 
 		.teaching h2 {
-			max-width: none;
 			margin: 0 0 var(--space-6);
 			font-size: clamp(2rem, 8vw, 2.5rem);
 		}
@@ -476,6 +461,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			font-size: var(--text-base);
 		}
 
+		.teaching__image {
+			width: 100%;
+			max-width: none;
+			margin-top: var(--space-7);
+		}
+
 		.academic {
 			display: block;
 			width: calc(100% - (var(--space-5) * 2));
@@ -483,7 +474,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.academic h2 {
-			padding: 0 0 var(--space-6);
+			margin-bottom: var(--space-6);
 		}
 
 		.academic p {

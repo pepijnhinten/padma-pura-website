@@ -30,6 +30,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			<p>Tenzin Samphel Rinpoche received teachings, empowerments, oral transmissions and practice instructions from masters including Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.</p>
 			<p>He holds and transmits multiple transmission lineages and practice cycles within the Nyingma tradition. In 1999, Khetsun Sangpo Rinpoche enthroned him as a lineage holder and entrusted him with spiritual authority at Shedup Kunsang Chöling.</p>
 		</div>
+		<img class="lineage__contextual-media" src="/images/lineage/khetsun-sangpo-rinpoche.jpg" alt="Khetsun Sangpo Rinpoche" />
 	</section>
 
 	<section class="dudjom-tersar" aria-labelledby="dudjom-tersar-heading">
@@ -37,6 +38,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		<div class="dudjom-tersar__prose">
 			<p>Dudjom Tersar is a terma tradition within the Nyingma school of Tibetan Buddhism, associated with Dudjom Lingpa and Dudjom Rinpoche, Jigdral Yeshe Dorje. It is not a separate school, but a body of teachings and practice cycles transmitted within the wider Nyingma tradition.</p>
 			<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings that Tenzin Samphel Rinpoche gives through Padma Pura Foundation activities.</p>
+		</div>
+		<div class="lineage__portrait-pair">
+			<img src="/images/lineage/Dudjom_Lingpa.jpg" alt="Dudjom Lingpa" />
+			<img src="/images/lineage/dudjom-rinpoche.webp" alt="Kyabjé Dudjom Rinpoche" />
 		</div>
 	</section>
 
@@ -59,7 +64,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <style>
 	.lineage-opening {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-9), 10vw, 10rem);
+		padding-block: clamp(var(--space-8), 9vw, 9rem) clamp(var(--space-8), 8vw, 7.5rem);
 		margin-inline: auto;
 	}
 
@@ -75,7 +80,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.lineage-opening h1 {
 		max-width: 16ch;
-		margin: var(--space-6) 0 0 clamp(2rem, 10vw, 8rem);
+		margin: var(--space-6) 0 0;
 		font-family: var(--font-display);
 		font-size: clamp(3rem, 5.5vw, 5.5rem);
 		font-weight: 380;
@@ -85,8 +90,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.lineage-opening__intro {
-		max-width: 26rem;
-		margin: clamp(var(--space-5), 3vw, var(--space-7)) 0 0 auto;
+		max-width: 42rem;
+		margin: clamp(var(--space-5), 3vw, var(--space-7)) 0 0;
 		font-family: var(--font-sans);
 		font-size: var(--text-lg);
 		font-weight: 400;
@@ -94,11 +99,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.nyingma {
-		display: grid;
-		grid-template-columns: minmax(0, 0.65fr) minmax(0, 1.35fr);
-		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-7), 7.5vw, 7rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
@@ -108,7 +110,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.nyingma h2 {
-		padding-top: var(--space-2);
+		margin-bottom: var(--space-6);
 		font-family: var(--font-display);
 		font-size: var(--text-xl);
 		font-weight: 360;
@@ -132,11 +134,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.rinpoche-transmission {
-		display: grid;
-		grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-		gap: clamp(var(--space-6), 7vw, 8rem);
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-8), 8vw, 7.5rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
@@ -146,7 +145,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	}
 
 	.rinpoche-transmission h2 {
-		padding-top: var(--space-2);
+		margin-bottom: var(--space-6);
 		font-family: var(--font-display);
 		font-size: var(--text-xl);
 		font-weight: 360;
@@ -169,15 +168,38 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		margin-top: var(--space-6);
 	}
 
+	.lineage__contextual-media {
+		display: block;
+		width: 40%;
+		max-width: 20rem;
+		height: auto;
+		margin-top: clamp(var(--space-6), 4vw, var(--space-7));
+	}
+
+	.lineage__portrait-pair {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(var(--space-4), 3vw, var(--space-6));
+		width: 80%;
+		max-width: 40rem;
+		margin-top: clamp(var(--space-6), 4vw, var(--space-7));
+	}
+
+	.lineage__portrait-pair img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
 	.dudjom-tersar {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-7), 7.5vw, 7rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
 	.dudjom-tersar h2 {
 		max-width: 20ch;
-		margin: 0 0 var(--space-8) clamp(1.5rem, 6vw, 5rem);
+		margin: 0 0 var(--space-6);
 		font-family: var(--font-display);
 		font-size: clamp(3rem, 4vw, 3.5rem);
 		font-weight: 380;
@@ -187,7 +209,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.dudjom-tersar__prose {
 		max-width: 44rem;
-		margin-left: clamp(1.5rem, 6vw, 5rem);
 	}
 
 	.dudjom-tersar__prose p {
@@ -213,13 +234,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.yangti-nagpo {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
-		padding-bottom: clamp(var(--space-7), 7.5vw, 7rem);
+		padding-bottom: clamp(var(--space-7), 7vw, 7rem);
 		margin-inline: auto;
 	}
 
 	.yangti-nagpo h2 {
 		max-width: 20ch;
-		margin: 0 0 var(--space-8) clamp(1.5rem, 6vw, 5rem);
+		margin: 0 0 var(--space-6);
 		font-family: var(--font-display);
 		font-size: clamp(3rem, 4vw, 3.5rem);
 		font-weight: 380;
@@ -229,7 +250,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 	.yangti-nagpo__prose {
 		max-width: 44rem;
-		margin-left: clamp(1.5rem, 6vw, 5rem);
 	}
 
 	.yangti-nagpo__prose p {
@@ -316,8 +336,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		}
 
 		.rinpoche-transmission h2 {
-			order: -1;
-			padding: 0 0 var(--space-6);
+			padding: 0;
 		}
 
 		.rinpoche-transmission p {
@@ -338,6 +357,23 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		.dudjom-tersar__prose {
 			max-width: none;
 			margin-left: 0;
+		}
+
+		.lineage__contextual-media {
+			width: 76%;
+			max-width: 18rem;
+			margin: var(--space-7) auto 0;
+		}
+
+		.lineage__portrait-pair {
+			display: block;
+			width: 76%;
+			max-width: 18rem;
+			margin: var(--space-7) auto 0;
+		}
+
+		.lineage__portrait-pair img + img {
+			margin-top: var(--space-6);
 		}
 
 		.dudjom-tersar__prose p {
