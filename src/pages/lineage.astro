@@ -30,7 +30,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			<p>Tenzin Samphel Rinpoche received teachings, empowerments, oral transmissions and practice instructions from masters including Kyabjé Dudjom Rinpoche, Dilgo Khyentse Rinpoche, Chadral Rinpoche and Khetsun Sangpo Rinpoche.</p>
 			<p>He holds and transmits multiple transmission lineages and practice cycles within the Nyingma tradition. In 1999, Khetsun Sangpo Rinpoche enthroned him as a lineage holder and entrusted him with spiritual authority at Shedup Kunsang Chöling.</p>
 		</div>
-		<img class="lineage__contextual-media" src="/images/lineage/khetsun-sangpo-rinpoche.jpg" alt="Khetsun Sangpo Rinpoche" />
+		<figure class="lineage__contextual-media">
+			<img src="/images/lineage/khetsun-sangpo-rinpoche.jpg" alt="Khetsun Sangpo Rinpoche" />
+			<figcaption>Khetsun Sangpo Rinpoche</figcaption>
+		</figure>
 	</section>
 
 	<section class="dudjom-tersar" aria-labelledby="dudjom-tersar-heading">
@@ -40,8 +43,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			<p>Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings that Tenzin Samphel Rinpoche gives through Padma Pura Foundation activities.</p>
 		</div>
 		<div class="lineage__portrait-pair">
-			<img src="/images/lineage/Dudjom_Lingpa.jpg" alt="Dudjom Lingpa" />
-			<img src="/images/lineage/dudjom-rinpoche.webp" alt="Kyabjé Dudjom Rinpoche" />
+			<figure>
+				<img src="/images/lineage/Dudjom_Lingpa.jpg" alt="Dudjom Lingpa" />
+				<figcaption>Dudjom Lingpa</figcaption>
+			</figure>
+			<figure>
+				<img src="/images/lineage/dudjom-rinpoche.webp" alt="Kyabjé Dudjom Rinpoche" />
+				<figcaption>Kyabjé Dudjom Rinpoche</figcaption>
+			</figure>
 		</div>
 	</section>
 
@@ -176,6 +185,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		margin-top: clamp(var(--space-6), 4vw, var(--space-7));
 	}
 
+	.lineage__contextual-media img,
+	.lineage__portrait-pair img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.lineage__contextual-media,
+	.lineage__portrait-pair figure {
+		margin-inline: 0;
+		margin-bottom: 0;
+	}
+
+	.lineage__contextual-media figcaption,
+	.lineage__portrait-pair figcaption {
+		margin-top: var(--space-2);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 400;
+		line-height: 1.4;
+		text-align: left;
+	}
+
 	.lineage__portrait-pair {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -183,12 +216,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		width: 80%;
 		max-width: 40rem;
 		margin-top: clamp(var(--space-6), 4vw, var(--space-7));
-	}
-
-	.lineage__portrait-pair img {
-		display: block;
-		width: 100%;
-		height: auto;
 	}
 
 	.dudjom-tersar {
@@ -372,7 +399,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			margin: var(--space-7) auto 0;
 		}
 
-		.lineage__portrait-pair img + img {
+		.lineage__portrait-pair figure + figure {
 			margin-top: var(--space-6);
 		}
 

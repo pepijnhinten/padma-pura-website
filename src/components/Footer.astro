@@ -133,18 +133,28 @@ const secondaryLinks = [
 			gap: var(--space-7);
 		}
 
+		.site-footer__identity {
+			justify-content: center;
+			text-align: center;
+		}
+
 		.site-footer__seal {
 			width: 4.75rem;
 		}
 
 		.site-footer__navigation {
+			width: min(100%, 20rem);
+			margin-inline: auto;
 			gap: var(--space-6);
+			justify-items: stretch;
 		}
 
 		.site-footer__primary,
 		.site-footer__secondary {
 			display: grid;
+			grid-template-columns: 1fr;
 			justify-items: start;
+			text-align: left;
 		}
 
 		.site-footer__primary {

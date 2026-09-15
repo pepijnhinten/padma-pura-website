@@ -58,8 +58,14 @@ import { upcomingVisit } from "../data/upcoming";
 			<p>If you would like to take part, please email <a href="mailto:info@padmapura.com">info@padmapura.com</a>. We will add you to the Tsog mailing list, through which invitations and practical information for upcoming Tsog practices are shared.</p>
 		</div>
 		<div class="tsog__images">
-			<img src="/images/activities/guru-tsokye-tuktik.jpg" alt="Guru Tsokye Tuktik thangka" />
-			<img src="/images/activities/khandro-tuktik.jpg" alt="Khandro Tuktik thangka" />
+			<figure>
+				<img src="/images/activities/guru-tsokye-tuktik.jpg" alt="Guru Tsokye Tuktik thangka" />
+				<figcaption>Tsokye Thugthig</figcaption>
+			</figure>
+			<figure>
+				<img src="/images/activities/khandro-tuktik.jpg" alt="Khandro Tuktik thangka" />
+				<figcaption>Khandro Thugthig</figcaption>
+			</figure>
 		</div>
 	</section>
 
@@ -81,6 +87,7 @@ import { upcomingVisit } from "../data/upcoming";
 		</div>
 		<figure class="gutor__image">
 			<img src="/images/activities/gutor.png" alt="Gutor practice" />
+			<figcaption>Phurba Putri Repung</figcaption>
 		</figure>
 	</section>
 
@@ -352,6 +359,20 @@ import { upcomingVisit } from "../data/upcoming";
 		height: auto;
 	}
 
+	.tsog__images figure {
+		margin: 0;
+	}
+
+	.tsog__images figcaption {
+		margin-top: var(--space-2);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 400;
+		line-height: 1.4;
+		text-align: left;
+	}
+
 	.tsetar {
 		width: min(100% - (var(--space-6) * 2), var(--content-width));
 		padding-bottom: clamp(var(--space-7), 7.5vw, 7.5rem);
@@ -429,6 +450,16 @@ import { upcomingVisit } from "../data/upcoming";
 		display: block;
 		width: 100%;
 		height: auto;
+	}
+
+	.gutor__image figcaption {
+		margin-top: var(--space-2);
+		color: var(--color-muted);
+		font-family: var(--font-sans);
+		font-size: var(--text-sm);
+		font-weight: 400;
+		line-height: 1.4;
+		text-align: left;
 	}
 
 	.gutor p {
