@@ -31,6 +31,7 @@ const alternateLinks = hasLocalizedRoute
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		<link rel="icon" type="image/png" href="/brand/padma-pura-favicon.png" />
 		<link rel="canonical" href={canonicalUrl} />
 		{alternateLinks.map(({ lang, path }) => (
 			<link rel="alternate" hreflang={lang} href={new URL(path.endsWith("/") ? path : `${path}/`, Astro.site!)} />
