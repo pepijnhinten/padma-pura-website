@@ -1,7 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { getLocale } from "../lib/locale";
+import { getLocale, getLocalizedPath, staticRoutes } from "../lib/locale";
 import "../styles/global.css";
 
 interface Props {
@@ -11,6 +11,17 @@ interface Props {
 
 const { title, description } = Astro.props;
 const locale = getLocale(Astro.url.pathname);
+const canonicalPath = Astro.url.pathname.endsWith("/") ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonicalUrl = new URL(canonicalPath, Astro.site!);
+const englishPath = getLocalizedPath(Astro.url.pathname, "en").replace(/\/$/, "") || "/";
+const hasLocalizedRoute = staticRoutes.includes(englishPath as (typeof staticRoutes)[number]);
+const alternateLinks = hasLocalizedRoute
+	? [
+		{ lang: "en", path: getLocalizedPath(englishPath, "en") },
+		{ lang: "nl", path: getLocalizedPath(englishPath, "nl") },
+		{ lang: "x-default", path: getLocalizedPath(englishPath, "en") },
+	]
+	: [];
 ---
 
 <!doctype html>
@@ -20,6 +31,10 @@ const locale = getLocale(Astro.url.pathname);
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		<link rel="canonical" href={canonicalUrl} />
+		{alternateLinks.map(({ lang, path }) => (
+			<link rel="alternate" hreflang={lang} href={new URL(path.endsWith("/") ? path : `${path}/`, Astro.site!)} />
+		))}
 	</head>
 	<body>
 		<Header />

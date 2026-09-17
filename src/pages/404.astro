@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page not found | Padma Pura Foundation" description="The page you are looking for could not be found.">
+	<section class="not-found" aria-labelledby="not-found-heading">
+		<p class="not-found__eyebrow">Padma Pura Foundation</p>
+		<h1 id="not-found-heading">Page not found</h1>
+		<p>The page you are looking for could not be found.</p>
+		<a href="/">Return to home</a>
+	</section>
+</BaseLayout>
+
+<style>
+	.not-found {
+		width: min(100% - (var(--space-6) * 2), var(--content-width-narrow));
+		padding-block: clamp(var(--space-8), 12vw, 12rem);
+		margin-inline: auto;
+	}
+
+	.not-found__eyebrow {
+		margin: 0 0 var(--space-6);
+		color: var(--color-muted);
+		font-size: var(--text-sm);
+		font-weight: 500;
+	}
+
+	.not-found h1 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: var(--text-2xl);
+		font-weight: 380;
+		line-height: 1.05;
+	}
+
+	.not-found p:not(.not-found__eyebrow) {
+		margin: var(--space-5) 0 var(--space-6);
+	}
+</style>

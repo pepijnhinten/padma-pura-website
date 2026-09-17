@@ -1,5 +1,18 @@
 export type Locale = "en" | "nl";
 
+export const staticRoutes = [
+	"/",
+	"/our-teacher",
+	"/lineage",
+	"/activities",
+	"/padma-pura",
+	"/support",
+	"/foundation",
+	"/updates",
+	"/contact",
+	"/privacy",
+] as const;
+
 const labels = {
 	en: {
 		ourTeacher: "Our Teacher",

@@ -9,22 +9,10 @@ import PadmaPuraPage from "../padma-pura.astro";
 import PrivacyPage from "../privacy.astro";
 import SupportPage from "../support.astro";
 import UpdatesPage from "../updates.astro";
+import { staticRoutes } from "../../lib/locale";
 
 export function getStaticPaths() {
-	const supportedRoutes = [
-		"/",
-		"/our-teacher",
-		"/lineage",
-		"/activities",
-		"/padma-pura",
-		"/support",
-		"/foundation",
-		"/updates",
-		"/contact",
-		"/privacy",
-	] as const;
-
-	return supportedRoutes.map((route) => ({
+	return staticRoutes.map((route) => ({
 		params: { slug: route === "/" ? undefined : route.slice(1) },
 	}));
 }
