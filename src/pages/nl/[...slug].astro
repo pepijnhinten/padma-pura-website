@@ -3,6 +3,7 @@ import ActivitiesPage from "../activities.astro";
 import ContactPage from "../contact.astro";
 import FoundationPage from "../foundation.astro";
 import HomePage from "../index.astro";
+import LedenPage from "../leden.astro";
 import LineagePage from "../lineage.astro";
 import OurTeacherPage from "../our-teacher.astro";
 import PadmaPuraPage from "../padma-pura.astro";
@@ -23,6 +24,7 @@ const pageComponents = {
 	"/lineage": LineagePage,
 	"/activities": ActivitiesPage,
 	"/padma-pura": PadmaPuraPage,
+	"/leden": LedenPage,
 	"/support": SupportPage,
 	"/foundation": FoundationPage,
 	"/updates": UpdatesPage,
@@ -34,4 +36,4 @@ const route = Astro.params.slug ? `/${Astro.params.slug}` : "/";
 const Page = pageComponents[route as keyof typeof pageComponents];
 ---
 
-{route === "/" ? <HomePage locale="nl" /> : route === "/our-teacher" ? <OurTeacherPage locale="nl" /> : route === "/lineage" ? <LineagePage locale="nl" /> : route === "/activities" ? <ActivitiesPage locale="nl" /> : route === "/padma-pura" ? <PadmaPuraPage locale="nl" /> : route === "/support" ? <SupportPage locale="nl" /> : route === "/foundation" ? <FoundationPage locale="nl" /> : route === "/updates" ? <UpdatesPage locale="nl" /> : route === "/contact" ? <ContactPage locale="nl" /> : route === "/privacy" ? <PrivacyPage locale="nl" /> : Page && <Page />}
+{route === "/" ? <HomePage locale="nl" /> : route === "/our-teacher" ? <OurTeacherPage locale="nl" /> : route === "/lineage" ? <LineagePage locale="nl" /> : route === "/activities" ? <ActivitiesPage locale="nl" /> : route === "/padma-pura" ? <PadmaPuraPage locale="nl" /> : route === "/leden" ? <LedenPage /> : route === "/support" ? <SupportPage locale="nl" /> : route === "/foundation" ? <FoundationPage locale="nl" /> : route === "/updates" ? <UpdatesPage locale="nl" /> : route === "/contact" ? <ContactPage locale="nl" /> : route === "/privacy" ? <PrivacyPage locale="nl" /> : Page && <Page />}
