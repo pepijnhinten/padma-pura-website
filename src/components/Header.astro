@@ -14,7 +14,12 @@ const rightLinks = [
 	{ href: "/support", label: labels.support },
 ];
 
-const navigationLinks = [...leftLinks, ...rightLinks];
+const membersLink = {
+	href: locale === "nl" ? "/leden" : "/members",
+	label: labels.membersPortal,
+};
+const navigationLinks = [...leftLinks, ...rightLinks, membersLink];
+const getHeaderPath = (href: string) => href === membersLink.href ? href : getLocalizedPath(href, locale);
 ---
 
 <header class="site-header">
@@ -27,11 +32,14 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 			<img src="/brand/padma-pura-seal.png" alt="Padma Pura Foundation seal" />
 		</a>
 
-		<nav class="site-header__language" aria-label="Language">
-			<a href={getLocalizedPath(Astro.url.pathname, "en")} aria-current={locale === "en" ? "page" : undefined}>EN</a>
-			<span aria-hidden="true">|</span>
-			<a href={getLocalizedPath(Astro.url.pathname, "nl")} aria-current={locale === "nl" ? "page" : undefined}>NL</a>
-		</nav>
+		<div class="site-header__utility">
+			<a class="site-header__members-link" href={getHeaderPath(membersLink.href)}>{membersLink.label}</a>
+			<nav class="site-header__language" aria-label="Language">
+				<a href={getLocalizedPath(Astro.url.pathname, "en")} aria-current={locale === "en" ? "page" : undefined}>EN</a>
+				<span aria-hidden="true">|</span>
+				<a href={getLocalizedPath(Astro.url.pathname, "nl")} aria-current={locale === "nl" ? "page" : undefined}>NL</a>
+			</nav>
+		</div>
 
 		<nav class="site-header__nav site-header__nav--right" aria-label="Primary navigation">
 			{rightLinks.map(({ href, label }) => <a href={getLocalizedPath(href, locale)}>{label}</a>)}
@@ -40,7 +48,7 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 		<details class="site-menu">
 			<summary>Menu</summary>
 			<nav aria-label="Primary navigation">
-				{navigationLinks.map(({ href, label }) => <a href={getLocalizedPath(href, locale)}>{label}</a>)}
+				{navigationLinks.map(({ href, label }) => <a href={getHeaderPath(href)}>{label}</a>)}
 			</nav>
 		</details>
 	</div>
@@ -100,17 +108,44 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 		margin-inline: clamp(var(--space-6), 4vw, var(--space-8));
 	}
 
-	.site-header__language {
+	.site-header__utility {
 		position: absolute;
 		top: var(--space-4);
 		right: 0;
 		display: flex;
-		gap: var(--space-2);
+		gap: 1.125rem;
 		align-items: center;
+		justify-content: flex-end;
+		white-space: nowrap;
+	}
+
+	.site-header__members-link,
+	.site-header__language {
 		font-family: var(--font-sans);
 		font-size: var(--text-sm);
 		font-weight: 400;
 		line-height: 1.4;
+	}
+
+	.site-header__members-link {
+		color: var(--color-muted);
+		text-decoration: none;
+	}
+
+	.site-header__members-link:hover {
+		color: var(--color-accent);
+		text-decoration: underline;
+	}
+
+	.site-header__members-link:focus-visible {
+		color: var(--color-accent);
+		text-decoration: underline;
+	}
+
+	.site-header__language {
+		display: flex;
+		gap: var(--space-2);
+		align-items: center;
 	}
 
 	.site-header__language a {
@@ -159,13 +194,15 @@ const navigationLinks = [...leftLinks, ...rightLinks];
 			margin: 0;
 		}
 
-		.site-header__language {
+		.site-header__utility {
 			position: static;
-			grid-column: 1;
+			grid-column: 1 / -1;
 			grid-row: 1;
-			justify-self: start;
-			top: 50%;
-			transform: none;
+			justify-content: flex-start;
+		}
+
+		.site-header__members-link {
+			display: none;
 		}
 
 		.site-menu {
