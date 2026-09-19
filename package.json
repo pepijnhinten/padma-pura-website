@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "deploy:staging": "./scripts/deploy-staging.sh",
+    "deploy:production": "./scripts/deploy-production.sh",
     "preview": "astro preview",
     "astro": "astro"
   },
