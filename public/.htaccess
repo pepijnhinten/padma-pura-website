@@ -1,0 +1,27 @@
+RewriteEngine On
+
+# Old WordPress URLs - only from padmapura.com
+RewriteCond %{HTTP_HOST} ^(www\.)?padmapura\.com$ [NC]
+RewriteRule ^about/?$ https://padmapura.org/padma-pura/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?padmapura\.com$ [NC]
+RewriteRule ^(events|all-events|vajra-gatherings|group-practice|retreats|teachings|tsetar)/?$ https://padmapura.org/activities/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?padmapura\.com$ [NC]
+RewriteRule ^(donations|charitable-fundraising|friends-of-padma-pura)/?$ https://padmapura.org/support/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?padmapura\.com$ [NC]
+RewriteRule ^(membership|transcription-team)/?$ https://padmapura.org/members/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?padmapura\.com$ [NC]
+RewriteRule ^anbi/?$ https://padmapura.org/foundation/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?padmapura\.com$ [NC]
+RewriteRule ^shedup-kunsang-choling/?$ https://padmapura.org/our-teacher/ [R=301,L]
+
+# Canonical domain
+RewriteCond %{HTTP_HOST} ^www\.padmapura\.org$ [NC]
+RewriteRule ^(.*)$ https://padmapura.org/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^(www\.)?padmapura\.com$ [NC]
+RewriteRule ^(.*)$ https://padmapura.org/$1 [R=301,L]

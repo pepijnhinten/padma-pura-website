@@ -30,8 +30,19 @@ const alternateLinks = hasLocalizedRoute
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl.toString()} />
+		<meta property="og:image" content={new URL("/brand/padma-pura-social-share.png", Astro.site!).toString()} />
+		<meta property="og:image:alt" content="Padma Pura Foundation" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL("/brand/padma-pura-social-share.png", Astro.site!).toString()} />
 		<title>{title}</title>
-		<link rel="icon" type="image/png" href="/brand/padma-pura-favicon.png" />
+		<link rel="icon" href="/brand/padma-pura-favicon.png" type="image/png" />
+		<link rel="apple-touch-icon" href="/brand/padma-pura-favicon.png" />
 		<link rel="canonical" href={canonicalUrl} />
 		{alternateLinks.map(({ lang, path }) => (
 			<link rel="alternate" hreflang={lang} href={new URL(path.endsWith("/") ? path : `${path}/`, Astro.site!)} />
