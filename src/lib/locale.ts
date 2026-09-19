@@ -50,13 +50,21 @@ export function getLabels(locale: Locale) {
 }
 
 export function getLocalizedPath(pathname: string, locale: Locale) {
-	const englishPath = getLocale(pathname) === "nl"
-		? pathname.replace(/^\/nl(?=\/|$)/, "") || "/"
-		: pathname;
+        let englishPath = getLocale(pathname) === "nl"
+                ? pathname.replace(/^\/nl(?=\/|$)/, "") || "/"
+                : pathname;
 
-	if (locale === "nl") {
-		return `/nl${englishPath === "/" ? "/" : englishPath}`;
-	}
+        if (englishPath === "/leden" || englishPath === "/leden/") {
+                englishPath = "/members";
+        }
 
-	return englishPath;
+        if (locale === "nl") {
+                if (englishPath === "/members" || englishPath === "/members/") {
+                        return "/nl/leden/";
+                }
+
+                return `/nl${englishPath === "/" ? "/" : englishPath}`;
+        }
+
+        return englishPath;
 }
