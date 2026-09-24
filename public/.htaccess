@@ -25,3 +25,11 @@ RewriteRule ^(.*)$ https://padmapura.org/$1 [R=301,L]
 
 RewriteCond %{HTTP_HOST} ^(www\.)?padmapura\.com$ [NC]
 RewriteRule ^(.*)$ https://padmapura.org/$1 [R=301,L]
+
+<IfModule mod_headers.c>
+	Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+	Header always set X-Content-Type-Options "nosniff"
+	Header always set Referrer-Policy "strict-origin-when-cross-origin"
+	Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+	Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; upgrade-insecure-requests"
+</IfModule>
