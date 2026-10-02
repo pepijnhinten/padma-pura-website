@@ -6,9 +6,9 @@ import { getLocalizedPath, type Locale } from "../lib/locale";
 interface Props { locale?: Locale }
 const { locale = "en" } = Astro.props;
 const copy = locale === "nl" ? {
-	intro: "Updates van Padma Pura Foundation over de bezoeken en Dharma-activiteiten van Tenzin Samphel Rinpoche en andere bevestigde informatie die relevant is voor studenten in Nederland.", mailing: "Belangrijke updates en informatie over Rinpoche’s activiteiten worden ook gedeeld via de algemene mailinglijst. Om u aan te melden, kunt u e-mailen naar", empty: "Momenteel geen updates", emptyText: "Nieuwe updates worden hier gepubliceerd zodra er bevestigde informatie is om te delen.",
+	intro: "Updates van Padma Pura Foundation over de bezoeken en Dharma-activiteiten van Lama Tenzin Samphel Rinpoche en andere bevestigde informatie die relevant is voor studenten in Nederland.", mailing: "Belangrijke updates en informatie over Rinpoche’s activiteiten worden ook gedeeld via de algemene mailinglijst. Om u aan te melden, kunt u e-mailen naar", empty: "Momenteel geen updates", emptyText: "Nieuwe updates worden hier gepubliceerd zodra er bevestigde informatie is om te delen.",
 } : {
-	intro: "Updates from Padma Pura Foundation about Tenzin Samphel Rinpoche’s visits, Dharma activities and other confirmed information relevant to students in the Netherlands.", mailing: "Important updates and information about Rinpoche’s activities are also shared through the general mailing list. To join, please email", empty: "No current updates", emptyText: "New updates will be published here when there is confirmed information to share.",
+	intro: "Updates from Padma Pura Foundation about Lama Tenzin Samphel Rinpoche’s visits, Dharma activities and other confirmed information relevant to students in the Netherlands.", mailing: "Important updates and information about Rinpoche’s activities are also shared through the general mailing list. To join, please email", empty: "No current updates", emptyText: "New updates will be published here when there is confirmed information to share.",
 };
 const localizedPath = (path: string) => getLocalizedPath(path, locale);
 
