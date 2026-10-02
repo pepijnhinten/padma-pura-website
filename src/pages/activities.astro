@@ -7,17 +7,17 @@ interface Props { locale?: Locale }
 const { locale = "en" } = Astro.props;
 const isDutch = locale === "nl";
 const copy = isDutch ? {
-	label: "Activiteiten", heading: "Dharma-activiteiten", opening: ["De Dharma-activiteit van Lama Tenzin Samphel Rinpoche in Nederland omvat onderricht, inwijdingen, mondelinge overdrachten, beoefeningsinstructies en gelegenheden om samen te beoefenen.", "Padma Pura Foundation ondersteunt deze activiteiten en helpt de voorwaarden te scheppen waaronder studenten Rinpoche’s onderricht kunnen ontvangen en onder zijn begeleiding kunnen beoefenen."],
+	label: "Activiteiten", heading: "Dharma-activiteiten", opening: ["De Dharma-activiteiten van Lama Tenzin Samphel Rinpoche in Nederland omvatten onderricht, inwijdingen, mondelinge overdrachten, beoefeningsinstructies en gelegenheden om samen te beoefenen.", "Padma Pura Foundation ondersteunt deze activiteiten en helpt de voorwaarden te scheppen waaronder studenten Rinpoche’s onderricht kunnen ontvangen en onder zijn begeleiding kunnen beoefenen."],
 	upcoming: "Komend bezoek", upcomingIntro: "Informatie over het jaarlijkse bezoek van Lama Tenzin Samphel Rinpoche aan Nederland.", visits: "Rinpoche in Nederland", visitsText: ["Lama Tenzin Samphel Rinpoche bezoekt Nederland jaarlijks om onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies te geven en studenten te ontmoeten.", "Padma Pura Foundation ondersteunt de organisatie van deze jaarlijkse bezoeken en de Dharma-activiteiten die tijdens deze bezoeken plaatsvinden. Bevestigde data en praktische informatie worden gepubliceerd bij Komend bezoek."],
 	tsogHeading: "Tsog", tsogText: ["Tsog is een Vajrayana-groepsbeoefening waarin beoefenaars samenkomen voor beoefening en offerandes.", "Padma Pura Foundation organiseert Tsog-beoefening doorgaans online via Microsoft Teams, rond Guru Rinpoche Dag en Dakini Dag wanneer de omstandigheden dit toelaten."], tsogParticipation: "Als u wilt deelnemen, kunt u e-mailen naar", tsogMailing: "We voegen u toe aan de Tsog-mailinglijst, waarop uitnodigingen en praktische informatie over komende Tsog-beoefeningen worden gedeeld.",
-	tsetar: "Tsetar", tsetarText: ["Tsetar is de boeddhistische beoefening waarbij dieren worden gered uit situaties waarin ze anders zouden worden gedood en worden vrijgelaten in omstandigheden waarin ze hun leven kunnen voortzetten.", "Padma Pura Foundation ondersteunt Tsetar-activiteiten onder begeleiding van Rinpoche. Omdat deze activiteiten zorgvuldige voorbereiding vereisen, wordt praktische informatie alleen gedeeld waar dat passend is."],
+	tsetar: "Tsetar", tsetarText: ["Tsetar is een verdienstelijke beoefening van compassie, waarbij het leven van dieren die anders gedood zouden worden wordt gespaard. Volgens de traditionele leer schept dit positieve karmische voorwaarden, die onder meer lang leven kunnen bevorderen en ook aan anderen kunnen worden opgedragen.", "Padma Pura Foundation ondersteunt Tsetar-activiteiten onder begeleiding van Rinpoche. Omdat deze activiteiten zorgvuldige voorbereiding vereisen, wordt praktische informatie alleen gedeeld waar dat passend is."],
 	gutor: "Gutor", gutorText: "Gutor is een Vajrayana-beoefening die traditioneel vóór Losar, het Tibetaans Nieuwjaar, wordt gehouden. Het is een beoefening van zuivering en het wegnemen van obstakels, die helpt gunstige omstandigheden voor het komende jaar te scheppen.", mailing: "Algemene mailinglijst", closing: "Belangrijke updates en informatie over Rinpoche’s activiteiten worden gedeeld via de algemene mailinglijst, samen met informatie over andere activiteiten van Padma Pura Foundation, waaronder Tsetar en Gutor. Om u aan te melden voor de algemene mailinglijst, kunt u e-mailen naar",
 	upcomingAttribution: "van Mipham Rinpoche", upcomingPeriod: "Verwacht in juni / juli 2027", upcomingStatus: "Data nog niet bevestigd", seriesNote: "Het volgende jaarlijkse bezoek van Rinpoche aan Nederland wordt momenteel verwacht in juni of juli 2027. Dit zou het tweede jaar zijn van onderricht over Sword of Wisdom for Thoroughly Ascertaining Reality van Mipham Rinpoche, als vervolg op de in 2026 begonnen reeks.", detailsStatus: "Data, locatie en programma worden gepubliceerd zodra deze zijn bevestigd.",
 } : {
 	label: "Activities", heading: "Dharma Activity", opening: ["Lama Tenzin Samphel Rinpoche’s Dharma activity in the Netherlands includes teachings, empowerments, oral transmissions, practice guidance and opportunities to practise together.", "Padma Pura Foundation supports these activities and helps create the conditions for students to receive Rinpoche’s teachings and practise under his guidance."],
 	upcoming: "Upcoming", upcomingIntro: "Information about Lama Tenzin Samphel Rinpoche’s annual visit to the Netherlands.", visits: "Rinpoche in the Netherlands", visitsText: ["Lama Tenzin Samphel Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance, and to meet with students.", "Padma Pura Foundation supports the organisation of these annual visits and the Dharma activities that take place during them. Confirmed dates and practical information are published in Upcoming."],
 	tsogHeading: "Tsog practice", tsogText: ["Tsog is a Vajrayana group practice in which practitioners come together for practice and offerings.", "Padma Pura Foundation usually organises Tsog practice online via Microsoft Teams, around Guru Rinpoche Day and Dakini Day when circumstances allow."], tsogParticipation: "If you would like to take part, please email", tsogMailing: "We will add you to the Tsog mailing list, through which invitations and practical information for upcoming Tsog practices are shared.",
-	tsetar: "Tsetar", tsetarText: ["Tsetar is the Buddhist practice of saving animals from situations in which they would otherwise be killed and releasing them into conditions where they can continue their lives.", "Padma Pura Foundation supports Tsetar activities under Rinpoche’s guidance. Because these activities require careful preparation, information is shared only when and where appropriate."],
+	tsetar: "Tsetar", tsetarText: ["Tsetar is a meritorious practice of compassion in which the lives of animals that would otherwise be killed are spared. According to the traditional teachings, this creates positive karmic conditions that may, among other things, support long life and can also be dedicated to others.", "Padma Pura Foundation supports Tsetar activities under Rinpoche’s guidance. Because these activities require careful preparation, information is shared only when and where appropriate."],
 	gutor: "Gutor", gutorText: "Gutor is a Vajrayana practice traditionally held before Losar, the Tibetan New Year. It is a practice of purification and the clearing of obstacles, helping create auspicious conditions for the year ahead.", mailing: "General mailing list", closing: "Important updates and information about Rinpoche’s activities are shared through the general mailing list, together with information about other Padma Pura Foundation activities, including Tsetar and Gutor. To join the general mailing list, please email",
 	upcomingAttribution: upcomingVisit.attribution, upcomingPeriod: upcomingVisit.expectedPeriod, upcomingStatus: upcomingVisit.status, seriesNote: upcomingVisit.seriesNote, detailsStatus: upcomingVisit.detailsStatus,
 };
@@ -77,12 +77,16 @@ const localizedUpcoming = { ...upcomingVisit, attribution: copy.upcomingAttribut
 		</div>
 		<div class="tsog__images">
 			<figure>
+				<img src="/images/activities/khandro-tuktik.jpg" alt="Khandro Tuktik thangka" />
+				<figcaption>Khandro Thugthig</figcaption>
+			</figure>
+			<figure>
 				<img src="/images/activities/guru-tsokye-tuktik.jpg" alt="Guru Tsokye Tuktik thangka" />
 				<figcaption>Tsokye Thugthig</figcaption>
 			</figure>
 			<figure>
-				<img src="/images/activities/khandro-tuktik.jpg" alt="Khandro Tuktik thangka" />
-				<figcaption>Khandro Thugthig</figcaption>
+				<img class="tsog__troma-image" src="/images/activities/troma.jpg" alt="Tröma Nagmo" />
+				<figcaption>Tröma Nagmo</figcaption>
 			</figure>
 		</div>
 	</section>
@@ -363,10 +367,10 @@ const localizedUpcoming = { ...upcomingVisit, attribution: copy.upcomingAttribut
 
 	.tsog__images {
 		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 		align-items: flex-start;
 		gap: var(--space-5);
-		width: 68%;
+		width: 100%;
 		margin-top: var(--space-8);
 	}
 
@@ -374,6 +378,18 @@ const localizedUpcoming = { ...upcomingVisit, attribution: copy.upcomingAttribut
 		display: block;
 		width: 100%;
 		height: auto;
+	}
+
+	@media (min-width: 64.0625rem) {
+		.tsog__images img {
+			aspect-ratio: 0.675;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+
+	.tsog__troma-image {
+		border: 8px solid #000;
 	}
 
 	.tsog__images figure {
@@ -388,6 +404,13 @@ const localizedUpcoming = { ...upcomingVisit, attribution: copy.upcomingAttribut
 		font-weight: 400;
 		line-height: 1.4;
 		text-align: left;
+	}
+
+	@media (max-width: 64rem) {
+		.tsog__images {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			width: 68%;
+		}
 	}
 
 	.tsetar {
@@ -602,7 +625,7 @@ const localizedUpcoming = { ...upcomingVisit, attribution: copy.upcomingAttribut
 			grid-template-columns: minmax(0, 1fr);
 			gap: var(--space-7);
 			width: 82%;
-			margin-top: var(--space-7);
+			margin: var(--space-7) auto 0;
 		}
 
 		.tsog__images img {

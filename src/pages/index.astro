@@ -18,9 +18,9 @@ const copy = isDutch
 		upcomingIntro: "Rinpoche bezoekt Nederland jaarlijks om onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies te geven.",
 		lineageHeading: "Lijn van overdracht",
 		lineageContext: "Rinpoche’s Dharma-activiteiten zijn geworteld in de levende overdracht van de Nyingma-traditie. Door onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies ontvangen studenten onderricht en beoefeningen die van leraar op leerling door generaties heen zijn overgedragen.",
-		lineageNyingma: "Lama Tenzin Samphel Rinpoche is houder van verschillende overdrachtslijnen en beoefeningscycli binnen de Nyingma-traditie en draagt deze over.",
+		lineageNyingma: "Lama Tenzin Samphel Rinpoche is houder van verschillende overdrachtslijnen en beoefeningscycli binnen de Nyingma-traditie en draagt deze over. Rinpoche’s onderricht is voornamelijk geworteld in de Nyingma-traditie, vanuit een open en niet-sektarische houding van respect voor de verschillende tradities van het Tibetaans boeddhisme.",
 		lineageLabel: "Binnen de Nyingma-traditie",
-		lineageTersar: "Dudjom Tersar neemt een centrale plaats in binnen veel van de beoefeningen, inwijdingen, mondelinge overdrachten en het onderricht dat Rinpoche geeft tijdens activiteiten van Padma Pura Foundation.",
+		lineageTersar: "Rinpoche geeft voornamelijk onderricht, beoefeningsinstructies en inwijdingen binnen de Dudjom Tersar-lijn.",
 		lineageLongchenHeading: "Longchen Nyingtik",
 		lineageLongchen: "Een belangrijke Nyingma-cyclus van onderricht en beoefening, geopenbaard door Jikmé Lingpa.",
 		lineageYangtiHeading: "Yangti Nakpo",
@@ -29,7 +29,7 @@ const copy = isDutch
 		dharmaHeading: "Dharma-activiteiten",
 		teachingsHeading: "Onderricht & inwijdingen",
 		teachingsText: "Tijdens zijn jaarlijkse bezoeken aan Nederland geeft Rinpoche onderricht, inwijdingen, mondelinge overdrachten en beoefeningsinstructies, afgestemd op de behoeften van zijn studenten.",
-		practiceText: "Studenten komen samen voor beoefening die verbonden is met Rinpoche’s onderricht en begeleiding. Tsog-beoefening wordt regelmatig georganiseerd; uitnodigingen en praktische informatie worden via de mailinglijst gedeeld.",
+		practiceText: "Studenten komen samen voor beoefening, waaronder meditatie, die verbonden is met Rinpoche’s onderricht en begeleiding. Tsog-beoefening wordt regelmatig georganiseerd; uitnodigingen en praktische informatie worden via de mailinglijst gedeeld.",
 		tsetarText: "Padma Pura Foundation ondersteunt Tsetar-activiteiten die onder begeleiding van Rinpoche worden uitgevoerd. Omdat deze activiteiten zorgvuldige voorbereiding vereisen, wordt praktische informatie alleen gedeeld waar dat passend is.",
 		activitiesLink: "Meer over activiteiten →",
 		foundationText: "Padma Pura Foundation ondersteunt de Dharma-activiteiten van Lama Tenzin Samphel Rinpoche in Nederland en helpt de praktische voorwaarden te scheppen voor zijn jaarlijkse bezoeken, onderricht, overdrachten en beoefeningsactiviteiten.",
@@ -53,7 +53,7 @@ const copy = isDutch
 		upcomingIntro: "Rinpoche visits the Netherlands annually to give teachings, empowerments, oral transmissions and practice guidance.",
 		lineageHeading: "Lineage & Transmission",
 		lineageContext: "Rinpoche’s Dharma activity is rooted in the living transmission of the Nyingma tradition. Through teachings, empowerments, oral transmissions and practice guidance, students receive teachings and practices that have been transmitted from teacher to student through generations.",
-		lineageNyingma: "Lama Tenzin Samphel Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition.",
+		lineageNyingma: "Lama Tenzin Samphel Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition. Rinpoche’s teaching is primarily rooted in the Nyingma tradition, while reflecting an open and non-sectarian attitude of respect for the different traditions of Tibetan Buddhism.",
 		lineageLabel: "Within the Nyingma tradition",
 		lineageTersar: "Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings Rinpoche gives during Padma Pura Foundation activities.",
 		lineageLongchenHeading: "Longchen Nyingtik",
@@ -173,7 +173,7 @@ const localizedUpcoming = isDutch
 					<p>{copy.teachingsText}</p>
 				</li>
 				<li>
-					<h3>Practice</h3>
+					<h3>{isDutch ? "Beoefening" : "Practice"}</h3>
 					<p>{copy.practiceText}</p>
 				</li>
 				<li>
@@ -416,8 +416,9 @@ const localizedUpcoming = isDutch
 
 	.lineage__image {
 		width: 100%;
-		max-width: 1800px;
+		max-width: 24rem;
 		margin: 0;
+		align-self: start;
 	}
 
 	.lineage__image img {
@@ -429,33 +430,34 @@ const localizedUpcoming = isDutch
 
 	.lineage__composition {
 		display: grid;
-		grid-template-columns: minmax(0, 30%) minmax(0, 1fr);
-		gap: clamp(var(--space-6), 7vw, var(--space-8));
+		grid-template-columns: minmax(0, 28%) minmax(0, 1fr);
+		gap: clamp(var(--space-6), 6vw, var(--space-8));
 		align-items: start;
 		margin-top: clamp(var(--space-6), 4vw, var(--space-7));
 	}
 
 	.lineage__content {
-		max-width: 42rem;
+		max-width: 44rem;
 		padding-bottom: clamp(var(--space-5), 2.5vw, var(--space-6));
 	}
 
 	.lineage__nyingma {
-		margin-bottom: clamp(var(--space-7), 5vw, var(--space-8));
+		margin-bottom: clamp(var(--space-6), 4vw, var(--space-7));
 	}
 
 	.lineage__tersar {
-		max-width: 42rem;
+		max-width: 44rem;
 	}
 
 	.lineage__tersar-label {
-		margin-bottom: var(--space-3) !important;
+		margin-bottom: var(--space-2) !important;
 		color: var(--color-muted) !important;
 		font-size: var(--text-sm) !important;
 	}
 
 	.lineage .lineage__tersar h3 {
 		font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+		margin-bottom: var(--space-3);
 	}
 
 	.lineage h3 {
@@ -466,12 +468,17 @@ const localizedUpcoming = isDutch
 	}
 
 	.lineage p {
-		max-width: 28rem;
+		max-width: 31rem;
 		color: var(--color-foreground);
 		font-family: var(--font-sans);
 		font-size: clamp(1.0625rem, 1.15vw, 1.125rem);
 		font-weight: 400;
 		line-height: 1.6;
+	}
+
+	.lineage__content p {
+		hyphens: none;
+		text-wrap: pretty;
 	}
 
 	.lineage__nyingma > p,
@@ -482,8 +489,13 @@ const localizedUpcoming = isDutch
 	.lineage__secondary-cycles {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: clamp(var(--space-4), 3vw, var(--space-6));
-		margin-top: var(--space-6);
+		gap: clamp(var(--space-5), 3vw, var(--space-6));
+		align-items: start;
+		margin-top: clamp(var(--space-6), 3vw, var(--space-7));
+	}
+
+	.lineage .lineage__secondary-cycle {
+		min-width: 0;
 	}
 
 	.lineage .lineage__secondary-cycle h4 {
