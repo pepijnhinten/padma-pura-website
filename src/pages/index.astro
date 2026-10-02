@@ -21,6 +21,10 @@ const copy = isDutch
 		lineageNyingma: "Lama Tenzin Samphel Rinpoche is houder van verschillende overdrachtslijnen en beoefeningscycli binnen de Nyingma-traditie en draagt deze over.",
 		lineageLabel: "Binnen de Nyingma-traditie",
 		lineageTersar: "Dudjom Tersar neemt een centrale plaats in binnen veel van de beoefeningen, inwijdingen, mondelinge overdrachten en het onderricht dat Rinpoche geeft tijdens activiteiten van Padma Pura Foundation.",
+		lineageLongchenHeading: "Longchen Nyingtik",
+		lineageLongchen: "Een belangrijke Nyingma-cyclus van onderricht en beoefening, geopenbaard door Jikmé Lingpa.",
+		lineageYangtiHeading: "Yangti Nakpo",
+		lineageYangti: "Een Dzogchen-cyclus die onder andere beoefeningen omvat die verbonden zijn met dark retreat.",
 		lineageLink: "Meer over Lijn van overdracht →",
 		dharmaHeading: "Dharma-activiteiten",
 		teachingsHeading: "Onderricht & inwijdingen",
@@ -52,6 +56,10 @@ const copy = isDutch
 		lineageNyingma: "Lama Tenzin Samphel Rinpoche holds and transmits several transmission lineages and practice cycles within the Nyingma tradition.",
 		lineageLabel: "Within the Nyingma tradition",
 		lineageTersar: "Dudjom Tersar has a central place in many of the practices, empowerments, oral transmissions and teachings Rinpoche gives during Padma Pura Foundation activities.",
+		lineageLongchenHeading: "Longchen Nyingtik",
+		lineageLongchen: "An important Nyingma cycle of teachings and practice revealed by Jikmé Lingpa.",
+		lineageYangtiHeading: "Yangti Nakpo",
+		lineageYangti: "A Dzogchen cycle that includes practices connected with dark retreat.",
 		lineageLink: "Explore Lineage & Transmission →",
 		dharmaHeading: "Dharma Activity",
 		teachingsHeading: "Teachings & Empowerments",
@@ -135,6 +143,16 @@ const localizedUpcoming = isDutch
 					<p class="lineage__tersar-label">{copy.lineageLabel}</p>
 					<h3>Dudjom Tersar</h3>
 					<p>{copy.lineageTersar}</p>
+				</div>
+				<div class="lineage__secondary-cycles">
+					<article class="lineage__secondary-cycle">
+						<h4>{copy.lineageLongchenHeading}</h4>
+						<p>{copy.lineageLongchen}</p>
+					</article>
+					<article class="lineage__secondary-cycle">
+						<h4>{copy.lineageYangtiHeading}</h4>
+						<p>{copy.lineageYangti}</p>
+					</article>
 				</div>
 			</div>
 		</div>
@@ -461,6 +479,29 @@ const localizedUpcoming = isDutch
 		font-size: 1.0625rem;
 	}
 
+	.lineage__secondary-cycles {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(var(--space-4), 3vw, var(--space-6));
+		margin-top: var(--space-6);
+	}
+
+	.lineage .lineage__secondary-cycle h4 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: var(--text-lg);
+		font-weight: 400;
+		line-height: 1.25;
+	}
+
+	.lineage .lineage__secondary-cycle p {
+		max-width: 24rem;
+		margin-top: var(--space-2);
+		padding-top: 0;
+		font-size: var(--text-sm);
+		line-height: 1.5;
+	}
+
 	.lineage .lineage__link {
 		max-width: none;
 		padding-top: clamp(var(--space-6), 4vw, var(--space-7));
@@ -710,6 +751,12 @@ const localizedUpcoming = isDutch
 
 		.lineage__tersar {
 			max-width: 100%;
+		}
+
+		.lineage__secondary-cycles {
+			grid-template-columns: 1fr;
+			gap: var(--space-5);
+			margin-top: var(--space-5);
 		}
 
 		.lineage h3 {
